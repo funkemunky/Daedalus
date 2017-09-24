@@ -1,0 +1,12 @@
+package funkemunky.Daedalus.check.combat;
+
+import funkemunky.Daedalus.Daedalus;
+import funkemunky.Daedalus.check.Check;
+
+public class HitBoxes extends Check {
+	
+	public HitBoxes(Daedalus Daedalus) {
+		super("HitBoxes", "Hitboxes", Daedalus);
+	}
+
+}

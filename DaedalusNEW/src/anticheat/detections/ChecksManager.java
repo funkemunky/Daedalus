@@ -2,6 +2,7 @@ package anticheat.detections;
 
 import anticheat.Daedalus;
 import anticheat.checks.movement.SpeedA;
+import anticheat.checks.movement.Vclip;
 
 import org.bukkit.event.Event;
 
@@ -36,7 +37,8 @@ public class ChecksManager {
 	}
 
 	public void init() {
-		new SpeedA(ac);
+		new SpeedA();
+		new Vclip();
 	}
 
 	public void event(Event event) {

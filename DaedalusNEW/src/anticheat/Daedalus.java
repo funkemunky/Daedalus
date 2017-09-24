@@ -106,6 +106,7 @@ public class Daedalus extends JavaPlugin {
 	public void onDisable() {
 		for(Checks check : checksmanager.getDetections()) {
 			getConfig().set("checks." + check.getName(), check.getState());
+			saveConfig();
 		}
 	}
 

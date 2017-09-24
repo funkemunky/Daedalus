@@ -142,10 +142,10 @@ public class SpeedB
                     }
                 }
             }
-            dumplog(player, "Speed XZ: " + OffsetXZ);
             if ((OffsetXZ > LimitXZ))
             {
             	Count++;
+                dumplog(player, "Speed XZ: " + OffsetXZ);
                 dumplog(player, "New Count: " + Count);
             }
         if ((this.speedTicks.containsKey(player.getUniqueId())) &&
