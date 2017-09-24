@@ -59,6 +59,9 @@ public class KillAuraD extends Check {
 		if(time.containsKey(e.getPlayer().getUniqueId())) {
 			Time = time.get(e.getPlayer().getUniqueId());
 		}
+		
+		
+		
 		if(e.getType() == PacketPlayerType.ARM_SWING) {
 			Other++;
 		}
@@ -69,7 +72,7 @@ public class KillAuraD extends Check {
 		
 		if(UtilTime.elapsed(Time, 1000L)) {
 			if(Count > Other) {
-				getDaedalus().logCheat(this, e.getPlayer(), Count + " Use : " + Other + " Arm", Chance.HIGH, new String[] {"Experimental"});
+				getDaedalus().logCheat(this, e.getPlayer(), Count + " Use : " + Other + " Arm", Chance.HIGH, new String[0]);
 			}
 			Time = UtilTime.nowlong();
 		}
