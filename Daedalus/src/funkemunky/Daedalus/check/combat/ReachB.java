@@ -109,6 +109,9 @@ public class ReachB extends Check {
         if(this.offsets.containsKey(player)) {
         	offsetsp = ((Double)((Map.Entry)this.offsets.get(player)).getKey()).doubleValue();
         }
+        if(Latency.getLag(damager) > 100 || Latency.getLag(player) > 100) {
+        	return;
+        }
         speedToVelocityDif = Math.abs(offsets - player.getVelocity().length());
         MaxReach += (YawDifference * 0.001);
          MaxReach += lastHorizontal * 1.5;

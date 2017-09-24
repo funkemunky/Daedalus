@@ -1,10 +1,15 @@
 package funkemunky.Daedalus.check.combat;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
-import funkemunky.Daedalus.packets.events.PacketUseEntityEvent;
+import funkemunky.Daedalus.check.other.Latency;
+import funkemunky.Daedalus.utils.Chance;
+import funkemunky.Daedalus.utils.UtilCheat;
 
 public class HitBoxes extends Check {
 	
@@ -13,8 +18,28 @@ public class HitBoxes extends Check {
 	}
 	
 	@EventHandler
-	public void onUse(PacketUseEntityEvent e) {
-		
+	public void onUse(EntityDamageByEntityEvent e) {
+		if(e.getCause() != DamageCause.ENTITY_ATTACK) {
+			return;
+		}
+		if(!(e.getEntity() instanceof Player) || !(e.getDamager() instanceof Player)) {
+			return;
+		}
+	    Player player = (Player) e.getDamager();
+	    Player attacked = (Player) e.getEntity();
+	    
+	    double offset = UtilCheat.getOffsetOffCursor(player, attacked);
+	    double Limit = 45D;
+	    double distance = UtilCheat.getHorizontalDistance(player.getLocation(), attacked.getLocation());
+	    Limit+= distance * 12;
+	    
+	    if(Latency.getLag(player) > 80 || Latency.getLag(attacked) > 80) {
+	    	return;
+	    }
+	    
+	    if(offset > Limit) {
+	    	getDaedalus().logCheat(this, player, offset + " " + " >" + Limit, Chance.LIKELY, new String[0]);
+	    }
 	}
 
 }

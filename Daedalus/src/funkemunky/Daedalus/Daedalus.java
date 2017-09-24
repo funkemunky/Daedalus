@@ -37,6 +37,7 @@ import funkemunky.Daedalus.check.combat.AutoclickerB;
 import funkemunky.Daedalus.check.combat.AutoclickerC;
 import funkemunky.Daedalus.check.combat.Crits;
 import funkemunky.Daedalus.check.combat.FastBow;
+import funkemunky.Daedalus.check.combat.HitBoxes;
 import funkemunky.Daedalus.check.combat.KillAuraA;
 import funkemunky.Daedalus.check.combat.KillAuraB;
 import funkemunky.Daedalus.check.combat.KillAuraC;
@@ -141,6 +142,7 @@ public class Daedalus extends JavaPlugin implements Listener
         this.Checks.add(new KillAuraD(this));
         this.Checks.add(new KillAuraE(this));
         this.Checks.add(new KillauraF(this));
+        this.Checks.add(new HitBoxes(this));
         this.Checks.add(new AutoclickerA(this));
         this.Checks.add(new AutoclickerB(this));
         this.Checks.add(new AutoclickerC(this));

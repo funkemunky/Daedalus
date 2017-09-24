@@ -16,7 +16,7 @@ import funkemunky.Daedalus.utils.Chance;
 public class FreeCam extends Check {
 
 	public FreeCam(Daedalus Daedalus) {
-		super("Freecam", "Freecam", Daedalus);
+		super("BlockInteract", "Block Interact", Daedalus);
 		
 		this.setBannable(false);
 	}
