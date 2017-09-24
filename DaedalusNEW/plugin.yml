@@ -1,0 +1,7 @@
+name: Daedalus
+version: 43
+main: anticheat.Daedalus
+author: funkemunky and XtasyCode
+commands:
+    Daedalus:
+      description: To show Daedalus commands.
