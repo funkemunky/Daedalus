@@ -46,7 +46,7 @@ public class KillAuraE extends Check
         if (this.lastAttack.containsKey(player)) {
             Integer entityid = this.lastAttack.get(player).getKey();
             Long time = this.lastAttack.get(player).getValue();
-            if (entityid != e.getEntity().getEntityId() && System.currentTimeMillis() - time < 5L) {
+            if (entityid != e.getEntity().getEntityId() && System.currentTimeMillis() - time < 6L) {
                 this.getDaedalus().logCheat(this, player, null, Chance.LIKELY, new String[0]);
             }
             this.lastAttack.remove(player);

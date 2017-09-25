@@ -86,9 +86,7 @@ public class FastLadder extends Check {
 			count.put(player, Count + 1);
 			this.dumplog(player, "[Illegitmate] New Count: " + Count + " (+1); Speed: " + OffsetY + "; Max: " + Limit);
 	    } else {
-	    	if(Count > 0) {
-	    		count.put(player, Count - 1);
-	    	}
+	    	count.put(player, 0);
 	    }
 		
 		long percent = Math.round((OffsetY - Limit) * 120);

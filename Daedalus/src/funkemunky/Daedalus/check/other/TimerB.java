@@ -52,7 +52,7 @@ public class TimerB extends Check {
         if ((this.timerTicks.containsKey(player.getUniqueId())) &&
                 (UtilTime.elapsed(Time, 1000L)))
         {
-            if (Count > 30) {
+            if (Count > 35) {
                 this.getDaedalus().logCheat(this, player, null, Chance.LIKELY, new String[] {"Experimental"});
             }
             Count = 0;

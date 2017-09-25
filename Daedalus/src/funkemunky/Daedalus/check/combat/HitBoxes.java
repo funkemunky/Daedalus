@@ -1,9 +1,15 @@
 package funkemunky.Daedalus.check.combat;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
@@ -17,7 +23,16 @@ public class HitBoxes extends Check {
 		super("HitBoxes", "Hitboxes", Daedalus);
 	}
 	
-	@EventHandler
+	public static Map<UUID, Integer> count = new HashMap();
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onQuit(PlayerQuitEvent e) {
+		if(count.containsKey(e.getPlayer().getUniqueId())) {
+			count.remove(e.getPlayer().getUniqueId());
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onUse(EntityDamageByEntityEvent e) {
 		if(e.getCause() != DamageCause.ENTITY_ATTACK) {
 			return;
@@ -31,18 +46,33 @@ public class HitBoxes extends Check {
 	    	return;
 	    }
 	    
+	    int Count = 0;
+	    if(count.containsKey(player.getUniqueId())) {
+	    	Count = count.get(player.getUniqueId());
+	    }
+	    
 	    double offset = UtilCheat.getOffsetOffCursor(player, attacked);
-	    double Limit = 45D;
+	    double Limit = 41D;
 	    double distance = UtilCheat.getHorizontalDistance(player.getLocation(), attacked.getLocation());
 	    Limit+= distance * 12;
+	    Limit+= (attacked.getVelocity().length() + player.getVelocity().length()) * 42;
 	    
 	    if(Latency.getLag(player) > 80 || Latency.getLag(attacked) > 80) {
 	    	return;
 	    }
 	    
 	    if(offset > Limit) {
-	    	getDaedalus().logCheat(this, player, offset + " " + " >" + Limit, Chance.LIKELY, new String[0]);
+	    	Count++;
+	    } else {
+	    	Count = 0;
 	    }
+	    
+	    if(Count > 2) {
+	    	getDaedalus().logCheat(this, player, offset + " > " + Limit, Chance.LIKELY, new String[] {"Experimental"});
+	    	Count = 0;
+	    }
+	    
+	    this.count.put(player.getUniqueId(), Count);
 	}
 
 }

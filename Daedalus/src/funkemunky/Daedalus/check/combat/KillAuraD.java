@@ -5,21 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.packets.events.PacketKillauraEvent;
 import funkemunky.Daedalus.packets.events.PacketPlayerType;
 import funkemunky.Daedalus.utils.Chance;
-import funkemunky.Daedalus.utils.UtilTime;
 
 public class KillAuraD extends Check {
 	
 	public static Map<UUID, Map.Entry<Double, Double>> packetTicks;
-	public static Map<UUID, Long> time;
 	
 	public KillAuraD(Daedalus Daedalus) {
 		super("KillAuraD", "KillAura (Packet)", Daedalus);
@@ -28,18 +27,18 @@ public class KillAuraD extends Check {
 		this.setViolationResetTime(60000);
 		
 		this.packetTicks = new HashMap<UUID, Map.Entry<Double, Double>>();
-		this.time = new HashMap<UUID, Long>();
+		
+		new BukkitRunnable() {
+			public void run() {
+				for(Player player : Bukkit.getOnlinePlayers()) {
+					if(packetTicks.containsKey(player.getUniqueId())) {
+						packetTicks.remove(player.getUniqueId());
+					}
+				}
+			}
+		}.runTaskTimer(Daedalus, 20L, 20L);
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void log(PlayerQuitEvent e) {
-		if(this.packetTicks.containsKey(e.getPlayer().getUniqueId())) {
-			this.packetTicks.remove(e.getPlayer().getUniqueId());
-		}
-		if(this.time.containsKey(e.getPlayer().getUniqueId())) {
-			this.time.remove(e.getPlayer().getUniqueId());
-		}
-	}
 	
 	@EventHandler
 	public void packet(PacketKillauraEvent e) {
@@ -51,14 +50,11 @@ public class KillAuraD extends Check {
 		}
 		double Count = 0;
 		double Other = 0;
-		long Time = System.currentTimeMillis();
 		if(packetTicks.containsKey(e.getPlayer().getUniqueId())) {
 			Count = packetTicks.get(e.getPlayer().getUniqueId()).getKey();
 			Other = packetTicks.get(e.getPlayer().getUniqueId()).getValue();
 		}
-		if(time.containsKey(e.getPlayer().getUniqueId())) {
-			Time = time.get(e.getPlayer().getUniqueId());
-		}
+		
 		if(e.getType() == PacketPlayerType.ARM_SWING) {
 			Other++;
 		}
@@ -67,15 +63,11 @@ public class KillAuraD extends Check {
 			Count++;
 		}
 		
-		if(UtilTime.elapsed(Time, 1000L)) {
-			if(Count > Other) {
-				getDaedalus().logCheat(this, e.getPlayer(), Count + " Use : " + Other + " Arm", Chance.HIGH, new String[] {"Experimental"});
-			}
-			Time = UtilTime.nowlong();
+		if(Count > Other) {
+			getDaedalus().logCheat(this, e.getPlayer(), Count + " Use : " + Other + " Arm", Chance.HIGH, new String[0]);
 		}
 		
 		this.packetTicks.put(e.getPlayer().getUniqueId(), new AbstractMap.SimpleEntry<Double, Double>(Count, Other));
-		this.time.put(e.getPlayer().getUniqueId(), Time);
 	}
 
 }
