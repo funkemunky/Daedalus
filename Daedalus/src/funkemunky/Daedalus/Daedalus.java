@@ -173,7 +173,6 @@ public class Daedalus extends JavaPlugin implements Listener
     public void onEnable() {
         Daedalus.Instance = this;
         this.addChecks();
-        file = new ConfigFile();
         this.packet = new PacketCore(this);
         this.lag = new LagCore(this);
         this.updater = new Updater(this);
@@ -194,37 +193,37 @@ public class Daedalus extends JavaPlugin implements Listener
         this.RegisterListener(this);
         Bukkit.getServer().getPluginManager().registerEvents(new Latency(this), this);
         if(!file.exists()) {
-            getConfigFile().getConfiguration().addDefault("bans", 0);
-            getConfigFile().getConfiguration().addDefault("testmode", false);
-            getConfigFile().getConfiguration().addDefault("prefix", "&8[&c&lDaedalus&8] ");
-            getConfigFile().getConfiguration().addDefault("alerts.primary", "&7");
-            getConfigFile().getConfiguration().addDefault("alerts.secondary", "&c");
-            getConfigFile().getConfiguration().addDefault("alerts.checkColor", "&b");
-            getConfigFile().getConfiguration().addDefault("bancmd", "ban %player% [Daedalus] Unfair Advantage: %check%");
-            getConfigFile().getConfiguration().addDefault("broadcastmsg", "&c&lDaedalus &7has detected &c%player% &7to be cheating and has been removed from the network.");
-            getConfigFile().getConfiguration().addDefault("settings.broadcastResetViolationsMsg", true);
-            getConfigFile().getConfiguration().addDefault("settings.violationResetTime", 60);
-            getConfigFile().getConfiguration().addDefault("settings.resetViolationsAutomatically", true);
-            getConfigFile().getConfiguration().addDefault("settings.gui.checkered", true);
-            getConfigFile().getConfiguration().addDefault("settings.latency.ping", 300);
-            getConfigFile().getConfiguration().addDefault("settings.latency.tps", 17);
-            getConfigFile().getConfiguration().addDefault("settings.sotwMode", false);
-            getConfigFile().getConfiguration().addDefault("hwid", "");
+            this.getConfig().addDefault("bans", 0);
+            this.getConfig().addDefault("testmode", false);
+            this.getConfig().addDefault("prefix", "&8[&c&lDaedalus&8] ");
+            this.getConfig().addDefault("alerts.primary", "&7");
+            this.getConfig().addDefault("alerts.secondary", "&c");
+            this.getConfig().addDefault("alerts.checkColor", "&b");
+            this.getConfig().addDefault("bancmd", "ban %player% [Daedalus] Unfair Advantage: %check%");
+            this.getConfig().addDefault("broadcastmsg", "&c&lDaedalus &7has detected &c%player% &7to be cheating and has been removed from the network.");
+            this.getConfig().addDefault("settings.broadcastResetViolationsMsg", true);
+            this.getConfig().addDefault("settings.violationResetTime", 60);
+            this.getConfig().addDefault("settings.resetViolationsAutomatically", true);
+            this.getConfig().addDefault("settings.gui.checkered", true);
+            this.getConfig().addDefault("settings.latency.ping", 300);
+            this.getConfig().addDefault("settings.latency.tps", 17);
+            this.getConfig().addDefault("settings.sotwMode", false);
+            this.getConfig().addDefault("hwid", "");
             for(Check check : Checks) {
-            	getConfigFile().getConfiguration().addDefault("checks." + check.getIdentifier() + ".enabled", check.isEnabled());
-            	getConfigFile().getConfiguration().addDefault("checks." + check.getIdentifier() + ".bannable", check.isBannable());
-            	getConfigFile().getConfiguration().addDefault("checks." + check.getIdentifier() + ".banTimer", check.hasBanTimer());
+            	this.getConfig().addDefault("checks." + check.getIdentifier() + ".enabled", check.isEnabled());
+            	this.getConfig().addDefault("checks." + check.getIdentifier() + ".bannable", check.isBannable());
+            	this.getConfig().addDefault("checks." + check.getIdentifier() + ".banTimer", check.hasBanTimer());
             }
-            getConfigFile().getConfiguration().addDefault("checks.Phase.pearlFix", true);
-            getConfigFile().getConfiguration().options().copyDefaults(true);
-            getConfigFile().save();
+            this.getConfig().addDefault("checks.Phase.pearlFix", true);
+            this.getConfig().options().copyDefaults(true);
+            saveConfig();
         }
         getAPI();
         for(Check check : Checks) {
     	    if(!getConfig().isConfigurationSection("checks." + check.getIdentifier())) {
-    	    	getConfigFile().getConfiguration().set("checks." + check.getIdentifier() + ".enabled", check.isEnabled());
-            	getConfigFile().getConfiguration().set("checks." + check.getIdentifier() + ".bannable", check.isBannable());
-            	getConfigFile().getConfiguration().set("checks." + check.getIdentifier() + ".banTimer", check.hasBanTimer());
+    	    	this.getConfig().set("checks." + check.getIdentifier() + ".enabled", check.isEnabled());
+            	this.getConfig().set("checks." + check.getIdentifier() + ".bannable", check.isBannable());
+            	this.getConfig().set("checks." + check.getIdentifier() + ".banTimer", check.hasBanTimer());
             	this.saveConfig();
     	    }
         }
@@ -254,14 +253,6 @@ public class Daedalus extends JavaPlugin implements Listener
         	console.sendMessage(C.Red + "No new updates, carry on.");
         }
 
-    }
-    
-    public static Daedalus getInstance() {
-    	return Instance;
-    }
-    
-    public static ConfigFile getConfigFile() {
-    	return file;
     }
     
     public void resetDumps(Player player) {
@@ -341,7 +332,7 @@ public class Daedalus extends JavaPlugin implements Listener
     }
     
     public boolean isCheckingUpdates() {
-    	return getConfigFile().getConfiguration().getBoolean("settings.checkUpdates");
+    	return this.getConfig().getBoolean("settings.checkUpdates");
     }
     
     public String getVersion() {
@@ -545,7 +536,7 @@ public class Daedalus extends JavaPlugin implements Listener
     	      while ((line = in.readLine()) != null) {
     	        lines.add(line);
     	      }
-    	      if (!lines.contains(getConfigFile().getConfiguration().getString("hwid")) && getConfigFile().getConfiguration().getString("hwid") != null) 
+    	      if (!lines.contains(this.getConfig().getString("hwid")) && this.getConfig().getString("hwid") != null) 
     	      {
     	     
     	        getLogger().log(Level.SEVERE, wngnq);
@@ -646,6 +637,9 @@ public class Daedalus extends JavaPlugin implements Listener
         new BukkitRunnable() {
             @Override
             public void run() {
+            	if(NamesBanned.containsKey(player.getName()) && getConfig().getBoolean("testmode")) {
+            		return;
+            	}
             if(Latency.getLag(player) < 250) {
             	if(getConfig().getBoolean("testmode")) {
             		player.sendMessage(PREFIX + C.Gray + "You would be banned right now for: "  + C.Red + check.getName());
@@ -656,10 +650,11 @@ public class Daedalus extends JavaPlugin implements Listener
             		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), getConfig().getString("bancmd").replaceAll("%player%", player.getName()).replaceAll("%check%", check.getName()));
             	}
             }
+            NamesBanned.put(player.getName(), check);
             }
         }.runTaskLater(this, 10L);
         if(Violations.containsKey(player)) this.Violations.remove(player);
-        getConfigFile().getConfiguration().set("bans", (getConfigFile().getInt("bans") + 1));
+        this.getConfig().set("bans", (Object)(this.getConfig().getInt("bans") + 1));
         this.saveConfig();
     }
     

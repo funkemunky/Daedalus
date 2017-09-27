@@ -105,8 +105,8 @@ public class Check
 
     public void setEnabled(boolean Enabled)
     {
-    	if(Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".enabled") != Enabled && Daedalus.getConfigFile().get("checks." + this.getIdentifier() + ".enabled") != null) {
-    		this.Enabled = Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".enabled");
+    	if(Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".enabled") != Enabled && Daedalus.getConfig().get("checks." + this.getIdentifier() + ".enabled") != null) {
+    		this.Enabled = Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".enabled");
     		return;
     	}
         if (Enabled)
@@ -122,12 +122,12 @@ public class Check
     }
     
     public void checkValues() {
-    	if(Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".enabled") == true) {
+    	if(Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".enabled") == true) {
     		this.setEnabled(true);
     	} else {
     		this.setEnabled(false);
     	}
-    	if(Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".bannable") == true) {
+    	if(Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".bannable") == true) {
     		this.setBannable(true);
     	} else {
     		this.setEnabled(false);
@@ -136,8 +136,8 @@ public class Check
 
     public void setBannable(boolean Bannable)
     {
-    	if(Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".bannable") != Bannable && Daedalus.getConfigFile().get("checks." + this.getIdentifier() + ".bannable") != null) {
-    		this.Bannable = Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".bannable");
+    	if(Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".bannable") != Bannable && Daedalus.getConfig().get("checks." + this.getIdentifier() + ".bannable") != null) {
+    		this.Bannable = Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".bannable");
     		return;
     	}
     	this.Bannable = Bannable;
@@ -145,8 +145,8 @@ public class Check
 
     public void setAutobanTimer(boolean BanTimer)
     {
-    	if((Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".banTimer") != BanTimer && Daedalus.getConfigFile().get("checks." + this.getIdentifier() + ".banTimer") != null)) {
-    		this.BanTimer = Daedalus.getConfigFile().getBoolean("checks." + this.getIdentifier() + ".banTimer");
+    	if((Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".banTimer") != BanTimer && Daedalus.getConfig().get("checks." + this.getIdentifier() + ".banTimer") != null)) {
+    		this.BanTimer = Daedalus.getConfig().getBoolean("checks." + this.getIdentifier() + ".banTimer");
     		return;
     	}
         this.BanTimer = BanTimer;

@@ -17,14 +17,14 @@ public class ConfigFile {
 	private YamlConfiguration configuration;
 
 	public ConfigFile() {
-		this.file = new File(Daedalus.getInstance().getDataFolder(), "config.yml");
+		this.file = new File(Daedalus.Instance.getDataFolder(), "config.yml");
 		this.configuration = YamlConfiguration.loadConfiguration(this.file);
 	}
 	
 	public void load() {
-		this.file = new File(Daedalus.getInstance().getDataFolder(), "config.yml");
+		this.file = new File(Daedalus.Instance.getDataFolder(), "config.yml");
 		if (!this.file.exists()) {
-			Daedalus.getInstance().saveResource("config.yml", false);
+			Daedalus.Instance.saveResource("config.yml", false);
 		}
 		this.configuration = YamlConfiguration.loadConfiguration(this.file);
 	}
