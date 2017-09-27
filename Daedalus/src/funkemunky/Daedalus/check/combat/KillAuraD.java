@@ -23,6 +23,9 @@ public class KillAuraD extends Check {
 	public KillAuraD(Daedalus Daedalus) {
 		super("KillAuraD", "KillAura (Packet)", Daedalus);
 		
+		this.setEnabled(true);
+		this.setBannable(false);
+		
 		this.setMaxViolations(5);
 		this.setViolationResetTime(60000);
 		
@@ -63,7 +66,7 @@ public class KillAuraD extends Check {
 			Count++;
 		}
 		
-		if(Count > Other) {
+		if(Count > Other + 1) {
 			getDaedalus().logCheat(this, e.getPlayer(), Count + " Use : " + Other + " Arm", Chance.HIGH, new String[0]);
 		}
 		

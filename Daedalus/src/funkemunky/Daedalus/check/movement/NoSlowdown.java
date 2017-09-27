@@ -26,6 +26,7 @@ public class NoSlowdown extends Check {
 
 	public NoSlowdown(Daedalus Daedalus) {
 		super("NoSlowdown", "NoSlowdown", Daedalus);
+		
 		setEnabled(true);
 		setBannable(true);
 	}

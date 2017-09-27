@@ -65,6 +65,10 @@ public class AscensionB extends Check {
         	return;
         }
         
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
+        
         
         if(p.getVelocity().length() < velocity.getOrDefault(p.getUniqueId(), 0.0D)) {
       	  return;

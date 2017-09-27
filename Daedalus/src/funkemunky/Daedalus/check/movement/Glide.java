@@ -20,6 +20,8 @@ public class Glide extends Check
     public Glide(Daedalus Daedalus) {
         super("Glide", "Glide", Daedalus);
         this.flyTicks = new HashMap<UUID, Long>();
+        
+        this.setEnabled(false);
         this.setBannable(true);
     }
 
@@ -45,6 +47,9 @@ public class Glide extends Check
         if (player.getAllowFlight()) {
             return;
         }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
         if (UtilCheat.isInWeb(player)) {
             return;
         }

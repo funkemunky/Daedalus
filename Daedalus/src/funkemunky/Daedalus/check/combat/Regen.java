@@ -24,6 +24,7 @@ public class Regen
     {
         super("Regen", "Regen", Daedalus);
 
+        this.setEnabled(true);
         this.setBannable(true);
         setViolationsToNotify(3);
         setMaxViolations(12);

@@ -27,6 +27,7 @@ public class Step
     {
         super("Step", "Step", Daedalus);
 
+        setEnabled(true);
         setBannable(false);
     }
 
@@ -68,6 +69,9 @@ public class Step
          if (player.getAllowFlight()) {
              return;
          }
+     	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
          if(UtilPlayer.isOnClimbable(player, 0)) {
          	return;
          }

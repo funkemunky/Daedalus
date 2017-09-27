@@ -33,7 +33,11 @@ public class NoFall
     {
         super("NoFall", "NoFall", Daedalus);
 
-        setBannable(true);
+        this.setEnabled(true);
+        this.setBannable(true);
+        
+        this.setViolationResetTime(120000);
+        
         setMaxViolations(10);
     }
     

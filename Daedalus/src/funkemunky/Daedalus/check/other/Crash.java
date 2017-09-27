@@ -38,6 +38,9 @@ public class Crash extends Check
         this.faggot3Ticks = new HashMap<UUID, Map.Entry<Integer, Long>>();
         this.faggots = new ArrayList<UUID>();
         this.setMaxViolations(0);
+        
+        this.setEnabled(true);
+        this.setBannable(true);
     }
 
     @EventHandler

@@ -22,6 +22,9 @@ public class TimerB extends Check {
 		
 		this.setViolationsToNotify(1);
 		this.setMaxViolations(9);
+		
+		this.setEnabled(true);
+		this.setBannable(false);
 	}
 	public static Map<UUID, Map.Entry<Integer, Long>> timerTicks = new HashMap();
 	
@@ -39,6 +42,9 @@ public class TimerB extends Check {
 				e.getFrom().getY() == e.getTo().getY()) {
 			return;
 		}
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
         int Count = 0;
         long Time = System.currentTimeMillis();
         if (this.timerTicks.containsKey(player.getUniqueId()))

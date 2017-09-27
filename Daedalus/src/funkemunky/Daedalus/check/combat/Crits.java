@@ -26,6 +26,8 @@ extends Check {
 
     public Crits(Daedalus Daedalus) {
         super("Criticals", "Criticals", Daedalus);
+        
+        this.setEnabled(true);
         this.setBannable(true);
         this.setMaxViolations(4);
     }

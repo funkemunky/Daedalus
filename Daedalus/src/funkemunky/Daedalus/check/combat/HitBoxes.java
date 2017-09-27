@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import funkemunky.Daedalus.Daedalus;
@@ -21,15 +22,28 @@ public class HitBoxes extends Check {
 	
 	public HitBoxes(Daedalus Daedalus) {
 		super("HitBoxes", "Hitboxes", Daedalus);
+		
+		this.setEnabled(true);
+		this.setBannable(false);
 	}
 	
 	public static Map<UUID, Integer> count = new HashMap();
+	public static Map<UUID, Double> yawDif = new HashMap();
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onQuit(PlayerQuitEvent e) {
 		if(count.containsKey(e.getPlayer().getUniqueId())) {
 			count.remove(e.getPlayer().getUniqueId());
 		}
+		if(yawDif.containsKey(e.getPlayer().getUniqueId())) {
+			yawDif.remove(e.getPlayer().getUniqueId());
+		}
+	}
+	
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
+	public void onMove(PlayerMoveEvent e) {
+		double yawDif = Math.abs(e.getFrom().getYaw() - e.getTo().getYaw()); 
+		this.yawDif.put(e.getPlayer().getUniqueId(), yawDif);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -40,6 +54,9 @@ public class HitBoxes extends Check {
 		if(!(e.getEntity() instanceof Player) || !(e.getDamager() instanceof Player)) {
 			return;
 		}
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
 	    Player player = (Player) e.getDamager();
 	    Player attacked = (Player) e.getEntity();
 	    if(player.hasPermission("daedalus.bypass")) {
@@ -47,15 +64,20 @@ public class HitBoxes extends Check {
 	    }
 	    
 	    int Count = 0;
+	    double yawDif = 0;
 	    if(count.containsKey(player.getUniqueId())) {
 	    	Count = count.get(player.getUniqueId());
+	    }
+	    if(this.yawDif.containsKey(player.getUniqueId())) {
+	    	yawDif = this.yawDif.get(player.getUniqueId());
 	    }
 	    
 	    double offset = UtilCheat.getOffsetOffCursor(player, attacked);
 	    double Limit = 41D;
 	    double distance = UtilCheat.getHorizontalDistance(player.getLocation(), attacked.getLocation());
 	    Limit+= distance * 12;
-	    Limit+= (attacked.getVelocity().length() + player.getVelocity().length()) * 42;
+	    Limit+= (attacked.getVelocity().length() + player.getVelocity().length()) * 48;
+	    Limit+= yawDif * 1.47;
 	    
 	    if(Latency.getLag(player) > 80 || Latency.getLag(attacked) > 80) {
 	    	return;
@@ -67,7 +89,7 @@ public class HitBoxes extends Check {
 	    	Count = 0;
 	    }
 	    
-	    if(Count > 2) {
+	    if(Count > 1) {
 	    	getDaedalus().logCheat(this, player, offset + " > " + Limit, Chance.LIKELY, new String[] {"Experimental"});
 	    	Count = 0;
 	    }

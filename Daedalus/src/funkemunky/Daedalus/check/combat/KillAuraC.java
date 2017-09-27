@@ -29,6 +29,8 @@ public class KillAuraC extends Check
         this.AimbotTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
         this.Differences = new HashMap<UUID, Double>();
         this.LastLocation = new HashMap<UUID, Location>();
+        
+        this.setEnabled(false);
         this.setBannable(false);
     }
 

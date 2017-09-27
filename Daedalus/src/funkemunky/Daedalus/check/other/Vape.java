@@ -13,8 +13,13 @@ public class Vape extends Check implements PluginMessageListener {
 	
 	public Vape(Daedalus Daedalus) {
 		super("Vape", "Vape", Daedalus);
-		this.setMaxViolations(0);
+		
+		
+		this.setEnabled(true);
 		this.setBannable(true);
+		
+		this.setMaxViolations(0);
+		this.setViolationsToNotify(0);
 	}
 
 	@EventHandler

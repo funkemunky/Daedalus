@@ -30,9 +30,9 @@ public class SpeedB
     {
         super("SpeedB", "Speed (Type B)", Daedalus);
 
-        setEnabled(false);
+        setEnabled(true);
         setBannable(true);
-        this.setMaxViolations(4);
+        this.setMaxViolations(5);
     }
     
     public boolean isOnIce(final Player player) {
@@ -50,6 +50,9 @@ public class SpeedB
     
     @EventHandler
     public void onHit(EntityDamageByEntityEvent e) {
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
     	if(e.getEntity() instanceof Player) {
     		Player player = (Player) e.getEntity();
     		
@@ -81,6 +84,9 @@ public class SpeedB
         if (!getDaedalus().isEnabled()) {
             return;
         }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
         if (player.getAllowFlight()) {
             return;
         }
@@ -88,9 +94,6 @@ public class SpeedB
             return;
         }
         long lastHitDiff = this.lastHit.containsKey(player.getUniqueId()) ? this.lastHit.get(player.getUniqueId()) - System.currentTimeMillis() : 2001L;
-    	if(getDaedalus().isSotwMode()) {
-    		return;
-    	}
         
         if (getDaedalus().LastVelocity.containsKey(player.getUniqueId()) && !player.getActivePotionEffects().contains(PotionEffectType.POISON) && !player.getActivePotionEffects().contains(PotionEffectType.WITHER) && player.getFireTicks() == 0) {
             return;

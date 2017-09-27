@@ -30,6 +30,7 @@ public class Timer extends Check
         this.lastTimer = new HashMap<UUID, Long>();
         this.MS = new HashMap<UUID, List<Long>>();
         this.timerTicks = new HashMap<UUID, Integer>();
+        
         this.setEnabled(true);
         this.setBannable(false);
     }

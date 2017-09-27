@@ -21,6 +21,8 @@ public class KillAuraE extends Check
     public KillAuraE(Daedalus Daedalus) {
         super("KillAuraE", "Kill Aura (MultiAura)", Daedalus);
         this.lastAttack = new HashMap<Player, Map.Entry<Integer, Long>>();
+        
+        this.setEnabled(true);
         this.setBannable(false);
     }
 
@@ -42,6 +44,9 @@ public class KillAuraE extends Check
         if (!(e.getDamager() instanceof Player)) {
             return;
         }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
         Player player = (Player)e.getDamager();
         if (this.lastAttack.containsKey(player)) {
             Integer entityid = this.lastAttack.get(player).getKey();

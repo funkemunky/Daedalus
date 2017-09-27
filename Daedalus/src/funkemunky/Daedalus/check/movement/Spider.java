@@ -44,6 +44,9 @@ public class Spider extends Check {
 	    if (!getDaedalus().isEnabled()) {
 	      return;
 	    }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
 	    if (player.getAllowFlight()) {
 	      return;
 	    }

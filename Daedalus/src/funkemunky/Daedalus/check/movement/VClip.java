@@ -22,7 +22,9 @@ public class VClip extends Check
 	
     public VClip(final Daedalus Daedalus) {
         super("VClip", "VClip", Daedalus);
+        
         this.setBannable(false);
+        this.setEnabled(true);
         this.setMaxViolations(15);
         this.setViolationResetTime(10000);
     }
@@ -73,6 +75,9 @@ public class VClip extends Check
         if(!getDaedalus().isEnabled()) {
         	return;
         }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
         if (p.getAllowFlight()) {
           return;
         }

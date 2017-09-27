@@ -74,6 +74,9 @@ public class MorePackets
         if (!getDaedalus().isEnabled()) {
             return;
         }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
         if (player.getGameMode().equals(GameMode.CREATIVE)) {
             return;
         }
@@ -113,9 +116,9 @@ public class MorePackets
                     	getDaedalus().logCheat(this, player, "Packets: " + Count, Chance.LIKELY, new String[0]);
                     }
                 }
-                if(Count > 1250) {
-                	getDaedalus().logCheat(this, player, "Banned", Chance.HIGH, new String[] { "Crash" });
-                	getDaedalus().banPlayer(player, this);
+                if(Count > 400) {
+                	getDaedalus().logCheat(this, player, null, Chance.HIGH, new String[] { "Kicked" });
+                	player.kickPlayer("Too many packets.");
                 }
                 Count = 0;
                 Time = UtilTime.nowlong();

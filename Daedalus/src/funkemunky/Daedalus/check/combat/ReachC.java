@@ -38,6 +38,7 @@ public class ReachC extends Check {
 		this.reachTicks = new HashMap<Player, Long>();
 		this.projectileHit = new ArrayList<Player>();
 		
+		this.setEnabled(true);
 		this.setBannable(true);
 		this.setMaxViolations(5);
 	}
@@ -48,6 +49,9 @@ public class ReachC extends Check {
 	   			event.getFrom().getZ() == event.getTo().getZ()) {
 	   		return;
 	   	}
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
 	   	double OffsetXZ = UtilMath.offset(UtilMath.getHorizontalVector(event.getFrom().toVector()), UtilMath.getHorizontalVector(event.getTo().toVector()));
 	   	double horizontal = Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2.0) + Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2.0));
 	   	this.offsets.put(event.getPlayer(), new AbstractMap.SimpleEntry(Double.valueOf(OffsetXZ), Double.valueOf(horizontal)));
@@ -61,13 +65,16 @@ public class ReachC extends Check {
 	   	if(e.getCause() != DamageCause.PROJECTILE) {
 	   		return;
 	   	}
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
 	   	
 	   	Player player = (Player) e.getDamager();
 	   	
 	   	this.projectileHit.add(player);
 	   }
 	   
-	   @EventHandler
+	   @EventHandler(priority = EventPriority.MONITOR)
 	   public void onLogout(PlayerQuitEvent e) {
 	   	if(offsets.containsKey(e.getPlayer())) {
 	   		offsets.remove(e.getPlayer());
@@ -79,7 +86,7 @@ public class ReachC extends Check {
 	   		projectileHit.remove(e.getPlayer());
 	   	}
 	   }
-	   @EventHandler(priority = EventPriority.HIGHEST)
+	   @EventHandler
 	   public void onDamage(PacketUseEntityEvent e) {
 	       if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
 	           return;
@@ -87,6 +94,9 @@ public class ReachC extends Check {
 	       if (!(e.getAttacked() instanceof Player)) {
 	           return;
 	       }
+	    	if(getDaedalus().isSotwMode()) {
+	    		return;
+	    	}
 	       if(e.getAttacker().getAllowFlight()) {
 	    	   return;
 	       }
@@ -104,9 +114,6 @@ public class ReachC extends Check {
 	           attackTime = reachTicks.get(damager);
 	       }
 	       double yawdif = Math.abs(damager.getLocation().getYaw() - player.getLocation().getYaw());
-	       if(yawdif <= 90) {
-	    	   return;
-	       }
 	       if(Latency.getLag(damager) > 80 || Latency.getLag(player) > 80) {
 	    	   return;
 	       }
@@ -125,6 +132,9 @@ public class ReachC extends Check {
 	       Reach -= UtilMath.trim(2, offsetsd);
 	       Reach -= UtilMath.trim(2, offsetsp);
 	       double maxReach2 = 3.1;
+	       if(yawdif < 90) {
+	    	   maxReach2+= 0.38;
+	       }
 	       maxReach2 += lastHorizontal * 1.09;
 	       
 	       maxReach2 += getDaedalus().getLag().getPing(damager) * 0.0021;

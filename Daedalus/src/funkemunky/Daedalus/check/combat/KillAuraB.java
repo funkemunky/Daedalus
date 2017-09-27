@@ -27,6 +27,8 @@ public class KillAuraB extends Check
     public KillAuraB(Daedalus Daedalus) {
         super("KillAuraB", "Kill Aura (Hit Miss Ratio)", Daedalus);
         this.AuraTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+        
+        this.setEnabled(false);
         this.setBannable(false);
         this.setMaxViolations(200);
         this.setViolationsToNotify(22);
@@ -49,6 +51,9 @@ public class KillAuraB extends Check
         if (!((e.getAttacked()) instanceof Player)) {
             return;
         }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
         final Player damager = e.getAttacker();
 	     if(damager.hasPermission("daedalus.bypass")) {
 	         return;

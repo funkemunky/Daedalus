@@ -24,6 +24,7 @@ public class NoSwing
     {
         super("NoSwing", "NoSwing", Daedalus);
 
+        this.setEnabled(true);
         this.setBannable(true);
     }
 

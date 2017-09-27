@@ -24,6 +24,7 @@ public class Sneak
     {
         super("Sneak", "Sneak", daedalus);
 
+        setEnabled(true);
         setBannable(true);
     }
     
@@ -45,6 +46,9 @@ public class Sneak
 	    if(player.hasPermission("daedalus.bypass")) {
 	        return;
 	    }
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
 
         int Count = 0;
         long Time = -1L;

@@ -23,6 +23,7 @@ public class Fly
     {
         super("Fly", "Fly", Daedalus);
 
+        this.setEnabled(true);
         this.setBannable(true);
         setMaxViolations(5);
     }

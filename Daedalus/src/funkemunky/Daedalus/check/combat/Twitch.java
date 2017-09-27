@@ -14,6 +14,7 @@ public class Twitch
     {
         super("Twitch", "Twitch", Daedalus);
 
+        this.setEnabled(true);
         this.setBannable(true);
     }
 

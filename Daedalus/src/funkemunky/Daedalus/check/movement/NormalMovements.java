@@ -24,6 +24,7 @@ public class NormalMovements extends Check {
 
 	public NormalMovements(Daedalus Daedalus) {
 		super("NormalMovements", "NormalMovements", Daedalus);
+		
 		this.setEnabled(true);
 		this.setBannable(true);
 		
@@ -62,6 +63,10 @@ public class NormalMovements extends Check {
         if (!getDaedalus().isEnabled()) {
             return;
         }
+        
+    	if(getDaedalus().isSotwMode()) {
+    		return;
+    	}
 
         if ((e.getTo().getX() == e.getFrom().getX()) && (e.getTo().getZ() == e.getFrom().getZ())
                 && (e.getTo().getY() == e.getFrom().getY())) {

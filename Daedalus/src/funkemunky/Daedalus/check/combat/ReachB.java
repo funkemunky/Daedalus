@@ -33,6 +33,7 @@ public class ReachB extends Check {
     
     public ReachB(Daedalus Daedalus) {
         super("ReachB", "Reach (Type B)", Daedalus);
+        
         this.setEnabled(true);
         this.setMaxViolations(7);
         this.setBannable(true);

@@ -146,6 +146,7 @@ public class PhaseA
   public PhaseA(Daedalus Daedalus)
   {
     super("Phase", "Phase", Daedalus);
+    
     setEnabled(true);
     setBannable(false);
     setMaxViolations(40);
@@ -253,14 +254,13 @@ public class PhaseA
           }
           to.setX(to.getBlockX() + 0.5);
           to.setZ(to.getBlockZ() + 0.5);
-          if((!allowed.contains(to.getBlock()) || !allowed.contains(to.clone().add(0.0D, 1.0D, 0.0D).getBlock())) && (to.getBlock().getType().isSolid() || to.clone().add(0.0D, 1.0D, 0.0D).getBlock().getType().isSolid()) && to.clone().subtract(0.0D, 1.0D, 0.0D).getBlock().getType().isSolid()) {
+          if((!allowed.contains(to.getBlock()) || !allowed.contains(to.clone().add(0.0D, 1.0D, 0.0D).getBlock())) && (to.getBlock().getType().isSolid() || to.clone().add(0.0D, 1.0D, 0.0D).getBlock().getType().isSolid()) && to.clone().subtract(0.0D, 1.0D, 0.0D).getBlock().getType().isSolid() & !UtilCheat.isSlab(to.getBlock())) {
               Player player = event.getPlayer();
         	  final PearlGlitchEvent event2 = new PearlGlitchEvent(player, event.getFrom(), event.getTo(), event.getPlayer().getItemInHand(), PearlGlitchType.SAFE_LOCATION);
         	  Bukkit.getPluginManager().callEvent(event2);
         	  if(!event2.isCancelled()) {
-                  player.sendMessage(getDaedalus().PREFIX + C.Red + "Could not find a safe location for your pearl, therefore it was cancelled.");
                   
-                  event.setCancelled(true);
+        		  player.sendMessage(getDaedalus().PREFIX + C.Red + "Could not find a safe location, therefore your pearl was cancelled.");
         	  }
               return;
           } else  if(!allowed.contains(to.clone().add(0.0D, 1.0D, 0.0D).getBlock()) && to.clone().add(0.0D, 1.0D, 0.0D).getBlock().getType().isSolid() && !to.getBlock().getType().isSolid()){

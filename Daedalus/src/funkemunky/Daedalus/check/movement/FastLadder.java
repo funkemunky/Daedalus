@@ -18,6 +18,7 @@ public class FastLadder extends Check {
 
 	public FastLadder(Daedalus Daedalus) {
 		super("FastLadder", "FastLadder", Daedalus);
+		
 		this.setEnabled(true);
 		this.setBannable(true);
 		this.setMaxViolations(7);

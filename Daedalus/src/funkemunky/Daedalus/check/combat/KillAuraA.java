@@ -28,6 +28,8 @@ public class KillAuraA extends Check
         this.LastMS = new HashMap<UUID, Long>();
         this.Clicks = new HashMap<UUID, List<Long>>();
         this.ClickTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+        
+        this.setEnabled(true);
         this.setBannable(true);
         this.setMaxViolations(7);
     }

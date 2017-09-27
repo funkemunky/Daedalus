@@ -26,6 +26,8 @@ public class FastBow extends Check
         this.count = new HashMap<Player, Integer>();
         this.setViolationsToNotify(2);
         this.setMaxViolations(7);
+        
+        this.setEnabled(true);
         this.setBannable(true);
     }
     
