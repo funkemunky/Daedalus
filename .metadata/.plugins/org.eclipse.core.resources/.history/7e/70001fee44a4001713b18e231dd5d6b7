@@ -140,11 +140,6 @@ public class DaedalusCommand implements CommandExecutor
         		sender.sendMessage(Daedalus.resetData());
         		return true;
         	}
-        	if(args[0].equalsIgnoreCase("clean") || args[0].equalsIgnoreCase("gc")) {
-        		sender.sendMessage(Daedalus.PREFIX + C.Gray + "Forcing garbage collector..." + C.Gray + "[" + C.Aqua + Daedalus.getLag().getFreeRam() + C.Gray + "/" + C.Red + Daedalus.getLag().getMaxRam() + C.Gray + "]");
-        		System.gc();
-        		sender.sendMessage(Daedalus.PREFIX + C.Green + "Forcing garbage collector..." + C.Gray + "[" + C.Aqua + Daedalus.getLag().getFreeRam() + C.Gray + "/" + C.Red + Daedalus.getLag().getMaxRam() + C.Gray + "]");
-        	}
         	if(args[0].equalsIgnoreCase("test")) {
         		StringBuilder reasonBuilder = new StringBuilder();
         	       for (int i = 1; i < args.length; i++) {
@@ -179,7 +174,6 @@ public class DaedalusCommand implements CommandExecutor
                 sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " ping" + C.Gray + "  - Get your ping.");
                 sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " bans" + C.Gray + " - Lists bans this restart.");
                 sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " refresh" + C.Gray + "- Reset all Daedalus data.");
-                sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " clean" + C.Gray + " - Run Java Garbage-Collector.");
                 sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " status <player>" + C.Gray + " - Gets the status of Daedalus or player.");
                 sender.sendMessage(C.DGray + C.Strike + "----------------------------------------------------");
                 return true;

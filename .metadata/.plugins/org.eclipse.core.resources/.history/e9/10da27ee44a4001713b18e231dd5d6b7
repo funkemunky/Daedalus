@@ -53,14 +53,6 @@ public class LagCore
     	return Math.round((1.0D - tps / 20.0D) * 100.0D);
     }
     
-    public double getFreeRam() {
-    	return Runtime.getRuntime().freeMemory();
-    }
-    
-    public double getMaxRam() {
-    	return Runtime.getRuntime().maxMemory();
-    }
-    
     public static Object getNmsPlayer(Player p) throws Exception{
         Method getHandle = p.getClass().getMethod("getHandle");
         return getHandle.invoke(p);

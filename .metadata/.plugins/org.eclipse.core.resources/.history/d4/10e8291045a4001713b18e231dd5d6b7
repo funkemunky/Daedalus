@@ -28,7 +28,6 @@ public class AscensionA
 
         this.setBannable(true);
         this.setEnabled(true);
-        this.setViolationsToNotify(0);
     }
 
     public static Map<UUID, Map.Entry<Long, Double>> AscensionTicks = new HashMap();

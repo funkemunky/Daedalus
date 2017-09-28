@@ -313,10 +313,6 @@ public class Daedalus extends JavaPlugin implements Listener
         	if(!Timer.lastTimer.isEmpty()) Timer.lastTimer.clear();
         	if(!Timer.MS.isEmpty()) Timer.MS.clear();;
         	if(!Timer.timerTicks.isEmpty()) Timer.timerTicks.clear();
-        	if(!HitBoxes.count.isEmpty()) HitBoxes.count.clear();
-        	if(!HitBoxes.lastHit.isEmpty()) HitBoxes.lastHit.clear();
-        	if(!HitBoxes.yawDif.isEmpty()) HitBoxes.yawDif.clear();
-        	if(!FastBow.count.isEmpty()) FastBow.count.clear();
     	} catch(Exception e) {
     		return ChatColor.translateAlternateColorCodes('&', PREFIX + C.Red + "Unknown error occured!");
     	}

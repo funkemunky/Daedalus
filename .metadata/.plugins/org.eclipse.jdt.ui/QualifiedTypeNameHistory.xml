@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="org.bukkit.command.Command"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.Daedalus"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.utils.ConfigFile"/>
 </qualifiedTypeNameHistroy>

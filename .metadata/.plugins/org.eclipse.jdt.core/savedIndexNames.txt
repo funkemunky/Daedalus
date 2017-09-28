@@ -2,7 +2,7 @@ INDEX VERSION 1.129+/Users/dawsonhessler/Documents/GitHub/Daedalus/Daedalus/.met
 3227702110.index
 2432571569.index
 576073405.index
-2117113611.index
+1302770079.index
 2132672051.index
 1833648217.index
 527849843.index
@@ -23,9 +23,9 @@ INDEX VERSION 1.129+/Users/dawsonhessler/Documents/GitHub/Daedalus/Daedalus/.met
 2084021475.index
 1888666045.index
 624708564.index
-3266567714.index
-3158197321.index
 1499520195.index
+3158197321.index
+3266567714.index
 1271342938.index
 3712507179.index
 2762063732.index
@@ -43,5 +43,5 @@ INDEX VERSION 1.129+/Users/dawsonhessler/Documents/GitHub/Daedalus/Daedalus/.met
 1416793072.index
 680827947.index
 1044104405.index
+2117113611.index
 124275899.index
-1302770079.index

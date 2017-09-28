@@ -28,7 +28,6 @@ public class HitBoxes extends Check {
 	}
 	
 	public static Map<UUID, Integer> count = new HashMap();
-	public static Map<UUID, Player> lastHit = new HashMap();
 	public static Map<UUID, Double> yawDif = new HashMap();
 	
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -38,9 +37,6 @@ public class HitBoxes extends Check {
 		}
 		if(yawDif.containsKey(e.getPlayer().getUniqueId())) {
 			yawDif.remove(e.getPlayer().getUniqueId());
-		}
-		if(lastHit.containsKey(e.getPlayer().getUniqueId())) {
-			this.lastHit.remove(e.getPlayer().getUniqueId());
 		}
 	}
 	
@@ -69,22 +65,11 @@ public class HitBoxes extends Check {
 	    
 	    int Count = 0;
 	    double yawDif = 0;
-	    Player lastPlayer = attacked;
-	    
-	    if(this.lastHit.containsKey(player.getUniqueId())) {
-	    	lastPlayer = this.lastHit.get(player.getUniqueId());
-	    }
-	    
 	    if(count.containsKey(player.getUniqueId())) {
 	    	Count = count.get(player.getUniqueId());
 	    }
 	    if(this.yawDif.containsKey(player.getUniqueId())) {
 	    	yawDif = this.yawDif.get(player.getUniqueId());
-	    }
-	    
-	    if(lastPlayer != attacked) {
-	    	this.lastHit.put(player.getUniqueId(), attacked);
-	    	return;
 	    }
 	    
 	    double offset = UtilCheat.getOffsetOffCursor(player, attacked);
@@ -110,7 +95,6 @@ public class HitBoxes extends Check {
 	    }
 	    
 	    this.count.put(player.getUniqueId(), Count);
-	    this.lastHit.put(player.getUniqueId(), attacked);
 	}
 
 }

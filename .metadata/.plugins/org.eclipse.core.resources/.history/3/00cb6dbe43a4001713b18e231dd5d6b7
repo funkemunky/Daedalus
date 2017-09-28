@@ -39,9 +39,6 @@ public class HitBoxes extends Check {
 		if(yawDif.containsKey(e.getPlayer().getUniqueId())) {
 			yawDif.remove(e.getPlayer().getUniqueId());
 		}
-		if(lastHit.containsKey(e.getPlayer().getUniqueId())) {
-			this.lastHit.remove(e.getPlayer().getUniqueId());
-		}
 	}
 	
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
