@@ -71,7 +71,7 @@ public class Checks {
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.isOp() || player.hasPermission("daedalus.staff")) {
 				JsonMessage msg = new JsonMessage();
-				msg.addText(Color.translate(Daedalus.getAC().getConfig().getString("Alert_Message").replaceAll("%prefix%", Daedalus.getAC().getPrefix()).replaceAll("%player%", p.getDisplayName()).replaceAll("%check%", getName().toUpperCase()).replaceAll("%info%", value).replaceAll("%violations", String.valueOf(Daedalus.getData().getProfil(p).getWeight())))
+				msg.addText(Color.translate(Daedalus.getAC().getConfig().getString("Alert_Message").replaceAll("%prefix%", Daedalus.getAC().getPrefix()).replaceAll("%player%", p.getName()).replaceAll("%check%", getName().toUpperCase()).replaceAll("%info%", value).replaceAll("%violations%", String.valueOf(Daedalus.getData().getProfil(p).getWeight())))
 						).addHoverText(Color.Gray + "Teleport to " + p.getName() + "?").setClickEvent(JsonMessage.ClickableType.RunCommand, "/tp " + p.getName());
 				for(Player online : Bukkit.getOnlinePlayers()) {
 					if(online.hasPermission("daedalus.staff")) {
@@ -84,7 +84,7 @@ public class Checks {
 
 	public void kick(Player p) {
 		Daedalus.getData().addDetecton(p, this);
-		if (Daedalus.getData().getProfil(p).needKick() && !p.isOp()) {
+		if (Daedalus.getData().getProfil(p).needKick()) {
 			Daedalus.getAC().getServer().dispatchCommand(
 					Daedalus.getAC().getServer().getConsoleSender(),
 					Color.translate(Daedalus.getAC().getConfig().getString("Punish_Cmd").replaceAll("%player%", p.getName())));

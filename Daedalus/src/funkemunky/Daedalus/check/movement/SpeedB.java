@@ -47,6 +47,7 @@ public class SpeedB
     
     public static Map<UUID, Map.Entry<Integer, Long>> speedTicks = new HashMap();
     public static Map<UUID, Long> lastHit = new HashMap();
+    public static Map<UUID, Double> velocity =  new HashMap();
     
     @EventHandler
     public void onHit(EntityDamageByEntityEvent e) {
@@ -66,6 +67,9 @@ public class SpeedB
     	}
     	if(lastHit.containsKey(e.getPlayer().getUniqueId())) {
     		lastHit.remove(e.getPlayer().getUniqueId());
+    	}
+    	if(velocity.containsKey(e.getPlayer().getUniqueId())) {
+    		velocity.remove(e.getPlayer().getUniqueId());
     	}
     }
 
@@ -162,6 +166,11 @@ public class SpeedB
         	getDaedalus().logCheat(this, player, OffsetXZ +  " > " + LimitXZ, Chance.HIGH, new String[0]);
         	Count = 0;
         }
+        if(!player.isOnGround()) {
+        	  this.velocity.put(player.getUniqueId(), player.getVelocity().length());
+          } else {
+        	  this.velocity.put(player.getUniqueId(), -1.0D);
+          }
         this.speedTicks.put(player.getUniqueId(), new AbstractMap.SimpleEntry(Integer.valueOf(Count), Long.valueOf(Time)));
     }
 }

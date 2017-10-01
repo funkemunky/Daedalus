@@ -1,5 +1,6 @@
 package funkemunky.Daedalus.check.movement;
 
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffectType;
@@ -17,10 +19,11 @@ import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.utils.Chance;
 import funkemunky.Daedalus.utils.UtilCheat;
 import funkemunky.Daedalus.utils.UtilPlayer;
+import funkemunky.Daedalus.utils.UtilTime;
 
 public class NormalMovements extends Check {
 	
-	public static Map<Player, Integer> count;
+	public static Map<Player, Map.Entry<Integer, Long>> count;
 
 	public NormalMovements(Daedalus Daedalus) {
 		super("NormalMovements", "NormalMovements", Daedalus);
@@ -28,7 +31,9 @@ public class NormalMovements extends Check {
 		this.setEnabled(true);
 		this.setBannable(true);
 		
-		count = new HashMap<Player, Integer>();
+		setMaxViolations(7);
+		
+		count = new HashMap<Player, Map.Entry<Integer, Long>>();
 	}
 	
 	@EventHandler
@@ -64,6 +69,10 @@ public class NormalMovements extends Check {
             return;
         }
         
+        if(player.hasPermission("daedalus.bypass")) {
+        	return;
+        }
+        
     	if(getDaedalus().isSotwMode()) {
     		return;
     	}
@@ -89,9 +98,11 @@ public class NormalMovements extends Check {
         }
         
         int Count = 0;
-        if(count.containsKey(player)) {
-        	Count = count.get(player);
-        }
+        long Time = System.currentTimeMillis();
+		if(count.containsKey(player.getUniqueId())) {
+			Count = count.get(player.getUniqueId()).getKey();
+			Time = count.get(player.getUniqueId()).getValue();
+		}
         Location l = player.getLocation();
         int x = l.getBlockX();
         int y = l.getBlockY();
@@ -126,16 +137,36 @@ public class NormalMovements extends Check {
                 && ongroundDiff != 0.01250004768371582 && ongroundDiff != 0.1176000022888175
                 && ongroundDiff != 0.0625 && ongroundDiff != 0.20000004768371582
                 && ongroundDiff != 0.4044448882341385 && ongroundDiff != 0.40444491418477835) {
-            Count+= 2;
-            if (Count >= 5) {
+            Count+= 1;
+            if (Count >= 25) {
                 getDaedalus().logCheat(this, player, null, Chance.HIGH, new String[0]);
                 Count = 0;
             } 
-        } else {
-        	Count = 0;
         }
         
-        count.put(player, Count);
+        if(UtilTime.elapsed(Time, 25000L)) {
+        	Count = 0;
+        	Time = UtilTime.nowlong();
+        }
+        
+        count.put(e.getPlayer(), new AbstractMap.SimpleEntry<Integer, Long>(Count, Time));
+	}
+	
+	@EventHandler
+	public void onInvMove(InventoryClickEvent e) {
+		if(!(e.getWhoClicked() instanceof Player)) {
+			return;
+		}
+		Player player = (Player) e.getWhoClicked();
+		if(player.hasPermission("daedalus.bypass")) {
+			return;
+		}
+		
+		if(!player.isSprinting()) {
+			return;
+		}
+		
+		getDaedalus().logCheat(this, player, "Clicked inventory while sprinting.", Chance.LIKELY, new String[0]);
 	}
 
 }

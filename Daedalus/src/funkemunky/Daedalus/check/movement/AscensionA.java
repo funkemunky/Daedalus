@@ -28,7 +28,7 @@ public class AscensionA
 
         this.setBannable(true);
         this.setEnabled(true);
-        this.setViolationsToNotify(0);
+        setMaxViolations(4);
     }
 
     public static Map<UUID, Map.Entry<Long, Double>> AscensionTicks = new HashMap();
@@ -93,7 +93,7 @@ public class AscensionA
         if (MS > 500L)
         {
           if(velocity.containsKey(player.getUniqueId())) {
-        	  getDaedalus().logCheat(this, player, "Flew up  " + UtilMath.trim(1, TotalBlocks) + " blocks", Chance.HIGH, new String[0]);
+        	  getDaedalus().logCheat(this, player, "Flew up " + UtilMath.trim(1, TotalBlocks) + " blocks", Chance.HIGH, new String[0]);
           }
           Time = System.currentTimeMillis();
         }

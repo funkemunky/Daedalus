@@ -16,6 +16,8 @@ public class Twitch
 
         this.setEnabled(true);
         this.setBannable(true);
+        
+        setMaxViolations(5);
     }
 
     @EventHandler

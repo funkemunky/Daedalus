@@ -143,7 +143,8 @@ public class DaedalusCommand implements CommandExecutor
         	if(args[0].equalsIgnoreCase("clean") || args[0].equalsIgnoreCase("gc")) {
         		sender.sendMessage(Daedalus.PREFIX + C.Gray + "Forcing garbage collector..." + C.Gray + "[" + C.Aqua + Daedalus.getLag().getFreeRam() + C.Gray + "/" + C.Red + Daedalus.getLag().getMaxRam() + C.Gray + "]");
         		System.gc();
-        		sender.sendMessage(Daedalus.PREFIX + C.Green + "Forcing garbage collector..." + C.Gray + "[" + C.Aqua + Daedalus.getLag().getFreeRam() + C.Gray + "/" + C.Red + Daedalus.getLag().getMaxRam() + C.Gray + "]");
+        		sender.sendMessage(Daedalus.PREFIX + C.Green + "Completed garbage collector! " + C.Gray + "[" + C.Aqua + UtilMath.trim(3, Daedalus.getLag().getFreeRam()) + C.Gray + "/" + C.Red + UtilMath.trim(3, Daedalus.getLag().getMaxRam()) + C.Gray + "]");
+        		return true;
         	}
         	if(args[0].equalsIgnoreCase("test")) {
         		StringBuilder reasonBuilder = new StringBuilder();

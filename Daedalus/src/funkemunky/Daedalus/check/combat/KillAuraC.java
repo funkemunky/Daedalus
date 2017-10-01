@@ -30,8 +30,12 @@ public class KillAuraC extends Check
         this.Differences = new HashMap<UUID, Double>();
         this.LastLocation = new HashMap<UUID, Location>();
         
-        this.setEnabled(false);
-        this.setBannable(false);
+        this.setEnabled(true);
+        this.setBannable(true);
+        
+        this.setMaxViolations(11);
+        this.setViolationResetTime(120000);
+        this.setViolationsToNotify(2);
     }
 
     @EventHandler

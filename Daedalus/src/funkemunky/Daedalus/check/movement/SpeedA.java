@@ -38,6 +38,7 @@ public class SpeedA
     public static Map<UUID, Map.Entry<Integer, Long>> speedTicks = new HashMap();
     public static Map<UUID, Map.Entry<Integer, Long>> tooFastTicks = new HashMap();
     public static Map<UUID, Long> lastHit = new HashMap();
+    public static Map<UUID, Double> velocity =  new HashMap();
     
     @EventHandler
     public void onHit(EntityDamageByEntityEvent e) {
@@ -69,6 +70,9 @@ public class SpeedA
     	if(lastHit.containsKey(e.getPlayer().getUniqueId())) {
     		lastHit.remove(e.getPlayer().getUniqueId());
     	}
+    	if(velocity.containsKey(e.getPlayer().getUniqueId())) {
+    		velocity.remove(e.getPlayer().getUniqueId());
+    	}
     }
 
     @EventHandler
@@ -87,6 +91,10 @@ public class SpeedA
         }
         if (player.getVehicle() != null) {
             return;
+        }
+        
+        if(player.getVelocity().length() + 0.1 < velocity.getOrDefault(player.getUniqueId(), -1.0D)) {
+      	  return;
         }
         
         if (getDaedalus().LastVelocity.containsKey(player.getUniqueId()) && !player.getActivePotionEffects().contains(PotionEffectType.POISON) && !player.getActivePotionEffects().contains(PotionEffectType.WITHER) && player.getFireTicks() == 0) {
@@ -159,10 +167,10 @@ public class SpeedA
                 dumplog(player, "New TooFastCount: " + TooFastCount);
                 dumplog(player, "Speed XZ: " + OffsetXZ);
             } else {
-            	TooFastCount = TooFastCount > -100 ? TooFastCount-- : -100;
+            	TooFastCount = TooFastCount > -150 ? TooFastCount-- : -150;
             }
         }
-        if (TooFastCount >= 10)
+        if (TooFastCount >= 11)
         {
             TooFastCount = 0;
             Count++;
@@ -182,6 +190,11 @@ public class SpeedA
             dumplog(player, "Logged for Speed. Count: " + Count);
             Count = 0;
             getDaedalus().logCheat(this, player, Math.round(percent) + "% faster than normal", prob, new String[0]);
+        }
+        if(!player.isOnGround()) {
+      	  this.velocity.put(player.getUniqueId(), player.getVelocity().length());
+        } else {
+      	  this.velocity.put(player.getUniqueId(), -1.0D);
         }
         this.tooFastTicks.put(player.getUniqueId(), new AbstractMap.SimpleEntry(Integer.valueOf(TooFastCount), Long.valueOf(System.currentTimeMillis())));
         this.speedTicks.put(player.getUniqueId(), new AbstractMap.SimpleEntry(Integer.valueOf(Count), Long.valueOf(Time)));

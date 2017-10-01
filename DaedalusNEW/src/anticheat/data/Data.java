@@ -33,7 +33,7 @@ public class Data {
     }
 
     public boolean needKick() {
-        return getWeight() >= 100;
+        return getWeight() >= 80;
     }
 
     public int getWeight() {

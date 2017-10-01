@@ -26,6 +26,7 @@ public class AscensionB extends Check {
 		
 		this.setBannable(true);
 		this.setEnabled(true);
+		setMaxViolations(5);
 	}
 	
 	public static Map<UUID, Map.Entry<Integer, Long>> flyTicks = new HashMap();

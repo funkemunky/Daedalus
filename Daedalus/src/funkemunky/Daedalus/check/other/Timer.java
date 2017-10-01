@@ -33,6 +33,7 @@ public class Timer extends Check
         
         this.setEnabled(true);
         this.setBannable(false);
+        setMaxViolations(5);
     }
     
     @EventHandler

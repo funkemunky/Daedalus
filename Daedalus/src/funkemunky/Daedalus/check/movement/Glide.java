@@ -23,6 +23,7 @@ public class Glide extends Check
         
         this.setEnabled(false);
         this.setBannable(true);
+        setMaxViolations(5);
     }
 
     @EventHandler

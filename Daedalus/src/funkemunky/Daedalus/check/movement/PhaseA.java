@@ -259,7 +259,7 @@ public class PhaseA
         	  final PearlGlitchEvent event2 = new PearlGlitchEvent(player, event.getFrom(), event.getTo(), event.getPlayer().getItemInHand(), PearlGlitchType.SAFE_LOCATION);
         	  Bukkit.getPluginManager().callEvent(event2);
         	  if(!event2.isCancelled()) {
-                  
+                  event.setCancelled(true);
         		  player.sendMessage(getDaedalus().PREFIX + C.Red + "Could not find a safe location, therefore your pearl was cancelled.");
         	  }
               return;

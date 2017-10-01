@@ -20,7 +20,9 @@ public class FreeCam extends Check {
 		super("BlockInteract", "Block Interact", Daedalus);
 		
 		this.setBannable(false);
-		this.setEnabled(true);
+		this.setEnabled(false);
+		
+		setMaxViolations(29);
 	}
 	
 	@EventHandler

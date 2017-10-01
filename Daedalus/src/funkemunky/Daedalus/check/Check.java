@@ -154,7 +154,11 @@ public class Check
 
     public void setMaxViolations(int MaxViolations)
     {
-        this.MaxViolations = MaxViolations;
+    	if(Daedalus.getConfig().getInt("checks." + this.getIdentifier() + ".maxViolations") != MaxViolations && Daedalus.getConfig().get("checks." + this.getIdentifier() + ".maxViolations") != null) {
+    		this.MaxViolations = Daedalus.getConfig().getInt("checks." + this.getIdentifier() + ".maxViolations");
+    		return;
+    	}
+    	this.MaxViolations = MaxViolations;
     }
 
     public void setViolationsToNotify(int ViolationsToNotify)

@@ -26,6 +26,8 @@ public class Sneak
 
         setEnabled(true);
         setBannable(true);
+        
+        setMaxViolations(5);
     }
     
     @EventHandler

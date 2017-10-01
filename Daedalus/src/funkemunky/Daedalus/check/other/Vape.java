@@ -19,7 +19,6 @@ public class Vape extends Check implements PluginMessageListener {
 		this.setBannable(true);
 		
 		this.setMaxViolations(0);
-		this.setViolationsToNotify(0);
 	}
 
 	@EventHandler

@@ -29,6 +29,7 @@ public class AutoclickerA
         setEnabled(true);
         setBannable(false);
         setViolationsToNotify(1);
+        setMaxViolations(5);
     }
     
     @EventHandler

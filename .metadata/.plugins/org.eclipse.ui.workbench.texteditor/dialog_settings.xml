@@ -2,35 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Instance" key="selection"/>
+		<item value="PlayerUtils" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="UtilPlayer"/>
+			<item value="UtilMath"/>
+			<item value="(e.getPlayer().getUniqueId()))"/>
+			<item value=".containsKey(p.getUniqueId())"/>
+			<item value="p.getUniqueId()"/>
+			<item value="wqmino"/>
+			<item value="getAPI"/>
 			<item value="getInstance()"/>
-			<item value="Daedalus.getConfigFile()"/>
-			<item value="Daedalus.getConfigFile().getConfiguration()"/>
-			<item value="getConfigFile().getConfiguration()"/>
-			<item value="getConfig().get"/>
-			<item value="getConfig.get"/>
-			<item value="&#x09;&#x09;this.setMaxViolations(0);"/>
-			<item value="Daedalus.getConfig()"/>
 		</list>
 		<list key="replacehistory">
+			<item value="PlayerUtils"/>
+			<item value="MathUtils"/>
+			<item value="(uuid))"/>
+			<item value=".containsKey(uuid)"/>
 			<item value="Instance"/>
 			<item value="Daedalus.getConfig()"/>
 			<item value="getConfig()"/>
 			<item value="getConfigFile().getConfiguration().get"/>
-			<item value="Daedalus.getConfigFile()"/>
-			<item value="getConfigFile().getConfiguration()"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="290" key="DIALOG_WIDTH"/>
 		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText" key="DIALOG_FONT_NAME"/>
 		<item value="355" key="DIALOG_HEIGHT"/>
-		<item value="519" key="DIALOG_X_ORIGIN"/>
-		<item value="443" key="DIALOG_Y_ORIGIN"/>
+		<item value="1037" key="DIALOG_X_ORIGIN"/>
+		<item value="493" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

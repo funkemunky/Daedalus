@@ -29,6 +29,10 @@ public class Step
 
         setEnabled(true);
         setBannable(false);
+        
+        this.setMaxViolations(7);
+        this.setViolationsToNotify(1);
+        this.setViolationResetTime(90000);
     }
 
     public boolean isOnGround(Player player)
@@ -85,10 +89,6 @@ public class Step
              return;
          }
          
-         if(UtilBlock.getSurroundingXZ(player.getLocation().getBlock()).contains(Material.SNOW_BLOCK)) {
-        	 return;
-         }
-         
          if(player.getLocation().getBlock().getType().equals(Material.WATER) || player.getLocation().getBlock().getType().equals(Material.STATIONARY_WATER)) {
          	return;
          }
@@ -104,9 +104,9 @@ public class Step
              this.getDaedalus().logCheat(this, player, Math.round(yDist) + " blocks", Chance.HIGH, new String[] {"Type A"});
              return;
          }
-         if((YSpeed == 0.25D || (YSpeed >= 0.58D && YSpeed < 0.581D)) && yDist > 0.0D || (YSpeed > 0.2457D && YSpeed < 0.24582D) 
-         		|| (YSpeed > 0.329 && YSpeed < 0.33)) {
-         	this.getDaedalus().logCheat(this, player, "Speed: " + YSpeed, Chance.LIKELY, new String[] {"Type C"});
+         if(((YSpeed == 0.25D || (YSpeed >= 0.58D && YSpeed < 0.581D)) && yDist > 0.0D || (YSpeed > 0.2457D && YSpeed < 0.24582D) 
+         		|| (YSpeed > 0.329 && YSpeed < 0.33)) && !player.getLocation().clone().subtract(0.0D, 0.1, 0.0D).getBlock().getType().equals(Material.SNOW)) {
+         	this.getDaedalus().logCheat(this, player, "Speed: " + YSpeed + " Block: " + player.getLocation().clone().subtract(0.0D, 0.1D, 0.0D).getBlock().getType().toString(), Chance.LIKELY, new String[] {"Type C"});
          	return;
          }
          ArrayList<Block> blocks = UtilBlock.getBlocksAroundCenter(player.getLocation(), 1);

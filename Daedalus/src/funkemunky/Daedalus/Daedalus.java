@@ -35,6 +35,7 @@ import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.check.combat.AutoclickerA;
 import funkemunky.Daedalus.check.combat.AutoclickerB;
 import funkemunky.Daedalus.check.combat.AutoclickerC;
+import funkemunky.Daedalus.check.combat.AutoclickerD;
 import funkemunky.Daedalus.check.combat.Crits;
 import funkemunky.Daedalus.check.combat.FastBow;
 import funkemunky.Daedalus.check.combat.HitBoxes;
@@ -148,6 +149,7 @@ public class Daedalus extends JavaPlugin implements Listener
         this.Checks.add(new AutoclickerA(this));
         this.Checks.add(new AutoclickerB(this));
         this.Checks.add(new AutoclickerC(this));
+        this.Checks.add(new AutoclickerD(this));
         this.Checks.add(new FastBow(this));
         this.Checks.add(new Twitch(this));
         this.Checks.add(new NoSlowdown(this));
@@ -213,6 +215,7 @@ public class Daedalus extends JavaPlugin implements Listener
             	this.getConfig().addDefault("checks." + check.getIdentifier() + ".enabled", check.isEnabled());
             	this.getConfig().addDefault("checks." + check.getIdentifier() + ".bannable", check.isBannable());
             	this.getConfig().addDefault("checks." + check.getIdentifier() + ".banTimer", check.hasBanTimer());
+            	this.getConfig().addDefault("checks." + check.getIdentifier() + ".maxViolations", check.getMaxViolations());
             }
             this.getConfig().addDefault("checks.Phase.pearlFix", true);
             this.getConfig().options().copyDefaults(true);
@@ -224,6 +227,7 @@ public class Daedalus extends JavaPlugin implements Listener
     	    	this.getConfig().set("checks." + check.getIdentifier() + ".enabled", check.isEnabled());
             	this.getConfig().set("checks." + check.getIdentifier() + ".bannable", check.isBannable());
             	this.getConfig().set("checks." + check.getIdentifier() + ".banTimer", check.hasBanTimer());
+            	this.getConfig().set("checks." + check.getIdentifier() + ".maxViolations", check.getMaxViolations());
             	this.saveConfig();
     	    }
         }
@@ -244,14 +248,6 @@ public class Daedalus extends JavaPlugin implements Listener
             	}
             }
         }.runTaskTimerAsynchronously(this, 0L, TimeUnit.SECONDS.toMillis(getConfig().getLong("settings.violationResetTime")));
-        
-        //Version Check
-    	ConsoleCommandSender console = Bukkit.getConsoleSender();
-        if(this.hasNewVersion()) {
-        	console.sendMessage("§a ​There is a new update for Daedalus!" + "§f New Version: §c"+ this.getPasteVersion() );
-        } else {
-        	console.sendMessage(C.Red + "No new updates, carry on.");
-        }
 
     }
     

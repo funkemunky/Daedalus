@@ -38,6 +38,8 @@ public class Test
         setEnabled(false);
         setBannable(false);
         
+        setMaxViolations(5);
+        
         values = new ArrayList<Double>();
         testing = false;
         this.LastMS = new HashMap<UUID, Long>();

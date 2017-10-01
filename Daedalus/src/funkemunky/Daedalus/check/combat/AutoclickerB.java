@@ -35,6 +35,7 @@ public class AutoclickerB extends Check {
         this.ClickTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
 		setEnabled(true);
 		setBannable(false);
+		setMaxViolations(5);
 	}
 	
     @EventHandler

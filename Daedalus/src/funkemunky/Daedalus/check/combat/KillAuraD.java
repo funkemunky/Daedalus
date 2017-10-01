@@ -34,6 +34,18 @@ public class KillAuraD extends Check {
 		new BukkitRunnable() {
 			public void run() {
 				for(Player player : Bukkit.getOnlinePlayers()) {
+					if(player.hasPermission("daedalus.bypass")) {
+						return;
+					}
+					double Count = 0;
+					double Other = 0;
+					if(packetTicks.containsKey(player.getUniqueId())) {
+						Count = packetTicks.get(player.getUniqueId()).getKey();
+						Other = packetTicks.get(player.getUniqueId()).getValue();
+					}
+					if(Count > Other) {
+						getDaedalus().logCheat(KillAuraD.this, player, Count + " Use : " + Other + " Arm", Chance.HIGH, new String[0]);
+					}
 					if(packetTicks.containsKey(player.getUniqueId())) {
 						packetTicks.remove(player.getUniqueId());
 					}
@@ -64,10 +76,6 @@ public class KillAuraD extends Check {
 		
 		if(e.getType() == PacketPlayerType.USE) {
 			Count++;
-		}
-		
-		if(Count > Other + 1) {
-			getDaedalus().logCheat(this, e.getPlayer(), Count + " Use : " + Other + " Arm", Chance.HIGH, new String[0]);
 		}
 		
 		this.packetTicks.put(e.getPlayer().getUniqueId(), new AbstractMap.SimpleEntry<Double, Double>(Count, Other));

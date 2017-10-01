@@ -27,6 +27,8 @@ public class KillauraF extends Check {
 		
 		setEnabled(true);
 		setBannable(false);
+		
+		setMaxViolations(7);
 	}
 	
 	public static HashMap<Player, Integer> counts = new HashMap();

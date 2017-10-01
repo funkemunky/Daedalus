@@ -38,7 +38,7 @@ public class NoFall
         
         this.setViolationResetTime(120000);
         
-        setMaxViolations(10);
+        setMaxViolations(9);
     }
     
     @EventHandler

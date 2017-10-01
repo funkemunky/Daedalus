@@ -11,10 +11,12 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import anticheat.Daedalus;
 import anticheat.detections.Checks;
+import anticheat.detections.ChecksListener;
 import anticheat.detections.ChecksType;
 import anticheat.utils.PlayerUtils;
 import anticheat.utils.TimerUtils;
 
+@ChecksListener(events = {PlayerMoveEvent.class})
 public class Vclip extends Checks {
 	 public Map<Player, Location> flag = new HashMap<Player, Location>();
 	    public Location location;

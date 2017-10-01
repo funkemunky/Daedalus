@@ -5,7 +5,7 @@
 #                                              #
 ################################################
 #
-Prefix: "&8[&cDaedalus&8] "
-Alert_Message: "&c%player% &7failed &b%check% &c(%info) &7[&c%violations% VL&7]"
+Prefix: "&8[&c&lDaedalus&8] "
+Alert_Message: "%prefix%&c%player% &7failed &b%check% &c(%info%) &7[&c%violations% VL&7]"
 Punish_Cmd: "ban %player% Unfair Advantage -s"
 Punish_Broadcast: "&c&lDaedalus &7has detected &c%player% &7to be cheating and has been removed from the network."

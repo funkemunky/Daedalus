@@ -25,7 +25,7 @@ public class VClip extends Check
         
         this.setBannable(false);
         this.setEnabled(true);
-        this.setMaxViolations(15);
+        this.setMaxViolations(19);
         this.setViolationResetTime(10000);
     }
     public static List<Material> allowed = new ArrayList();

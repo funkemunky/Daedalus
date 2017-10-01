@@ -26,6 +26,8 @@ public class NoSwing
 
         this.setEnabled(true);
         this.setBannable(true);
+        
+        setMaxViolations(5);
     }
 
     public static Map<UUID, Long> LastArmSwing = new HashMap();

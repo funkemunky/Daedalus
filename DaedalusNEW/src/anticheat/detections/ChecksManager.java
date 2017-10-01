@@ -1,6 +1,7 @@
 package anticheat.detections;
 
 import anticheat.Daedalus;
+import anticheat.checks.combat.KillAuraA;
 import anticheat.checks.movement.SpeedA;
 import anticheat.checks.movement.Vclip;
 
@@ -39,6 +40,7 @@ public class ChecksManager {
 	public void init() {
 		new SpeedA();
 		new Vclip();
+		new KillAuraA();
 	}
 
 	public void event(Event event) {

@@ -27,6 +27,7 @@ public class Jesus extends Check
         this.setEnabled(true);
         this.setBannable(true);
         setViolationsToNotify(1);
+        setMaxViolations(5);
     }
     
     private boolean isBhopping(Player player) {

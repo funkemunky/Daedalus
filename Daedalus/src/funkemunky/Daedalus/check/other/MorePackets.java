@@ -27,6 +27,8 @@ public class MorePackets
 
         setEnabled(false);
         setBannable(false);
+        
+        setMaxViolations(5);
     }
 
     public static Map<UUID, Map.Entry<Integer, Long>> packetTicks = new HashMap();

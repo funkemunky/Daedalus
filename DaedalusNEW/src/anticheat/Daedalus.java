@@ -20,17 +20,15 @@ import anticheat.events.EventPlayerAttack;
 import anticheat.events.EventPlayerMove;
 import anticheat.events.EventTick;
 import anticheat.events.TickEvent;
+import anticheat.packets.PacketCore;
 import anticheat.utils.Color;
-
-/**
- * Created by XtasyCode on 11/08/2017.
- */
 
 public class Daedalus extends JavaPlugin {
 
 	private static ChecksManager checksmanager;
 	private static DataManager data;
 	private static Daedalus Daedalus;
+	public PacketCore packet;
 	private static CommandManager commandManager;
 	BufferedWriter bw = null;
 	File file = new File(getDataFolder(), "JD.txt");
@@ -69,7 +67,11 @@ public class Daedalus extends JavaPlugin {
 		commandManager = new CommandManager();
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded commands!"));
 		Daedalus.data = new DataManager();
-		saveDefaultConfig();
+		this.packet = new PacketCore(this);
+		File file = new File(getDataFolder(), "config.yml");
+		if(!file.exists()) {
+			saveDefaultConfig();
+		}
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Configuration!"));
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded players data's!"));
 		commandManager.init();

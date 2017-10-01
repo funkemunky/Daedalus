@@ -29,9 +29,9 @@ public class KillAuraB extends Check
         this.AuraTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
         
         this.setEnabled(false);
-        this.setBannable(false);
-        this.setMaxViolations(200);
-        this.setViolationsToNotify(22);
+        this.setBannable(true);
+        this.setMaxViolations(150);
+        this.setViolationsToNotify(140);
     }
 
     @EventHandler

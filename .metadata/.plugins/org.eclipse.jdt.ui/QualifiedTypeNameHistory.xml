@@ -3,4 +3,22 @@
 <fullyQualifiedTypeName name="org.bukkit.command.Command"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.Daedalus"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.utils.ConfigFile"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.check.combat.HitBoxes"/>
+<fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+<fullyQualifiedTypeName name="org.bukkit.Location"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.update.UpdateType"/>
+<fullyQualifiedTypeName name="org.bukkit.potion.PotionEffectType"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.check.combat.AutoclickerD"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.utils.Chance"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.utils.UtilTime"/>
+<fullyQualifiedTypeName name="org.bukkit.event.inventory.InventoryClickEvent"/>
+<fullyQualifiedTypeName name="org.bukkit.Material"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
+<fullyQualifiedTypeName name="com.comphenix.protocol.wrappers.EnumWrappers"/>
+<fullyQualifiedTypeName name="anticheat.utils.Ping"/>
+<fullyQualifiedTypeName name="anticheat.checks.combat.KillAuraA"/>
+<fullyQualifiedTypeName name="anticheat.Daedalus"/>
+<fullyQualifiedTypeName name="anticheat.detections.ChecksType"/>
+<fullyQualifiedTypeName name="org.bukkit.event.Event"/>
 </qualifiedTypeNameHistroy>

@@ -24,6 +24,10 @@ public class KillAuraE extends Check
         
         this.setEnabled(true);
         this.setBannable(false);
+        
+        this.setViolationsToNotify(2);
+        setMaxViolations(7);
+        this.setViolationResetTime(1800000L);
     }
 
     @EventHandler

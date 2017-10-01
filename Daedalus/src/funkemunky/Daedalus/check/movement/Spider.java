@@ -30,6 +30,8 @@ public class Spider extends Check {
 		
 		this.setBannable(false);
 		this.setEnabled(true);
+		
+		setMaxViolations(5);
 	}
 	
 	private Map<UUID, Map.Entry<Long, Double>> AscensionTicks = new HashMap();
