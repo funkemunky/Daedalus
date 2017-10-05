@@ -22,6 +22,8 @@ import anticheat.events.EventTick;
 import anticheat.events.TickEvent;
 import anticheat.packets.PacketCore;
 import anticheat.utils.Color;
+import anticheat.utils.Latency;
+import anticheat.utils.Ping;
 
 public class Daedalus extends JavaPlugin {
 
@@ -29,6 +31,7 @@ public class Daedalus extends JavaPlugin {
 	private static DataManager data;
 	private static Daedalus Daedalus;
 	public PacketCore packet;
+	private Ping ping;
 	private static CommandManager commandManager;
 	BufferedWriter bw = null;
 	File file = new File(getDataFolder(), "JD.txt");
@@ -36,6 +39,10 @@ public class Daedalus extends JavaPlugin {
 
 	public static DataManager getData() {
 		return data;
+	}
+	
+	public Ping getPing() {
+		return this.ping;
 	}
 
 	public static Daedalus getAC() {
@@ -61,6 +68,8 @@ public class Daedalus extends JavaPlugin {
 	public void onEnable() {
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d------------------------------------------"));
 		Daedalus = this;
+		this.ping = new Ping(this);
+		Bukkit.getPluginManager().registerEvents(new Latency(this), this);
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Main class!"));
 		checksmanager = new ChecksManager(this);
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded checks!"));
