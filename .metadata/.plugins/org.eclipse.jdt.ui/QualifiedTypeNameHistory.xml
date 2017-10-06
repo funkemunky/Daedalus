@@ -21,4 +21,6 @@
 <fullyQualifiedTypeName name="anticheat.Daedalus"/>
 <fullyQualifiedTypeName name="anticheat.detections.ChecksType"/>
 <fullyQualifiedTypeName name="org.bukkit.event.Event"/>
+<fullyQualifiedTypeName name="anticheat.utils.TimerUtils"/>
+<fullyQualifiedTypeName name="anticheat.utils.Latency"/>
 </qualifiedTypeNameHistroy>
