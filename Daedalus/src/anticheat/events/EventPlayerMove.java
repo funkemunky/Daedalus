@@ -1,6 +1,7 @@
 package anticheat.events;
 
 import anticheat.Daedalus;
+import anticheat.user.User;
 import anticheat.utils.PlayerUtils;
 
 import org.bukkit.entity.Player;
@@ -14,23 +15,18 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class EventPlayerMove implements Listener {
 
-	public static int AirTicks = 0;
-	public static int GroundTicks = 0;
-
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
 		Daedalus.getAC().getchecksmanager().event(event);
 		Player p = event.getPlayer();
-		if (p == null) {
-			AirTicks = 0;
-			GroundTicks = 0;
-		}
+		User user = Daedalus.getUserManager().getUser(p.getUniqueId());
+
 		if (PlayerUtils.isReallyOnground(p)) {
-			GroundTicks++;
-			AirTicks = 0;
+			user.setGroundTicks(user.getGroundTicks() + 1);
+			user.setAirTicks(0);
 		} else {
-			GroundTicks = 0;
-			AirTicks++;
+			user.setGroundTicks(0);
+			user.setAirTicks(user.getAirTicks() + 1);
 		}
 	}
 }

@@ -67,6 +67,25 @@
 <entry path="/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/endorsed"/>
 </endorsedDirs>
 </libraryInfo>
+<libraryInfo home="C:\Program Files\Java\jre1.8.0_144" version="1.8.0_144">
+<bootpath>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\resources.jar"/>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\jfr.jar"/>
+<entry path="C:\Program Files\Java\jre1.8.0_144\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\jre1.8.0_144\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
 <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home" version="1.8.0_101">
 <bootpath>
 <entry path="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/resources.jar"/>

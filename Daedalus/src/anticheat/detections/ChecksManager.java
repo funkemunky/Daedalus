@@ -1,9 +1,8 @@
 package anticheat.detections;
 
 import anticheat.Daedalus;
-import anticheat.checks.combat.KillAuraA;
-import anticheat.checks.movement.SpeedA;
-import anticheat.checks.movement.Vclip;
+import anticheat.checks.Reach;
+import anticheat.checks.Speed;
 
 import org.bukkit.event.Event;
 
@@ -19,9 +18,7 @@ public class ChecksManager {
 
 	private static List<Checks> detections = new ArrayList<>();
 
-	private Daedalus ac;
 	public ChecksManager(Daedalus ac) {
-	      this.ac = ac;
 	}
 
 	public static List<Checks> getDetections() {
@@ -37,10 +34,10 @@ public class ChecksManager {
 		return null;
 	}
 
+	//TODO: Init all your checks here.
 	public void init() {
-		new SpeedA();
-		new Vclip();
-		new KillAuraA();
+		new Reach();
+		new Speed();
 	}
 
 	public void event(Event event) {

@@ -1,7 +1,8 @@
 package anticheat.commands;
 
+import anticheat.commands.implemented.ToggleAlertCommand;
 import anticheat.commands.implemented.ToggleCommand;
-import anticheat.utils.Color;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class CommandManager {
 
 	public void init() {
 		addCommand(new ToggleCommand());
+		addCommand(new ToggleAlertCommand());
 	}
 
 	private List<Command> getCommands() {
@@ -26,9 +28,11 @@ public class CommandManager {
 		for (Command cmd : getCommands()) {
 			if (cmd.getString().equalsIgnoreCase(label)) {
 				if (args.length < 1) {
-					sender.sendMessage(Color.translate("&8[&cDaedalus&8] ") + Color.Red + "Invalid usage.");
-					sender.sendMessage(Color.translate("&8[&cDaedalus&8] ") + Color.Red
+					sender.sendMessage("§8[§4Daedalust§8] " + ChatColor.RED + "Invalid usage.");
+					sender.sendMessage("§8[§4Daedalus§8] " + ChatColor.RED
 							+ "Use /Daedalus toggle <CheckName> to enable/disable checks.");
+					sender.sendMessage("§8[§4Daedalus§8] " + ChatColor.RED
+							+ "Use /Daedalus Alerts on/off to enable/disable alerts.");
 					return;
 				}
 				cmd.onCommand(sender, args);

@@ -6,6 +6,9 @@ import org.bukkit.entity.Player;
 
 import java.util.*;
 
+/**
+ * Created by XtasyCode on 11/08/2017.
+ */
 
 public class DataManager {
 

@@ -1,12 +1,15 @@
 package anticheat.commands.implemented;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import anticheat.commands.Command;
 import anticheat.detections.Checks;
 import anticheat.detections.ChecksManager;
-import anticheat.utils.Color;
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+/**
+ * Created by XtasyCode on 11/08/2017.
+ */
 
 public class ToggleCommand extends Command {
 
@@ -24,23 +27,23 @@ public class ToggleCommand extends Command {
                     Checks check = ChecksManager.getCheckByName(CheckName);
                     if (check == null) {
                     	 p.sendMessage(
-                         		Color.translate("&8[&cDaedalus&8]") + Color.Red + " Check ' " + CheckName + " ' not found.");
+                         		"§8[§4UCheat§8]" + ChatColor.RED + " Check ' " + CheckName + " ' not found.");
                     	 p.sendMessage(
-                         		Color.translate("&8[&cDaedalus&8]") + Color.Red + " Available checks : ...");
+                         		"§8[§4UCheat§8]" + ChatColor.RED + " Available checks : Reach, Speed, Velocity.");
                         return;
                     }
                     check.toggle();
-                    p.sendMessage(Color.translate("&8[&cDaedalus&8]") + Color.Red + CheckName.toUpperCase()
+                    p.sendMessage("§8[§4UCheat§8] " + ChatColor.RED + CheckName.toUpperCase()
                             + " state has been set to " + check.getState());
                 }
             } else {
                 p.sendMessage(
-                		Color.translate("&8[&cDaedalus&8]") + Color.Red + " Invalid usage, use /Daedalus toggle CheckName.");
+                		"§8[§4UCheat§8]" + ChatColor.RED + " Invalid usage, use /Daedalus toggle CheckName.");
 
             }
         } else {
             p.sendMessage(
-            		Color.translate("&8[&cDaedalus&8]") + Color.Red + " You do not have permissions to use this command.");
+            		"§8[§4UCheat§8]" + ChatColor.RED + " You do not have permissions to use this command.");
 
         }
     }
