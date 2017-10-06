@@ -1,26 +1,7 @@
-name: Daedalus
-version: 45
-author: funkemunky
-main: funkemunky.Daedalus.Daedalus
-load: STARTUP
-depend: [ProtocolLib]
+name: UCheat
+version: 1.0.0
+main: anticheat.Daedalus
+author: [XtasyCode, Funkey]
 commands:
-  alerts:
-    description: Toggles off and on alerts
-  autoban:
-    description: Stops autobanning
-  daedalus:
-    description: Daedalus root command
-    aliases: [anticheat] 
-  getlog:
-    description: Get a player's log!
-permissions:
-  daedalus.staff:
-    description: Gives access to staff
-    default: op
-  daedalus.admin:
-    description: Gives access to admin
-    default: op
-  daedalus.log:
-    description: Gives access to /getlog
-    default: op
+    UCheat:
+      description: To show UCheat commands.
