@@ -6,15 +6,15 @@ package anticheat.detections;
 
 public enum ChecksType {
 
-    COMBAT("COMBAT"), MOVEMENT("MOVING"), OTHER("OTHER");
+	COMBAT("COMBAT"), MOVEMENT("MOVING"), OTHER("OTHER");
 
-    private String name;
+	private String name;
 
-    ChecksType(String name) {
-        this.name = name;
-    }
+	ChecksType(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 }

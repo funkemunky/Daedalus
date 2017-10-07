@@ -6,7 +6,7 @@ import java.util.UUID;
 public class UserManager {
 
 	public ArrayList<User> allUsers = new ArrayList<User>();
-	
+
 	public User getUser(UUID uuid) {
 		for (User user : allUsers) {
 			if (user.getUUID() == uuid) {
@@ -15,13 +15,13 @@ public class UserManager {
 		}
 		return null;
 	}
-	
-	public void add(User user){
+
+	public void add(User user) {
 		allUsers.add(user);
 	}
-		
-	public void remove(User user){
+
+	public void remove(User user) {
 		allUsers.remove(user);
 	}
-	
+
 }

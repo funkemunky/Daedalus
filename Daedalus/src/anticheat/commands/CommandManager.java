@@ -1,12 +1,14 @@
 package anticheat.commands;
 
-import anticheat.commands.implemented.ToggleAlertCommand;
-import anticheat.commands.implemented.ToggleCommand;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.command.CommandSender;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
+
+import anticheat.commands.implemented.ToggleAlertCommand;
+import anticheat.commands.implemented.ToggleCommand;
+import anticheat.utils.Color;
 
 public class CommandManager {
 	private List<Command> commands = new ArrayList<Command>();
@@ -28,10 +30,10 @@ public class CommandManager {
 		for (Command cmd : getCommands()) {
 			if (cmd.getString().equalsIgnoreCase(label)) {
 				if (args.length < 1) {
-					sender.sendMessage("§8[§4Daedalust§8] " + ChatColor.RED + "Invalid usage.");
-					sender.sendMessage("§8[§4Daedalus§8] " + ChatColor.RED
+					sender.sendMessage(Color.Gray + "[" + Color.Red + Color.Bold + "Daedalus" + Color.Gray + "] " + ChatColor.RED + "Invalid usage.");
+					sender.sendMessage(Color.Gray + "[" + Color.Red + Color.Bold + "Daedalus" + Color.Gray + "] " + ChatColor.RED
 							+ "Use /Daedalus toggle <CheckName> to enable/disable checks.");
-					sender.sendMessage("§8[§4Daedalus§8] " + ChatColor.RED
+					sender.sendMessage(Color.Gray + "[" + Color.Red + Color.Bold + "Daedalus" + Color.Gray + "] " + ChatColor.RED
 							+ "Use /Daedalus Alerts on/off to enable/disable alerts.");
 					return;
 				}

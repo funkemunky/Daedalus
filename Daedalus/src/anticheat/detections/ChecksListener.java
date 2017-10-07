@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface ChecksListener {
 
-    @SuppressWarnings("rawtypes")
-    Class[] events() default {};
+	@SuppressWarnings("rawtypes")
+	Class[] events() default {};
 
 }

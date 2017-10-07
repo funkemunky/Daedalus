@@ -1,12 +1,13 @@
 package anticheat.commands.implemented;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import anticheat.Daedalus;
 import anticheat.commands.Command;
 import anticheat.user.User;
-import net.md_5.bungee.api.ChatColor;
+import anticheat.utils.Color;
 
 public class ToggleAlertCommand extends Command {
 
@@ -25,10 +26,10 @@ public class ToggleAlertCommand extends Command {
 					if (secondArgument.equalsIgnoreCase("on")) {
 						user.setHasAlerts(true);
 						p.sendMessage(
-								"§8[§4UCheat§8]" + ChatColor.RED + " Alerts state set to " + ChatColor.GREEN + "true");
+								Color.Gray + "[" + Color.Red + Color.Bold + "Daedalus" + Color.Gray + "] " + ChatColor.RED + " Alerts state set to " + ChatColor.GREEN + "true");
 					} else if (secondArgument.equalsIgnoreCase("off")) {
 						user.setHasAlerts(false);
-						p.sendMessage("§8[§4UCheat§8]" + ChatColor.RED + " Alerts state set to " + ChatColor.DARK_RED
+						p.sendMessage(Color.Gray + "[" + Color.Red + Color.Bold + "Daedalus" + Color.Gray + "] " + ChatColor.RED + " Alerts state set to " + ChatColor.DARK_RED
 								+ "false");
 
 					}
@@ -36,11 +37,11 @@ public class ToggleAlertCommand extends Command {
 				}
 			} else {
 
-				p.sendMessage("§8[§4UCheat§8]" + ChatColor.RED + " Invalid argument!");
+				p.sendMessage(Color.Gray + "[" + Color.Red + Color.Bold + "Daedalus" + Color.Gray + "] " + ChatColor.RED + " Invalid argument!");
 			}
 
 		} else {
-			p.sendMessage("§8[§4UCheat§8]" + ChatColor.RED + " You do not have permissions to execute this command!");
+			p.sendMessage(Color.Gray + "[" + Color.Red + Color.Bold + "Daedalus" + Color.Gray + "] " + ChatColor.RED + " You do not have permissions to execute this command!");
 		}
 	}
 }

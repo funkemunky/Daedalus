@@ -1,7 +1,0 @@
-name: UCheat
-version: 1.0.0
-main: anticheat.Daedalus
-author: [XtasyCode, Funkey]
-commands:
-    UCheat:
-      description: To show UCheat commands.

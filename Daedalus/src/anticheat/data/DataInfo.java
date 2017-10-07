@@ -8,42 +8,42 @@ import org.bukkit.entity.Player;
 
 public class DataInfo {
 
-    private float yaw, pitch;
-    private int x, y, z;
-    private boolean onground;
+	private float yaw, pitch;
+	private int x, y, z;
+	private boolean onground;
 
-    @SuppressWarnings("deprecation")
-    public DataInfo(Player p) {
-        this.onground = p.isOnGround();
-        this.yaw = p.getLocation().getYaw();
-        this.pitch = p.getLocation().getPitch();
-        this.x = p.getLocation().getBlockX();
-        this.y = p.getLocation().getBlockY();
-        this.z = p.getLocation().getBlockZ();
-    }
+	@SuppressWarnings("deprecation")
+	public DataInfo(Player p) {
+		this.onground = p.isOnGround();
+		this.yaw = p.getLocation().getYaw();
+		this.pitch = p.getLocation().getPitch();
+		this.x = p.getLocation().getBlockX();
+		this.y = p.getLocation().getBlockY();
+		this.z = p.getLocation().getBlockZ();
+	}
 
-    public float getYaw() {
-        return yaw;
-    }
+	public float getYaw() {
+		return yaw;
+	}
 
-    public float getPitch() {
-        return pitch;
-    }
+	public float getPitch() {
+		return pitch;
+	}
 
-    public int getX() {
-        return x;
-    }
+	public int getX() {
+		return x;
+	}
 
-    public int getY() {
-        return y;
-    }
+	public int getY() {
+		return y;
+	}
 
-    public int getZ() {
-        return z;
-    }
+	public int getZ() {
+		return z;
+	}
 
-    public boolean isOnground() {
-        return onground;
-    }
+	public boolean isOnground() {
+		return onground;
+	}
 
 }

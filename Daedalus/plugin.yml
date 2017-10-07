@@ -1,17 +1,7 @@
-<<<<<<< HEAD
 name: Daedalus
-version: 43
-main: anticheat.Daedalus
-author: funkemunky and XtasyCode
-commands:
-    Daedalus:
-      description: To show Daedalus commands.
-=======
-name: UCheat
 version: 1.0.0
 main: anticheat.Daedalus
-author: [XtasyCode, Funkey]
+author: [XtasyCode, funkemunky]
 commands:
-    UCheat:
-      description: To show UCheat commands.
->>>>>>> 4da3b9179807b9b37a8b1decae6cd5ad5177a85b
+    daedalus:
+    alerts:

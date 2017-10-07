@@ -3,8 +3,8 @@ package anticheat.utils;
 import org.bukkit.ChatColor;
 
 public class Color {
-	
-    public static String Dark_Red = ChatColor.DARK_RED.toString();
+
+	public static String Dark_Red = ChatColor.DARK_RED.toString();
 	public static String Red = ChatColor.RED.toString();
 	public static String Yellow = ChatColor.YELLOW.toString();
 	public static String Gold = ChatColor.GOLD.toString();
@@ -22,9 +22,9 @@ public class Color {
 	public static String Italics = ChatColor.ITALIC.toString();
 	public static String Underline = ChatColor.UNDERLINE.toString();
 	public static String Strikethrough = ChatColor.STRIKETHROUGH.toString();
-	
+
 	public static String translate(String string) {
 		return ChatColor.translateAlternateColorCodes('&', string);
 	}
-			
+
 }

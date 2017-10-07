@@ -1,7 +1,8 @@
 package anticheat.events;
 
-
 import anticheat.Daedalus;
+import anticheat.user.User;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,20 +15,20 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class EventJoinQuit implements Listener {
 
-    @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        Player p = e.getPlayer();
-        Daedalus.getAC();
-        Daedalus.getData().loadProfil(p);
-    }
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) {
+		Player p = e.getPlayer();
+		Daedalus.getAC();
+		Daedalus.getData().loadProfil(p);
+		Daedalus.getUserManager().add(new User(p));
+	}
 
-
-    @EventHandler
-    public void onQuit(PlayerQuitEvent e) {
-        Player p = e.getPlayer();
-        Daedalus.getAC();
-        Daedalus.getData().saveProfil(p);
-
-    }
+	@EventHandler
+	public void onQuit(PlayerQuitEvent e) {
+		Player p = e.getPlayer();
+		Daedalus.getAC();
+		Daedalus.getData().saveProfil(p);
+		Daedalus.getUserManager().remove(Daedalus.getUserManager().getUser(p.getUniqueId()));
+	}
 
 }

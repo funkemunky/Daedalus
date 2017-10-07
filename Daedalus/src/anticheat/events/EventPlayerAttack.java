@@ -15,25 +15,25 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class EventPlayerAttack implements Listener {
 
-    public static ConcurrentHashMap<Player, String> hasAttacked = new ConcurrentHashMap<>();
+	public static ConcurrentHashMap<Player, String> hasAttacked = new ConcurrentHashMap<>();
 
-    @EventHandler
-    public void onAttack(EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Player) {
-            Daedalus.getAC();
-            if (!EventPlayerAttack.hasAttacked.contains(e.getDamager())) {
-                Daedalus.getAC();
-                EventPlayerAttack.hasAttacked.put((Player) e.getDamager(), "Has Attacked Entity");
-                Bukkit.getScheduler().runTaskLater(Daedalus.getAC(), new Runnable() {
-                    @Override
-                    public void run() {
-                        Daedalus.getAC();
-                        hasAttacked.remove(e.getDamager());
-                    }
-                }, 100);
-            }
-            Daedalus.getAC().getChecks().event(e);
-        }
-    }
+	@EventHandler
+	public void onAttack(EntityDamageByEntityEvent e) {
+		if (e.getDamager() instanceof Player) {
+			Daedalus.getAC();
+			if (!EventPlayerAttack.hasAttacked.contains(e.getDamager())) {
+				Daedalus.getAC();
+				EventPlayerAttack.hasAttacked.put((Player) e.getDamager(), "Has Attacked Entity");
+				Bukkit.getScheduler().runTaskLater(Daedalus.getAC(), new Runnable() {
+					@Override
+					public void run() {
+						Daedalus.getAC();
+						hasAttacked.remove(e.getDamager());
+					}
+				}, 100);
+			}
+			Daedalus.getAC().getChecks().event(e);
+		}
+	}
 
 }

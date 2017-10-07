@@ -27,8 +27,9 @@ public class PlayerUtils {
 	public static void alert(Player suspiciousPlayer, String reason) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.isOp() || p.hasPermission("Daedalus.notify")) {
-				p.sendMessage("�8[�4" + "Daedalus" + "�8]" + "�0" + suspiciousPlayer.getDisplayName()
-						+ "�7 might be using �a" + reason + " �C" + Daedalus.getData().getProfil(p).getWeight() + "/100");
+				p.sendMessage(
+						"�8[�4" + "Daedalus" + "�8]" + "�0" + suspiciousPlayer.getDisplayName() + "�7 might be using �a"
+								+ reason + " �C" + Daedalus.getData().getProfil(p).getWeight() + "/100");
 			}
 		}
 	}

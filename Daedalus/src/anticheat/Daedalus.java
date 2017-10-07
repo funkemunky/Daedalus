@@ -21,6 +21,8 @@ import anticheat.events.EventPlayerMove;
 import anticheat.events.EventTick;
 import anticheat.events.TickEvent;
 import anticheat.packets.PacketCore;
+import anticheat.user.User;
+import anticheat.user.UserManager;
 import anticheat.utils.Color;
 import anticheat.utils.Latency;
 import anticheat.utils.Ping;
@@ -31,16 +33,16 @@ public class Daedalus extends JavaPlugin {
 	private static DataManager data;
 	private static Daedalus Daedalus;
 	public PacketCore packet;
+	private static UserManager userManager;
 	private Ping ping;
 	private static CommandManager commandManager;
 	BufferedWriter bw = null;
 	File file = new File(getDataFolder(), "JD.txt");
 
-
 	public static DataManager getData() {
 		return data;
 	}
-	
+
 	public Ping getPing() {
 		return this.ping;
 	}
@@ -52,11 +54,15 @@ public class Daedalus extends JavaPlugin {
 	public ChecksManager getChecks() {
 		return checksmanager;
 	}
+	
+	public static UserManager getUserManager() {
+		return userManager;
+	}
 
 	public ChecksManager getchecksmanager() {
 		return checksmanager;
 	}
-	
+
 	public String getPrefix() {
 		return Color.translate(getConfig().getString("Prefix"));
 	}
@@ -66,8 +72,10 @@ public class Daedalus extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		this.getServer().getConsoleSender().sendMessage(Color.translate("&d------------------------------------------"));
+		this.getServer().getConsoleSender()
+				.sendMessage(Color.translate("&d------------------------------------------"));
 		Daedalus = this;
+		this.userManager = new UserManager();
 		this.ping = new Ping(this);
 		Bukkit.getPluginManager().registerEvents(new Latency(this), this);
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Main class!"));
@@ -78,15 +86,15 @@ public class Daedalus extends JavaPlugin {
 		Daedalus.data = new DataManager();
 		this.packet = new PacketCore(this);
 		File file = new File(getDataFolder(), "config.yml");
-		if(!file.exists()) {
+		if (!file.exists()) {
 			saveDefaultConfig();
 		}
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Configuration!"));
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded players data's!"));
 		commandManager.init();
 		checksmanager.init();
-		for(Checks check : checksmanager.getDetections()) {
-			if(getConfig().contains("checks." + check.getName())) {
+		for (Checks check : checksmanager.getDetections()) {
+			if (getConfig().contains("checks." + check.getName())) {
 				check.setState(getConfig().getBoolean("checks." + check.getName()));
 			} else {
 				getConfig().set("checks." + check.getName(), check.getState());
@@ -104,25 +112,30 @@ public class Daedalus extends JavaPlugin {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Made JudgementDay txt file!"));
+				this.getServer().getConsoleSender()
+						.sendMessage(Color.translate("&d Daedalus &f Made JudgementDay txt file!"));
 				e.printStackTrace();
 			}
 		}
-		
+
+		for(Player player : Bukkit.getOnlinePlayers()) {
+			getUserManager().add(new User(player));
+		}
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Daedalus!"));
-		this.getServer().getConsoleSender().sendMessage(Color.translate("&d------------------------------------------"));
+		this.getServer().getConsoleSender()
+				.sendMessage(Color.translate("&d------------------------------------------"));
 
 	}
-	
+
 	public void onDisable() {
-		for(Checks check : checksmanager.getDetections()) {
+		for (Checks check : checksmanager.getDetections()) {
 			getConfig().set("checks." + check.getName(), check.getState());
 			saveConfig();
 		}
 	}
 
 	public void clearVLS() {
-		for(Player online : Bukkit.getOnlinePlayers()) {
+		for (Player online : Bukkit.getOnlinePlayers()) {
 			data.getProfil(online).clearDetections();
 		}
 	}

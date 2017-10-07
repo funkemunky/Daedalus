@@ -18,9 +18,12 @@
 <fullyQualifiedTypeName name="com.comphenix.protocol.wrappers.EnumWrappers"/>
 <fullyQualifiedTypeName name="anticheat.utils.Ping"/>
 <fullyQualifiedTypeName name="anticheat.checks.combat.KillAuraA"/>
-<fullyQualifiedTypeName name="anticheat.Daedalus"/>
 <fullyQualifiedTypeName name="anticheat.detections.ChecksType"/>
 <fullyQualifiedTypeName name="org.bukkit.event.Event"/>
 <fullyQualifiedTypeName name="anticheat.utils.TimerUtils"/>
 <fullyQualifiedTypeName name="anticheat.utils.Latency"/>
+<fullyQualifiedTypeName name="anticheat.utils.Color"/>
+<fullyQualifiedTypeName name="anticheat.checks.combat.Reach"/>
+<fullyQualifiedTypeName name="anticheat.Daedalus"/>
+<fullyQualifiedTypeName name="anticheat.user.User"/>
 </qualifiedTypeNameHistroy>

@@ -1,14 +1,16 @@
 package anticheat.detections;
 
-import anticheat.Daedalus;
-import anticheat.checks.Reach;
-import anticheat.checks.Speed;
-
-import org.bukkit.event.Event;
-
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.bukkit.event.Event;
+
+import anticheat.Daedalus;
+import anticheat.checks.combat.KillAuraA;
+import anticheat.checks.combat.Reach;
+import anticheat.checks.movement.Speed;
+import anticheat.checks.movement.Vclip;
 
 /**
  * Created by XtasyCode on 11/08/2017.
@@ -34,10 +36,12 @@ public class ChecksManager {
 		return null;
 	}
 
-	//TODO: Init all your checks here.
+	// TODO: Init all your checks here.
 	public void init() {
 		new Reach();
 		new Speed();
+		new KillAuraA();
+		new Vclip();
 	}
 
 	public void event(Event event) {
