@@ -3,12 +3,16 @@ package funkemunky.Daedalus.check.movement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
@@ -20,6 +24,7 @@ public class Jesus extends Check
 	public static Map<Player, Integer> onWater = new HashMap();
 	public static ArrayList<Player> placedBlockOnWater = new ArrayList();
 	public static Map<Player, Integer> count = new HashMap();
+	public static Map<UUID, Double> velocity =  new HashMap();
 
     public Jesus(Daedalus Daedalus) {
         super("Jesus", "Jesus", Daedalus);
@@ -40,6 +45,38 @@ public class Jesus extends Check
     	return false;
     }
     
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onLeave(PlayerQuitEvent e) {
+    	    if(onWater.containsKey(e.getPlayer().getUniqueId())) {
+    	    	     onWater.remove(e.getPlayer().getUniqueId());
+    	    }
+    	    if(placedBlockOnWater.contains(e.getPlayer().getUniqueId())) {
+    	    	     placedBlockOnWater.remove(e.getPlayer().getUniqueId());
+    	    }
+    	    if(count.containsKey(e.getPlayer().getUniqueId())) {
+    	    	     count.remove(e.getPlayer().getUniqueId());
+    	    }
+    	    if(velocity.containsKey(e.getPlayer().getUniqueId())) {
+    	    	     velocity.remove(e.getPlayer().getUniqueId());
+    	    }
+    }
+    
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onDeath(PlayerDeathEvent e){
+    	    if(onWater.containsKey(e.getEntity().getUniqueId())) {
+    	    	     onWater.remove(e.getEntity().getUniqueId());
+    	    }
+    	    if(placedBlockOnWater.contains(e.getEntity().getUniqueId())) {
+    	    	     placedBlockOnWater.remove(e.getEntity().getUniqueId());
+    	    }
+    	    if(count.containsKey(e.getEntity().getUniqueId())) {
+    	    	     count.remove(e.getEntity().getUniqueId());
+    	    }
+    	    if(velocity.containsKey(e.getEntity().getUniqueId())) {
+    	    	     velocity.remove(e.getEntity().getUniqueId());
+    	    }
+    }
+    
     @EventHandler
     public void OnPlace(BlockPlaceEvent e)
     {
@@ -55,6 +92,9 @@ public class Jesus extends Check
         return;
       }
       Player p = event.getPlayer();
+      if(p.getVelocity().length() < velocity.getOrDefault(p.getUniqueId(), -1.0D)) {
+    	  return;
+      }
 	     if(p.hasPermission("daedalus.bypass")) {
 	         return;
 	     }
@@ -66,10 +106,6 @@ public class Jesus extends Check
       }
       if (UtilCheat.isOnLilyPad(p)) {
         return;
-      }
-      
-      if(p.getVelocity().getZ() > 0.0 || p.getVelocity().getX() > 0.0) {
-    	  return;
       }
       
       if (this.placedBlockOnWater.remove(p)) {
@@ -88,6 +124,11 @@ public class Jesus extends Check
       if(Count >= 20) {
     	  count.remove(p);
     	  getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[0]);
+      }
+      if(!p.isOnGround()) {
+    	  this.velocity.put(p.getUniqueId(), p.getVelocity().length());
+      } else {
+    	  this.velocity.put(p.getUniqueId(), -1.0D);
       }
     }
 

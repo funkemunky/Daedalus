@@ -34,7 +34,7 @@ public class KillAuraA extends Checks {
 	public static Map<UUID, Location> LastLocation;
 
 	public KillAuraA() {
-		super("KillAura", ChecksType.COMBAT, Daedalus.getAC(), true);
+		super("KillAura", ChecksType.COMBAT,  Daedalus.getAC(), 12, true);
 		this.LastMS = new HashMap<UUID, Long>();
 		this.Clicks = new HashMap<UUID, List<Long>>();
 		this.ClickTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();

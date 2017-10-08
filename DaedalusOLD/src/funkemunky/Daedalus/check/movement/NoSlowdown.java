@@ -33,7 +33,7 @@ public class NoSlowdown extends Check {
 		setMaxViolations(5);
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerQuit(PlayerQuitEvent e) {
 		if(speedTicks.containsKey(e.getPlayer().getUniqueId())) {
 			speedTicks.remove(e.getPlayer().getUniqueId());
@@ -101,7 +101,6 @@ public class NoSlowdown extends Check {
             int max = 13;
             if (level > max * 0.9D && diff <= 100.0D) {
                 getDaedalus().logCheat(this, player, "Level: " + level + " Ping: " + getDaedalus().lag.getPing(player), Chance.HIGH, new String[0]);
-                dumplog(player, "Logged for NoSlowdown; Level: " + level + " Ping: " + getDaedalus().lag.getPing(player) + " Difference: " + diff);
                 if (level > max) {
                     level = max / 4;
                 }

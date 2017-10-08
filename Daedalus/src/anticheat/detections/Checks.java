@@ -25,7 +25,7 @@ public class Checks {
 
 	private int weight;
 
-	public Checks(String name, ChecksType type, Daedalus ac, boolean state) {
+	public Checks(String name, ChecksType type, Daedalus ac, Integer weight, boolean state) {
 		this.name = name;
 		this.description = description;
 		Checks.ac = ac;
@@ -89,7 +89,7 @@ public class Checks {
 
 	public void kick(Player p) {
 		Daedalus.getData().addDetecton(p, this);
-		if (Daedalus.getData().getProfil(p).needKick()) {
+		if (Daedalus.getUserManager().getUser(p.getUniqueId()).needBan()) {
 			Daedalus.getAC().getServer().dispatchCommand(Daedalus.getAC().getServer().getConsoleSender(),
 					Color.translate(
 							Daedalus.getAC().getConfig().getString("Punish_Cmd").replaceAll("%player%", p.getName())));

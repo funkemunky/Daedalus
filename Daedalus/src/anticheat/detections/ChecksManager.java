@@ -9,6 +9,7 @@ import org.bukkit.event.Event;
 import anticheat.Daedalus;
 import anticheat.checks.combat.KillAuraA;
 import anticheat.checks.combat.Reach;
+import anticheat.checks.movement.Jesus;
 import anticheat.checks.movement.Speed;
 import anticheat.checks.movement.Vclip;
 
@@ -42,6 +43,7 @@ public class ChecksManager {
 		new Speed();
 		new KillAuraA();
 		new Vclip();
+		new Jesus();
 	}
 
 	public void event(Event event) {

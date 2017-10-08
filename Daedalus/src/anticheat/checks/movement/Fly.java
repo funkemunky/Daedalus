@@ -15,7 +15,7 @@ import anticheat.user.User;
 public class Fly extends Checks {
 
 	public Fly() {
-		super("Fly", ChecksType.MOVEMENT, Daedalus.getAC(), true);
+		super("Fly", ChecksType.MOVEMENT, Daedalus.getAC(), 8, true);
 
 	}
 

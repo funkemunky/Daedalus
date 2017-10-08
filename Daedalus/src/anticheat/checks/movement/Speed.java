@@ -28,7 +28,7 @@ public class Speed extends Checks {
 	public Location location;
 
 	public Speed() {
-		super("Speed", ChecksType.MOVEMENT, Daedalus.getAC(), true);
+		super("Speed", ChecksType.MOVEMENT, Daedalus.getAC(), 25, true);
 	}
 
 	@Override

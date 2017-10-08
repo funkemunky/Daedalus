@@ -1,6 +1,8 @@
 package anticheat.data;
 
 import anticheat.detections.Checks;
+
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -32,8 +34,10 @@ public class Data {
 		return p;
 	}
 
-	public boolean needKick() {
-		return getWeight() >= 80;
+	public void needKick() {
+		for(Player player : Bukkit.getOnlinePlayers()) {
+			
+		}
 	}
 
 	public int getWeight() {

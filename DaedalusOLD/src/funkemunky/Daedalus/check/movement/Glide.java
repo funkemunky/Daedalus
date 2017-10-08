@@ -85,7 +85,6 @@ public class Glide extends Check
             }
             return;
         }
-        this.dumplog(player, "OffsetY: " + OffsetY);
         long Time = System.currentTimeMillis();
         if (this.flyTicks.containsKey(player.getUniqueId())) {
             Time = this.flyTicks.get(player.getUniqueId());

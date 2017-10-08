@@ -164,8 +164,6 @@ public class SpeedA
             {
             	percent = (OffsetXZ - LimitXZ) * 100;
                 TooFastCount = ((Integer)((Map.Entry)this.tooFastTicks.get(player.getUniqueId())).getKey()).intValue() + 3;
-                dumplog(player, "New TooFastCount: " + TooFastCount);
-                dumplog(player, "Speed XZ: " + OffsetXZ);
             } else {
             	TooFastCount = TooFastCount > -150 ? TooFastCount-- : -150;
             }

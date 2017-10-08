@@ -581,7 +581,7 @@ public class Daedalus extends JavaPlugin implements Listener
             msg.addText(C.Green + C.Bold + "cancel").addHoverText(C.Gray + "Click to Cancel").setClickEvent(UtilActionMessage.ClickableType.RunCommand, "/autoban cancel " + player.getName());
             msg.addText(C.DGray + C.Bold + "]");
             Player[] players;
-            for (int length = (players = UtilServer.getPlayers()).length, i = 0; i < length; ++i) {
+            for (int length = (players = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
                 Player playerplayer = players[i];
                 if (playerplayer.hasPermission("daedalus.staff")) {
                     msg.sendToPlayer(playerplayer);

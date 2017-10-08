@@ -40,7 +40,7 @@ public class Reach extends Checks {
 	private ArrayList<Player> projectileHit = new ArrayList();
 
 	public Reach() {
-		super("Reach", ChecksType.COMBAT, Daedalus.getAC(), true);
+		super("Reach", ChecksType.COMBAT, Daedalus.getAC(), 15, true);
 	}
 	
 	private int getPotionEffectLevel(Player p, PotionEffectType pet) {
