@@ -3,40 +3,29 @@ package anticheat.packets.events;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.util.Vector;
 
 public class PacketReadVelocityEvent extends Event {
 	private Player Player;
-	private double x;
-	private double y;
-	private double z;
+	private Vector vector;
 	private static final HandlerList handlers;
 
 	static {
 		handlers = new HandlerList();
 	}
 
-	public PacketReadVelocityEvent(final Player Player, final double x, final double y, final double z) {
+	public PacketReadVelocityEvent(final Player Player, Vector vector) {
 		super();
 		this.Player = Player;
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.vector = vector;
 	}
 
 	public Player getPlayer() {
 		return this.Player;
 	}
 
-	public double getX() {
-		return this.x;
-	}
-
-	public double getY() {
-		return this.y;
-	}
-
-	public double getZ() {
-		return this.z;
+	public Vector getVelocity() {
+		return this.vector;
 	}
 
 	public HandlerList getHandlers() {

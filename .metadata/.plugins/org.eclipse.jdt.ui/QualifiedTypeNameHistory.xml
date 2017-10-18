@@ -11,8 +11,6 @@
 <fullyQualifiedTypeName name="funkemunky.Daedalus.utils.Chance"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.utils.UtilTime"/>
 <fullyQualifiedTypeName name="org.bukkit.event.inventory.InventoryClickEvent"/>
-<fullyQualifiedTypeName name="java.util.Vector"/>
-<fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
 <fullyQualifiedTypeName name="com.comphenix.protocol.wrappers.EnumWrappers"/>
 <fullyQualifiedTypeName name="anticheat.utils.Ping"/>
 <fullyQualifiedTypeName name="anticheat.checks.combat.KillAuraA"/>
@@ -22,14 +20,12 @@
 <fullyQualifiedTypeName name="org.bukkit.event.EventPriority"/>
 <fullyQualifiedTypeName name="org.bukkit.event.entity.PlayerDeathEvent"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.utils.UtilMath"/>
-<fullyQualifiedTypeName name="org.bukkit.event.player.PlayerVelocityEvent"/>
 <fullyQualifiedTypeName name="org.bukkit.Material"/>
 <fullyQualifiedTypeName name="anticheat.utils.BlockUtils"/>
 <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerMoveEvent"/>
 <fullyQualifiedTypeName name="org.bukkit.event.entity.EntityDamageByEntityEvent"/>
 <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerQuitEvent"/>
 <fullyQualifiedTypeName name="anticheat.user.UserManager"/>
-<fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
 <fullyQualifiedTypeName name="anticheat.events.EventPacketUse"/>
 <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
 <fullyQualifiedTypeName name="anticheat.packets.events.PacketPlayerEvent"/>
@@ -52,4 +48,12 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.comphenix.protocol.events.PacketListener"/>
 <fullyQualifiedTypeName name="org.bukkit.event.Event"/>
+<fullyQualifiedTypeName name="org.bukkit.event.EventHandler"/>
+<fullyQualifiedTypeName name="anticheat.utils.AdvancedLicense.ValidationType"/>
+<fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+<fullyQualifiedTypeName name="anticheat.checks.movement.Vclip"/>
+<fullyQualifiedTypeName name="anticheat.utils.AdvancedLicense"/>
+<fullyQualifiedTypeName name="org.bukkit.event.player.PlayerVelocityEvent"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
 </qualifiedTypeNameHistroy>

@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.util.Vector;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -144,8 +145,8 @@ public class PacketCore {
 				double x = packet.getIntegers().read(1).doubleValue() / 8000.0;
 				double y = packet.getIntegers().read(2).doubleValue() / 8000.0;
 				double z = packet.getIntegers().read(3).doubleValue() / 8000.0;
-				
-				Bukkit.getServer().getPluginManager().callEvent(new PacketReadVelocityEvent(player, x, y, z));
+				Vector vec = new Vector(x, y, z);
+				Bukkit.getServer().getPluginManager().callEvent(new PacketReadVelocityEvent(player, vec));
 			}
 		});
 		ProtocolLibrary.getProtocolManager().addPacketListener(

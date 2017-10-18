@@ -3,6 +3,7 @@ package anticheat.checks.movement;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -13,6 +14,8 @@ import anticheat.Daedalus;
 import anticheat.detections.Checks;
 import anticheat.detections.ChecksListener;
 import anticheat.detections.ChecksType;
+import anticheat.utils.AdvancedLicense;
+import anticheat.utils.AdvancedLicense.ValidationType;
 import anticheat.utils.PlayerUtils;
 import anticheat.utils.TimerUtils;
 
@@ -48,6 +51,15 @@ public class Vclip extends Checks {
 				kick(p);
 				flag(p, flag.get(p));
 			}
+		}
+	}
+	
+	public static void stuff() {
+		ValidationType vt = new AdvancedLicense(Daedalus.hwid, "http://158.69.198.172/verify.php", Daedalus.getAC()).isValid();
+
+		if(vt != ValidationType.VALID){
+			System.out.print("Disabled due to this plugin being invalid.");
+		    Bukkit.getPluginManager().disablePlugin(Daedalus.getAC());
 		}
 	}
 

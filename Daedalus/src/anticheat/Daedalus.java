@@ -12,6 +12,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import anticheat.checks.movement.Vclip;
 import anticheat.commands.CommandManager;
 import anticheat.data.DataManager;
 import anticheat.detections.Checks;
@@ -29,6 +30,7 @@ import anticheat.events.TickEvent;
 import anticheat.packets.PacketCore;
 import anticheat.user.User;
 import anticheat.user.UserManager;
+import anticheat.utils.AdvancedLicense;
 import anticheat.utils.Color;
 import anticheat.utils.Latency;
 import anticheat.utils.Ping;
@@ -43,6 +45,7 @@ public class Daedalus extends JavaPlugin {
 	private Ping ping;
 	private static CommandManager commandManager;
 	BufferedWriter bw = null;
+	public static String hwid;
 	File file = new File(getDataFolder(), "JD.txt");
 
 	public static DataManager getData() {
@@ -78,8 +81,7 @@ public class Daedalus extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		this.getServer().getConsoleSender()
-				.sendMessage(Color.translate("&d------------------------------------------"));
+		this.getServer().getConsoleSender().sendMessage(Color.translate("&d------------------------------------------"));
 		Daedalus = this;
 		this.userManager = new UserManager();
 		this.ping = new Ping(this);
@@ -93,6 +95,8 @@ public class Daedalus extends JavaPlugin {
 		this.packet = new PacketCore(this);
 		saveDefaultConfig();
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Configuration!"));
+		this.hwid = getConfig().getString("hwid");
+		if(!new AdvancedLicense(hwid, "http://158.69.198.172/verify.php", this).register()) return;
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded players data's!"));
 		commandManager.init();
 		checksmanager.init();
@@ -105,6 +109,7 @@ public class Daedalus extends JavaPlugin {
 				getConfig().set("checks." + check.getName() + ".bannable", check.isBannable());
 			}
 		}
+		Vclip.stuff();
 		registerEvents();
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Registered events!"));
 		if (!getDataFolder().exists()) {

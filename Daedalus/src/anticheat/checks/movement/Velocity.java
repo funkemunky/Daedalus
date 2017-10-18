@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerVelocityEvent;
 
 import anticheat.Daedalus;
 import anticheat.detections.Checks;
@@ -41,7 +42,7 @@ public class Velocity extends Checks {
 			}
 			ArrayList<Double> velocityValues = new ArrayList<Double>();
 			
-			if(!MiscUtils.blocksNear(player) && (e.getX() + e.getY()) < 0.048) {
+			if(!MiscUtils.blocksNear(player) && (e.getVelocity().getX() + e.getVelocity().getZ()) < 0.048) {
 				return;
 			}
 			
@@ -49,10 +50,10 @@ public class Velocity extends Checks {
 				velocityValues = this.velocity.get(player.getUniqueId());
 			}
 			
-			velocityValues.add(e.getY());
-			System.out.print("Velocity Y:" + e.getY());
+			velocityValues.add(e.getVelocity().getY());
+			System.out.print("Velocity Y:" + e.getVelocity().getY());
 			
-			if(velocityValues.size() >= 3) {
+			if(velocityValues.size() >= 5) {
 				double all = 0;
 				for(double y : velocityValues) {
 					all+= y;
