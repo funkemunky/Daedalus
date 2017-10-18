@@ -96,7 +96,6 @@ public class Daedalus extends JavaPlugin {
 		saveDefaultConfig();
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Configuration!"));
 		this.hwid = getConfig().getString("hwid");
-		if(!new AdvancedLicense(hwid, "http://158.69.198.172/verify.php", this).register()) return;
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded players data's!"));
 		commandManager.init();
 		checksmanager.init();
@@ -109,7 +108,6 @@ public class Daedalus extends JavaPlugin {
 				getConfig().set("checks." + check.getName() + ".bannable", check.isBannable());
 			}
 		}
-		Vclip.stuff();
 		registerEvents();
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Registered events!"));
 		if (!getDataFolder().exists()) {

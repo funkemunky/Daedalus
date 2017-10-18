@@ -35,7 +35,6 @@ import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.check.combat.AutoclickerA;
 import funkemunky.Daedalus.check.combat.AutoclickerB;
 import funkemunky.Daedalus.check.combat.AutoclickerC;
-import funkemunky.Daedalus.check.combat.AutoclickerD;
 import funkemunky.Daedalus.check.combat.Crits;
 import funkemunky.Daedalus.check.combat.FastBow;
 import funkemunky.Daedalus.check.combat.HitBoxes;
