@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -21,7 +22,8 @@ import anticheat.detections.Checks;
 import anticheat.detections.ChecksListener;
 import anticheat.detections.ChecksType;
 import anticheat.packets.events.PacketUseEntityEvent;
-import anticheat.utils.Ping;
+import anticheat.user.User;
+import anticheat.user.UserManager;
 import anticheat.utils.TimerUtils;
 
 @ChecksListener(events = { PacketUseEntityEvent.class, PlayerQuitEvent.class, PlayerDeathEvent.class })
@@ -34,7 +36,7 @@ public class KillAuraA extends Checks {
 	public static Map<UUID, Location> LastLocation;
 
 	public KillAuraA() {
-		super("KillAura", ChecksType.COMBAT,  Daedalus.getAC(), 12, true);
+		super("KillAura", ChecksType.COMBAT,  Daedalus.getAC(), 12, true, false);
 		this.LastMS = new HashMap<UUID, Long>();
 		this.Clicks = new HashMap<UUID, List<Long>>();
 		this.ClickTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
@@ -45,6 +47,9 @@ public class KillAuraA extends Checks {
 
 	@Override
 	protected void onEvent(Event event) {
+		if (this.getState() == false) {
+			return;
+		}
 		if (event instanceof PacketUseEntityEvent) {
 			PacketUseEntityEvent e = (PacketUseEntityEvent) event;
 			if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
@@ -96,7 +101,9 @@ public class KillAuraA extends Checks {
 			if ((Count > 0 && Daedalus.getAC().getPing().getPing(damager) < 100) || (Count > 2 && Daedalus.getAC().getPing().getPing(damager) < 200)
 					|| (Count > 4 && Daedalus.getAC().getPing().getPing(damager) > 200)) {
 				Count = 0;
-				this.Alert(damager, "(ClickPattern)");
+				this.Alert(damager, "(Type A)");
+				User user = Daedalus.getAC().getUserManager().getUser(damager.getUniqueId());
+				user.setVL(KillAuraA.this, user.getVL(KillAuraA.this) + 1);
 				ClickTicks.remove(damager.getUniqueId());
 			}
 			this.LastMS.put(damager.getUniqueId(), TimerUtils.nowlong());
@@ -164,7 +171,9 @@ public class KillAuraA extends Checks {
 			}
 			if (Count >= 4) {
 				Count = 0;
-				this.Alert(damager, "(Aimbot)");
+				this.Alert(damager, "(Type B)");
+				User user = Daedalus.getAC().getUserManager().getUser(damager.getUniqueId());
+				user.setVL(KillAuraA.this, user.getVL(KillAuraA.this) + 1);
 			}
 			this.AimbotTicks.put(damager.getUniqueId(),
 					new AbstractMap.SimpleEntry<Integer, Long>((int) Math.round(Count), Time));

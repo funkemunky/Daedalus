@@ -29,6 +29,7 @@ import anticheat.packets.events.PacketKeepAliveEvent;
 import anticheat.packets.events.PacketKillauraEvent;
 import anticheat.packets.events.PacketPlayerEvent;
 import anticheat.packets.events.PacketPlayerType;
+import anticheat.packets.events.PacketReadVelocityEvent;
 import anticheat.packets.events.PacketSwingArmEvent;
 import anticheat.packets.events.PacketUseEntityEvent;
 
@@ -130,6 +131,21 @@ public class PacketCore {
 						(double) event.getPacket().getDoubles().read(1),
 						(double) event.getPacket().getDoubles().read(2), (float) event.getPacket().getFloat().read(0),
 						(float) event.getPacket().getFloat().read(1), PacketPlayerType.POSLOOK));
+			}
+		});
+		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
+				new PacketType[] { PacketType.Play.Server.ENTITY_VELOCITY }) {
+			public void onPacketSending(PacketEvent event) {
+				 Player player = event.getPlayer();
+				PacketContainer packet = event.getPacket();
+				if (player == null) {
+					return;
+				}
+				double x = packet.getIntegers().read(1).doubleValue() / 8000.0;
+				double y = packet.getIntegers().read(2).doubleValue() / 8000.0;
+				double z = packet.getIntegers().read(3).doubleValue() / 8000.0;
+				
+				Bukkit.getServer().getPluginManager().callEvent(new PacketReadVelocityEvent(player, x, y, z));
 			}
 		});
 		ProtocolLibrary.getProtocolManager().addPacketListener(

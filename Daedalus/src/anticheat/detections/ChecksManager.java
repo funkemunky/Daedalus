@@ -7,11 +7,15 @@ import java.util.List;
 import org.bukkit.event.Event;
 
 import anticheat.Daedalus;
+import anticheat.checks.combat.Autoclicker;
+import anticheat.checks.combat.Hitboxes;
 import anticheat.checks.combat.KillAuraA;
 import anticheat.checks.combat.Reach;
+import anticheat.checks.movement.Fly;
 import anticheat.checks.movement.Jesus;
 import anticheat.checks.movement.Speed;
 import anticheat.checks.movement.Vclip;
+import anticheat.checks.movement.Velocity;
 
 /**
  * Created by XtasyCode on 11/08/2017.
@@ -44,6 +48,10 @@ public class ChecksManager {
 		new KillAuraA();
 		new Vclip();
 		new Jesus();
+		new Velocity();
+		new Hitboxes();
+		new Fly();
+		new Autoclicker();
 	}
 
 	public void event(Event event) {

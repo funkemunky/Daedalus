@@ -18,9 +18,9 @@ public class PlayerUtils {
 
 	public static void kick(Player p, String reason) {
 		if (p.isOnline()) {
-			p.kickPlayer("�8[�4" + "Daedalus" + "�8]:\n�c" + reason);
+			p.kickPlayer("§8[§c§l" + "Daedalus" + "§8]:\n§c" + reason);
 			Bukkit.broadcastMessage(
-					"�8[�4" + "Daedalus" + "�8]" + " �7kicked �0" + p.getDisplayName() + " �7for �a" + reason);
+					"§8[§c§l" + "Daedalus" + "§8]" + " §7kicked §0" + p.getDisplayName() + " §7for §a" + reason);
 		}
 	}
 
@@ -28,11 +28,16 @@ public class PlayerUtils {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.isOp() || p.hasPermission("Daedalus.notify")) {
 				p.sendMessage(
-						"�8[�4" + "Daedalus" + "�8]" + "�0" + suspiciousPlayer.getDisplayName() + "�7 might be using �a"
-								+ reason + " �C" + Daedalus.getData().getProfil(p).getWeight() + "/100");
+						"§8[§c§l" + "Daedalus" + "§8]" + "§0" + suspiciousPlayer.getDisplayName() + "§7 might be using §a"
+								+ reason + " §C" + Daedalus.getData().getProfil(p).getWeight() + "/100");
 			}
 		}
 	}
+	
+    public static boolean isInWater(Player player) {
+        final Material m = player.getLocation().getBlock().getType();
+        return m == Material.STATIONARY_WATER || m == Material.WATER;
+    }
 
 	public static Location getEyeLocation(final Player player) {
 		final Location eye = player.getLocation();

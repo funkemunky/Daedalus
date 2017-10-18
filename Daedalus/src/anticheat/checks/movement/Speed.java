@@ -28,7 +28,7 @@ public class Speed extends Checks {
 	public Location location;
 
 	public Speed() {
-		super("Speed", ChecksType.MOVEMENT, Daedalus.getAC(), 25, true);
+		super("Speed", ChecksType.MOVEMENT, Daedalus.getAC(), 25, true, true);
 	}
 
 	@Override
@@ -104,7 +104,9 @@ public class Speed extends Checks {
 					ig = (ig * (((level * 20) * 0.011) + 1));
 				}
 			}
-			int vl = user.getVL();
+			Airmaxspeed += p.getWalkSpeed() > 0.2 ? p.getWalkSpeed() * 0.8 : 0;
+			maxSpeed += p.getWalkSpeed() > 0.2 ? p.getWalkSpeed() * 0.8 : 0;
+			int vl = user.getVL(Speed.this);
 
 			/** MOTION Y RELEATED HACKS **/
 			if (PlayerUtils.isReallyOnground(p) && !p.hasPotionEffect(PotionEffectType.JUMP)
@@ -129,10 +131,9 @@ public class Speed extends Checks {
 					&& ongroundDiff != 0.01250004768371582 && ongroundDiff != 0.1176000022888175
 					&& ongroundDiff != 0.0625 && ongroundDiff != 0.20000004768371582
 					&& ongroundDiff != 0.4044448882341385 && ongroundDiff != 0.40444491418477835) {
-				user.setVL(vl + 1);
+				user.setVL(Speed.this, vl + 1);
 				if (vl >= 10) {
 					Alert(p, "Type A");
-					kick(p);
 				}
 			}
 
@@ -143,11 +144,11 @@ public class Speed extends Checks {
 						&& blockLoc.getBlock().getType() != Material.PACKED_ICE
 						&& loc2.getBlock().getType() != Material.TRAP_DOOR && above.getBlock().getType() == Material.AIR
 						&& above3.getBlock().getType() == Material.AIR) {
-					user.setVL(vl + 1);
+					user.setVL(this, vl + 1);
 					user.setGroundTicks(0);
 					if (vl >= 10) {
 						Alert(p, "Type B");
-						kick(p);
+						
 					}
 				}
 			}
@@ -158,22 +159,22 @@ public class Speed extends Checks {
 					&& !loc.getBlock().isLiquid() && blockLoc.getBlock().getType() != Material.PACKED_ICE
 					&& above.getBlock().getType() == Material.AIR && above3.getBlock().getType() == Material.AIR
 					&& blockLoc.getBlock().getType() != Material.AIR) {
-				user.setVL(vl + 1);
+				user.setVL(this, vl + 1);
 				user.setIceTicks(0);
 				if (vl >= 10) {
 					Alert(p, "Type C");
-					kick(p);
+					
 				}
 			}
 			/** GOING ABOVE THE SPEED LIMIT **/
 			if (speed >= newmaxspeed && user.getIceTicks() < 10 && p.getFallDistance() < 0.6
 					&& loc2.getBlock().getType() != Material.TRAP_DOOR && above.getBlock().getType() == Material.AIR
 					&& loc2.getBlock().getType() == Material.AIR) {
-				user.setVL(vl + 1);
+				user.setVL(this, vl + 1);
 				user.setIceTicks(0);
 				if (vl >= 10) {
 					Alert(p, "Type D");
-					kick(p);
+					
 				}
 			}
 			/** Vanilla speeds check **/
@@ -182,10 +183,10 @@ public class Speed extends Checks {
 					&& e.getTo().getY() != e.getFrom().getY() && blockLoc.getBlock().getType() != Material.PACKED_ICE
 					&& loc2.getBlock().getType() != Material.TRAP_DOOR && above.getBlock().getType() == Material.AIR
 					&& above3.getBlock().getType() == Material.AIR) {
-				user.setVL(vl + 1);
+				user.setVL(this, vl + 1);
 				if (vl >= 10) {
 					Alert(p, "Type E");
-					kick(p);
+					
 				}
 			}
 		}

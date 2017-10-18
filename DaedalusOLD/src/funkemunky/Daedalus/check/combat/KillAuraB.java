@@ -95,7 +95,6 @@ public class KillAuraB extends Check
         else if (Ping > 400) {
             return;
         }
-        this.dumplog(damager, "Offset: " + OffsetXZ + ", Ping: " + Ping + ", Max Offset: " + LimitOffset);
         if (OffsetXZ > LimitOffset * 4.0) {
             Count += 12;
         }
@@ -113,6 +112,7 @@ public class KillAuraB extends Check
             Time = UtilTime.nowlong();
         }
         if (Count >= 16) {
+            this.dumplog(damager, "Offset: " + OffsetXZ + ", Ping: " + Ping + ", Max Offset: " + LimitOffset);
             this.dumplog(damager, "Logged. Count: " + Count + ", Ping: " + Ping);
             Count = 0;
             this.getDaedalus().logCheat(this, damager, null, Chance.LIKELY, "Experimental");

@@ -21,6 +21,7 @@ public class EventJoinQuit implements Listener {
 		Daedalus.getAC();
 		Daedalus.getData().loadProfil(p);
 		Daedalus.getUserManager().add(new User(p));
+		Daedalus.getAC().getchecksmanager().event(e);
 	}
 
 	@EventHandler
@@ -29,6 +30,7 @@ public class EventJoinQuit implements Listener {
 		Daedalus.getAC();
 		Daedalus.getData().saveProfil(p);
 		Daedalus.getUserManager().remove(Daedalus.getUserManager().getUser(p.getUniqueId()));
+		Daedalus.getAC().getchecksmanager().event(e);
 	}
 
 }

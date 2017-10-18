@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/kachow/Documents/GitHub/Daedalus/Daedalus Dependancies/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar"/>
-	<classpathentry kind="lib" path="/Users/kachow/Documents/GitHub/Daedalus/Daedalus Dependancies/ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="/Users/kachow/Desktop/NerdStuff/Server Versions/spigot-1.7.10-SNAPSHOT-b1649.jar"/>
+	<classpathentry kind="lib" path="/Users/kachow/Desktop/NerdStuff/plugins for later/ProtocolLib 1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

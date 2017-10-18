@@ -155,8 +155,7 @@ public class SpeedB
             if ((OffsetXZ > LimitXZ))
             {
             	Count++;
-                dumplog(player, "Speed XZ: " + OffsetXZ);
-                dumplog(player, "New Count: " + Count);
+                dumplog(player, "New Count: " + Count + "Speed XZ: " + OffsetXZ);
             }
         if ((this.speedTicks.containsKey(player.getUniqueId())) &&
                 (UtilTime.elapsed(Time, 30000L)))

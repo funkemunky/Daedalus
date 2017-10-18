@@ -98,7 +98,6 @@ public class Step
          	return;
          }
          double YSpeed = UtilMath.offset(UtilMath.getVerticalVector(event.getFrom().toVector()), UtilMath.getVerticalVector(event.getTo().toVector()));
-         this.dumplog(player, "Height: " + yDist);
          if (yDist > 0.95) {
              this.dumplog(player, "Height (Logged): " + yDist);
              this.getDaedalus().logCheat(this, player, Math.round(yDist) + " blocks", Chance.HIGH, new String[] {"Type A"});

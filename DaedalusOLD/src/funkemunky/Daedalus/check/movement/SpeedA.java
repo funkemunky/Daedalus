@@ -177,7 +177,6 @@ public class SpeedA
         if ((this.speedTicks.containsKey(player.getUniqueId())) &&
                 (UtilTime.elapsed(Time, 30000L)))
         {
-            dumplog(player, "Count Reset");
             Count = 0;
             Time = UtilTime.nowlong();
         }

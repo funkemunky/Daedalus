@@ -124,7 +124,6 @@ public class AscensionB extends Check {
 		    
 		    if(TotalBlocks >= Limit) {
 		    	Count+= 2;
-		    	dumplog(p, "New Count (+2): " + Count + "; Flew up " + TotalBlocks + " blocks above the limit: " + Limit + ".");
 		    } else {
 		    	if(Count > 0) {
 		    		Count--;
@@ -134,7 +133,6 @@ public class AscensionB extends Check {
 		 if ((this.flyTicks.containsKey(p.getUniqueId())) &&
 	                (UtilTime.elapsed(Time, 30000L)))
 	        {
-	            dumplog(p, "Count Reset");
 	            Count = 0;
 	            Time = UtilTime.nowlong();
 	        }

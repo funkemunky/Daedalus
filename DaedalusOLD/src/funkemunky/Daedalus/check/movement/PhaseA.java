@@ -150,7 +150,7 @@ public class PhaseA
     setEnabled(true);
     setBannable(false);
     setMaxViolations(40);
-    setViolationsToNotify(1);
+    setViolationsToNotify(2);
   }
   
   @EventHandler(ignoreCancelled=true)

@@ -90,11 +90,10 @@ public class Timer extends Check
               }
             }
             Long average = Long.valueOf(UtilMath.averageLong(List));
-            dumplog(player, "Average MS for 20 ticks: " + average);
             if ((average.longValue() < 48L) && (doeet))
             {
               Count++;
-              dumplog(player, "New Count: " + Count);
+              dumplog(player, "New Count: " + Count + "Average MS for 20 ticks: " + average);
             }
             else
             {

@@ -10,14 +10,20 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import anticheat.commands.CommandManager;
 import anticheat.data.DataManager;
 import anticheat.detections.Checks;
 import anticheat.detections.ChecksManager;
 import anticheat.events.EventJoinQuit;
+import anticheat.events.EventPacket;
+import anticheat.events.EventPacketReadVelocity;
+import anticheat.events.EventPacketUse;
 import anticheat.events.EventPlayerAttack;
+import anticheat.events.EventPlayerInteractEvent;
 import anticheat.events.EventPlayerMove;
+import anticheat.events.EventPlayerVelocity;
 import anticheat.events.EventTick;
 import anticheat.events.TickEvent;
 import anticheat.packets.PacketCore;
@@ -85,19 +91,18 @@ public class Daedalus extends JavaPlugin {
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded commands!"));
 		Daedalus.data = new DataManager();
 		this.packet = new PacketCore(this);
-		File file = new File(getDataFolder(), "config.yml");
-		if (!file.exists()) {
-			saveDefaultConfig();
-		}
+		saveDefaultConfig();
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Configuration!"));
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded players data's!"));
 		commandManager.init();
 		checksmanager.init();
 		for (Checks check : checksmanager.getDetections()) {
 			if (getConfig().contains("checks." + check.getName())) {
-				check.setState(getConfig().getBoolean("checks." + check.getName()));
+				check.setState(getConfig().getBoolean("checks." + check.getName() + ".enabled"));
+				check.setBannable(getConfig().getBoolean("checks." + check.getName() + ".bannable"));
 			} else {
-				getConfig().set("checks." + check.getName(), check.getState());
+				getConfig().set("checks." + check.getName() + ".enabled", check.getState());
+				getConfig().set("checks." + check.getName() + ".bannable", check.isBannable());
 			}
 		}
 		registerEvents();
@@ -129,7 +134,8 @@ public class Daedalus extends JavaPlugin {
 
 	public void onDisable() {
 		for (Checks check : checksmanager.getDetections()) {
-			getConfig().set("checks." + check.getName(), check.getState());
+			getConfig().set("checks." + check.getName() + ".enabled", check.getState());
+			getConfig().set("checks." + check.getName() + ".bannable", check.isBannable());
 			saveConfig();
 		}
 	}
@@ -146,16 +152,19 @@ public class Daedalus extends JavaPlugin {
 		pm.registerEvents(new EventPlayerAttack(), this);
 		pm.registerEvents(new EventTick(), this);
 		pm.registerEvents(new EventJoinQuit(), this);
+		pm.registerEvents(new EventPlayerVelocity(), this);
+		pm.registerEvents(new EventPlayerInteractEvent(), this);
+		pm.registerEvents(new EventPacketUse(), this);
+		pm.registerEvents(new EventPacket(), this);
+		pm.registerEvents(new EventPacketReadVelocity(), this);
 
 		data.loaddata();
 
-		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-			@Override
+		new BukkitRunnable() {
 			public void run() {
 				clearVLS();
 			}
-
-		}, 0L, 1200L);
+		}.runTaskTimerAsynchronously(this, 0L, 1200L);
 
 		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override

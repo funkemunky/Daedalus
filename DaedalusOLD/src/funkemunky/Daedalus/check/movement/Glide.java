@@ -90,7 +90,6 @@ public class Glide extends Check
             Time = this.flyTicks.get(player.getUniqueId());
         }
         long MS = System.currentTimeMillis() - Time;
-        this.dumplog(player, "MS: " + MS);
         if (MS > 500L) {
             this.dumplog(player, "Logged. MS: " + MS);
             this.flyTicks.remove(player.getUniqueId());

@@ -24,7 +24,6 @@ public class Jesus extends Check
 	public static Map<Player, Integer> onWater = new HashMap();
 	public static ArrayList<Player> placedBlockOnWater = new ArrayList();
 	public static Map<Player, Integer> count = new HashMap();
-	public static Map<UUID, Double> velocity =  new HashMap();
 
     public Jesus(Daedalus Daedalus) {
         super("Jesus", "Jesus", Daedalus);
@@ -56,9 +55,6 @@ public class Jesus extends Check
     	    if(count.containsKey(e.getPlayer().getUniqueId())) {
     	    	     count.remove(e.getPlayer().getUniqueId());
     	    }
-    	    if(velocity.containsKey(e.getPlayer().getUniqueId())) {
-    	    	     velocity.remove(e.getPlayer().getUniqueId());
-    	    }
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
@@ -71,9 +67,6 @@ public class Jesus extends Check
     	    }
     	    if(count.containsKey(e.getEntity().getUniqueId())) {
     	    	     count.remove(e.getEntity().getUniqueId());
-    	    }
-    	    if(velocity.containsKey(e.getEntity().getUniqueId())) {
-    	    	     velocity.remove(e.getEntity().getUniqueId());
     	    }
     }
     
@@ -92,9 +85,6 @@ public class Jesus extends Check
         return;
       }
       Player p = event.getPlayer();
-      if(p.getVelocity().length() < velocity.getOrDefault(p.getUniqueId(), -1.0D)) {
-    	  return;
-      }
 	     if(p.hasPermission("daedalus.bypass")) {
 	         return;
 	     }
@@ -118,17 +108,14 @@ public class Jesus extends Check
       if ((UtilCheat.cantStandAtWater(p.getWorld().getBlockAt(p.getLocation()))) && 
         (UtilCheat.isHoveringOverWater(p.getLocation())) && 
         (!UtilCheat.isFullyInWater(p.getLocation()))) {
-        count.put(p, Count + 1);
+        count.put(p, Count + 2);
+      } else {
+    	    count.put(p, Count > 0 ? -1 : 0);
       }
       
       if(Count >= 20) {
     	  count.remove(p);
     	  getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[0]);
-      }
-      if(!p.isOnGround()) {
-    	  this.velocity.put(p.getUniqueId(), p.getVelocity().length());
-      } else {
-    	  this.velocity.put(p.getUniqueId(), -1.0D);
       }
     }
 

@@ -95,14 +95,12 @@ public class KillAuraC extends Check
             double diff = Math.abs(LastDifference - Difference);
             if(e.getAttacked().getVelocity().length() < 0.1) {
             	if(diff < 1.4) {
-            		this.dumplog(damager, "New Count for No Velocity: " + Count + "; diff: " + diff);
                     Count+= 1;
                 } else {
                 	Count= 0;
                 }
             } else {
             	if(diff < 1.8) {
-            		this.dumplog(damager, "New Count for Velocity: " + Count + "; diff: " + diff);
                     Count+= 1;
                 } else {
                 	Count= 0;

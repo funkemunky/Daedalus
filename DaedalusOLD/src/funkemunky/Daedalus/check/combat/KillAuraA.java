@@ -31,6 +31,7 @@ public class KillAuraA extends Check
         
         this.setEnabled(true);
         this.setBannable(true);
+        this.setViolationResetTime(300000);
         this.setMaxViolations(7);
     }
 
@@ -80,10 +81,10 @@ public class KillAuraA extends Check
                     this.Clicks.remove(damager.getUniqueId());
                     Collections.sort(Clicks);
                     final long Range = Clicks.get(Clicks.size() - 1) - Clicks.get(0);
-                    this.dumplog(damager, "New Range: " + Range);
                     if (Range < 30L) {
                         ++Count;
                         Time = System.currentTimeMillis();
+                        this.dumplog(damager, "New Range: " + Range);
                         this.dumplog(damager, "New Count: " + Count);
                     }
                 }

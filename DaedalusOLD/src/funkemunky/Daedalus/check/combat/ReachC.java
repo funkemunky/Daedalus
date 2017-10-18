@@ -108,6 +108,7 @@ public class ReachC extends Check {
 	       double ydist = Math.abs(damager.getEyeLocation().getY() - player.getEyeLocation().getY());
 	       double Reach = UtilMath.trim(2, (UtilPlayer.getEyeLocation(damager).distance(player.getEyeLocation()) - ydist) - 0.32);
 	       int PingD = this.getDaedalus().getLag().getPing(damager);
+	       int PingP = this.getDaedalus().getLag().getPing(player);
 	       
 	       long attackTime = System.currentTimeMillis();
 	       if (this.reachTicks.containsKey(damager)) {
@@ -128,22 +129,21 @@ public class ReachC extends Check {
 	          	offsetsp = ((Double)((Map.Entry)this.offsets.get(player)).getKey()).doubleValue();
 	          	lastHorizontal = ((Double)((Map.Entry)this.offsets.get(player)).getValue()).doubleValue();
 	       }
-	       double velocityDifference2 = Math.abs(damager.getVelocity().length() + player.getVelocity().length());
 	       Reach -= UtilMath.trim(2, offsetsd);
 	       Reach -= UtilMath.trim(2, offsetsp);
 	       double maxReach2 = 3.1;
 	       if(yawdif < 90) {
 	    	   maxReach2+= 0.38;
 	       }
-	       maxReach2 += lastHorizontal * 1.09;
+	       maxReach2 += lastHorizontal * 0.87;
 	       
-	       maxReach2 += getDaedalus().getLag().getPing(damager) * 0.0021;
+	       maxReach2 += ((PingD + PingP) / 2) * 0.0024;
 	       if(Reach > maxReach2 && UtilTime.elapsed(attackTime, 1100) && !projectileHit.contains(player)) {
 	    	Chance chance = Chance.LIKELY;
 	    	if((Reach - maxReach2) > 0.4) {
 	    		chance = Chance.HIGH;
 	    	}
-	       	this.dumplog(damager, "Logged for Reach Type B (First Hit Reach) " + Reach + " > " + maxReach2 + " blocks. Ping: " + getDaedalus().getLag().getPing(damager) + " TPS: " + getDaedalus().getLag().getTPS() + " Elapsed: " + UtilTime.elapsed(attackTime));
+	       	this.dumplog(damager, "Logged for Reach Type C (First Hit Reach) " + Reach + " > " + maxReach2 + " blocks. Ping: " + getDaedalus().getLag().getPing(damager) + " TPS: " + getDaedalus().getLag().getTPS() + " Elapsed: " + UtilTime.elapsed(attackTime));
 	        	getDaedalus().logCheat(this, damager, "(First Hit Reach) Range: " + Reach + " > " + maxReach2 + " Ping: " + getDaedalus().getLag().getPing(damager), chance, new String[0]);
 	       }
 	       reachTicks.put(damager, UtilTime.nowlong());

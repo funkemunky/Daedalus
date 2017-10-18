@@ -23,7 +23,7 @@ public class Vclip extends Checks {
 	public TimerUtils t = new TimerUtils();
 
 	public Vclip() {
-		super("Vclip", ChecksType.MOVEMENT, Daedalus.getAC(), 16, true);
+		super("Vclip", ChecksType.MOVEMENT, Daedalus.getAC(), 16, true, true);
 	}
 
 	@Override

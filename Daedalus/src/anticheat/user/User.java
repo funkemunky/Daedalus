@@ -1,14 +1,18 @@
 package anticheat.user;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
+
+import anticheat.detections.Checks;
 
 public class User {
 
 	private Player player;
 	private UUID uuid;
-	private int vl;
+	private Map<Checks, Integer> vl;
 	private int AirTicks = 0;
 	private int GroundTicks = 0;
 	private int IceTicks = 0;
@@ -20,6 +24,7 @@ public class User {
 	public User(Player player) {
 		this.player = player;
 		this.uuid = player.getUniqueId();
+		this.vl = new HashMap<Checks, Integer>();
 	}
 
 	public Player getPlayer() {
@@ -38,26 +43,30 @@ public class User {
 		return uuid;
 	}
 
-	public int getVL() {
-		return vl;
+	public int getVL(Checks check) {
+		return vl.getOrDefault(check, 0);
 	}
 
-	public int setVL(int vl) {
-		return this.vl = vl;
+	public int setVL(Checks check, int vl) {
+		return this.vl.put(check, vl);
+	}
+	
+	public Map<Checks, Integer> getVLs() {
+		return this.vl;
 	}
 
-	public boolean needBan() {
-		return getVL() >= 30;
+	public boolean needBan(Checks check) {
+		return getVL(check) >= check.getWeight();
 	}
 
-	public int clearVL() {
-		return setVL(0);
+	public int clearVL(Checks check) {
+		return getVLs().put(check, 0);
 	}
 
 	public void clearData() {
 		this.player = null;
 		this.uuid = null;
-		vl = 0;
+		this.vl.clear();;
 		setAirTicks(0);
 		setGroundTicks(0);
 		setIceTicks(0);

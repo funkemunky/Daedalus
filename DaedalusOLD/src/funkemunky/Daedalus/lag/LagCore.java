@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import funkemunky.Daedalus.Daedalus;
+import funkemunky.Daedalus.utils.UtilMath;
 
 public class LagCore
         implements Listener
@@ -54,11 +55,11 @@ public class LagCore
     }
     
     public double getFreeRam() {
-    	return Runtime.getRuntime().freeMemory();
+    	return Math.round(Runtime.getRuntime().freeMemory() /1000000);
     }
     
     public double getMaxRam() {
-    	return Runtime.getRuntime().maxMemory();
+    	return Math.round(Runtime.getRuntime().maxMemory() / 1000000);
     }
     
     public static Object getNmsPlayer(Player p) throws Exception{

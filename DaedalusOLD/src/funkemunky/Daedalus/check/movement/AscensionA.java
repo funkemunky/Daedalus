@@ -83,14 +83,14 @@ public class AscensionA
           if (effect.getType().equals(PotionEffectType.JUMP))
           {
             int level = effect.getAmplifier() + 1;
-            Limit += Math.pow(level + 4.2D, 2.0D) / 16.0D;
+            Limit += (Math.pow(level + 4.2D, 2.0D) / 16.0D) + 0.3;
             break;
           }
         }
       }
       if (TotalBlocks > Limit)
       {
-        if (MS > 500L)
+        if (MS > 150L)
         {
           if(velocity.containsKey(player.getUniqueId())) {
         	  getDaedalus().logCheat(this, player, "Flew up " + UtilMath.trim(1, TotalBlocks) + " blocks", Chance.HIGH, new String[0]);

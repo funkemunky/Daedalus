@@ -2,38 +2,44 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="PacketCore" key="selection"/>
+		<item value="Packet" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="PacketCore"/>
-			<item value="ucheat"/>
-			<item value="uhceat"/>
-			<item value="&quot;�8[�4UCheat�8]&quot;"/>
-			<item value="Color.Gray + &quot;[&quot; + Color.Red + Color.Bold + &quot;Daedalus&quot; + Color.Gray + &quot;] &quot; +"/>
-			<item value="this.ping"/>
-			<item value="UtilPlayer"/>
+			<item value="Packet"/>
+			<item value="PacketPlayerEvent"/>
+			<item value="kick(p);"/>
 			<item value="UtilMath"/>
-			<item value="(e.getPlayer().getUniqueId()))"/>
-			<item value=".containsKey(p.getUniqueId())"/>
-			<item value="p.getUniqueId()"/>
-			<item value="wqmino"/>
-			<item value="getAPI"/>
-			<item value="getInstance()"/>
+			<item value="�"/>
+			<item value="isInwater"/>
+			<item value="maxSpeed"/>
+			<item value="broadcast"/>
+			<item value="packet"/>
+			<item value="user.setVL(this, user.getVL(this) + 1);"/>
+			<item value="user"/>
+			<item value="(Object)"/>
+			<item value="n2"/>
+			<item value="n3"/>
+			<item value="int vl = user.getVL(this);"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
+			<item value="MathUtils"/>
+			<item value="§"/>
+			<item value="user.setVL(KillAuraA.this, user.getVL(KillAuraA.this) + 1);"/>
+			<item value="Count"/>
+			<item value="user.setVL(this, vl + 1);"/>
+			<item value="user.getVL(this)"/>
+			<item value="MiscUtils"/>
 			<item value="Color.Gray + &quot;[&quot; + Color.Red + Color.Bold + &quot;Daedalus&quot; + Color.Gray + &quot;] &quot; +"/>
 			<item value="ping"/>
 			<item value="PlayerUtils"/>
-			<item value="MathUtils"/>
 			<item value="(uuid))"/>
 			<item value=".containsKey(uuid)"/>
 			<item value="Instance"/>
 			<item value="Daedalus.getConfig()"/>
-			<item value="getConfig()"/>
-			<item value="getConfigFile().getConfiguration().get"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -21,16 +21,18 @@ public class Checks {
 	public ChecksType type;
 	private String name, description;
 	private boolean state;
+	private boolean bannable;
 	public static ArrayList<String> playersToBan = new ArrayList<>();
 
 	private int weight;
 
-	public Checks(String name, ChecksType type, Daedalus ac, Integer weight, boolean state) {
+	public Checks(String name, ChecksType type, Daedalus ac, Integer weight, boolean state, boolean bannable) {
 		this.name = name;
 		this.description = description;
 		Checks.ac = ac;
 		this.type = type;
 		this.weight = weight;
+		this.bannable = bannable;
 		this.state = state;
 		ac.getChecks();
 		ChecksManager.getDetections().add(this);
@@ -38,6 +40,13 @@ public class Checks {
 
 	public int getWeight() {
 		return weight;
+	}
+	
+	public boolean isBannable() {
+		return this.bannable;
+	}
+	public void setBannable(boolean bannable) {
+		this.bannable = bannable;
 	}
 
 	public void debug(String string) {
@@ -75,7 +84,7 @@ public class Checks {
 				msg.addText(Color.translate(Daedalus.getAC().getConfig().getString("Alert_Message")
 						.replaceAll("%prefix%", Daedalus.getAC().getPrefix()).replaceAll("%player%", p.getName())
 						.replaceAll("%check%", getName().toUpperCase()).replaceAll("%info%", value)
-						.replaceAll("%violations%", String.valueOf(Daedalus.getAC().getUserManager().getUser(p.getUniqueId()).getVL()))))
+						.replaceAll("%violations%", String.valueOf(Daedalus.getAC().getUserManager().getUser(p.getUniqueId()).getVL(this)))))
 						.addHoverText(Color.Gray + "Teleport to " + p.getName() + "?")
 						.setClickEvent(JsonMessage.ClickableType.RunCommand, "/tp " + p.getName());
 				for (Player online : Bukkit.getOnlinePlayers()) {
@@ -89,7 +98,7 @@ public class Checks {
 
 	public void kick(Player p) {
 		Daedalus.getData().addDetecton(p, this);
-		if (Daedalus.getUserManager().getUser(p.getUniqueId()).needBan()) {
+		if (Daedalus.getUserManager().getUser(p.getUniqueId()).needBan(this)) {
 			Daedalus.getAC().getServer().dispatchCommand(Daedalus.getAC().getServer().getConsoleSender(),
 					Color.translate(
 							Daedalus.getAC().getConfig().getString("Punish_Cmd").replaceAll("%player%", p.getName())));

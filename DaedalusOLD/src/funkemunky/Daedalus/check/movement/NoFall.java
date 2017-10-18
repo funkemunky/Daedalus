@@ -126,7 +126,6 @@ public class NoFall
         if ((this.NoFallTicks.containsKey(player.getUniqueId())) &&
                 (UtilTime.elapsed(Time, 10000L)))
         {
-            dumplog(player, "Count Reset");
             Count = 0;
             Time = System.currentTimeMillis();
         }

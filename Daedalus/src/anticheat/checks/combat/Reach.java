@@ -40,7 +40,7 @@ public class Reach extends Checks {
 	private ArrayList<Player> projectileHit = new ArrayList();
 
 	public Reach() {
-		super("Reach", ChecksType.COMBAT, Daedalus.getAC(), 15, true);
+		super("Reach", ChecksType.COMBAT, Daedalus.getAC(), 15, true, true);
 	}
 	
 	private int getPotionEffectLevel(Player p, PotionEffectType pet) {
@@ -170,12 +170,12 @@ public class Reach extends Checks {
 			 * Get the damager violations.
 			 */
 
-			int vl = user.getVL();
+			int vl = user.getVL(this);
 			if (range >= rangeThreshold) {
 				/**
 				 * If the range is grater then the rangeThreshold increase the violation.
 				 */
-				user.setVL(vl + 1);
+				user.setVL(this, vl + 1);
 				/**
 				 * If the violations is above or equal to 5 violations starts alerting staff and
 				 * if he needs a ban, ban him.
@@ -275,10 +275,12 @@ public class Reach extends Checks {
 			if (Reach2 > 6) {
 				e.setCancelled(true);
 			}
+			User user = Daedalus.getUserManager().getUser(damager.getUniqueId());
 			if (Count >= 2 && Reach > MaxReach && Reach < 20.0) {
 				count.remove(damager);
 				if (Latency.getLag(player) < 115) {
 					this.Alert(damager, "Type B");
+					user.setVL(this, user.getVL(this) + 1);
 				}
 				return;
 			}
@@ -358,12 +360,14 @@ public class Reach extends Checks {
 			if (yawdif < 90) {
 				maxReach2 += 0.38;
 			}
+			User user = Daedalus.getUserManager().getUser(damager.getUniqueId());
 			maxReach2 += lastHorizontal * 1.09;
 
 			maxReach2 += Daedalus.getAC().getPing().getPing(damager) * 0.0021;
 			if (Reach > maxReach2 && TimerUtils.elapsed(attackTime, 1100) && !projectileHit.contains(player)) {
 
 				this.Alert(damager, "Type C");
+				user.setVL(this, user.getVL(this) + 1);
 			}
 			reachTicks2.put(damager, TimerUtils.nowlong());
 			projectileHit.remove(player);
