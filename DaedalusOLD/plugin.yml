@@ -1,5 +1,5 @@
 name: Daedalus
-version: 22
+version: 44
 author: funkemunky
 main: funkemunky.Daedalus.Daedalus
 load: STARTUP
