@@ -160,7 +160,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 		this.Checks.add(new TimerB(this));
 		this.Checks.add(new Sneak(this));
 		this.Checks.add(new Crash(this));
-		this.Checks.add(new Test(this));
 		this.Checks.add(new FastLadder(this));
 		this.Checks.add(new Jesus(this));
 		this.Checks.add(new Exploit(this));
@@ -221,7 +220,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 			this.getConfig().options().copyDefaults(true);
 			saveConfig();
 		}
-		getAPI();
 		for (Check check : Checks) {
 			if (!getConfig().isConfigurationSection("checks." + check.getIdentifier())) {
 				this.getConfig().set("checks." + check.getIdentifier() + ".enabled", check.isEnabled());

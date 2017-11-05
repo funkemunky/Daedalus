@@ -90,11 +90,11 @@ public class HitBoxes extends Check {
 		}
 
 		double offset = UtilCheat.getOffsetOffCursor(player, attacked);
-		double Limit = 58D;
+		double Limit = 108D;
 		double distance = UtilCheat.getHorizontalDistance(player.getLocation(), attacked.getLocation());
-		Limit += distance * 14;
-		Limit += (attacked.getVelocity().length() + player.getVelocity().length()) * 48;
-		Limit += yawDif * 1.51;
+		Limit += distance * 57;
+		Limit += (attacked.getVelocity().length() + player.getVelocity().length()) * 64;
+		Limit += yawDif * 6;
 
 		if (Latency.getLag(player) > 80 || Latency.getLag(attacked) > 80) {
 			return;

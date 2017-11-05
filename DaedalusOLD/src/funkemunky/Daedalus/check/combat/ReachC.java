@@ -132,7 +132,7 @@ public class ReachC extends Check {
 	       Reach -= UtilMath.trim(2, offsetsd);
 	       Reach -= UtilMath.trim(2, offsetsp);
 	       double maxReach2 = 3.1;
-	       if(yawdif < 90) {
+	       if(yawdif > 90) {
 	    	   maxReach2+= 0.38;
 	       }
 	       maxReach2 += lastHorizontal * 0.87;
