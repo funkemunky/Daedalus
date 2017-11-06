@@ -134,7 +134,6 @@ public class ReachB extends Check {
         int PingP = this.getDaedalus().getLag().getPing(player);
         MaxReach += ((PingD + PingP) / 2) * 0.0024;
         Reach2 -= UtilMath.trim(2, velocityDifference2);
-        Reach2 -= UtilMath.trim(2, offsetsp);
         if (UtilTime.elapsed(Time, 10000)) {
             count.remove(damager);
             Time = System.currentTimeMillis();

@@ -70,14 +70,11 @@ public class AscensionA
       if (OffsetY > 0.0D) {
         TotalBlocks += OffsetY;
       }
-      if (UtilCheat.blocksNear(player)) {
-        TotalBlocks = 0.0D;
-      }
       Location a = player.getLocation().subtract(0.0D, 1.0D, 0.0D);
       if (UtilCheat.blocksNear(a)) {
         TotalBlocks = 0.0D;
       }
-      double Limit = 0.5D;
+      double Limit = 1.05D;
       if (player.hasPotionEffect(PotionEffectType.JUMP)) {
         for (PotionEffect effect : player.getActivePotionEffects()) {
           if (effect.getType().equals(PotionEffectType.JUMP))
@@ -90,7 +87,7 @@ public class AscensionA
       }
       if (TotalBlocks > Limit)
       {
-        if (MS > 150L)
+        if (MS > 250L)
         {
           if(velocity.containsKey(player.getUniqueId())) {
         	  getDaedalus().logCheat(this, player, "Flew up " + UtilMath.trim(1, TotalBlocks) + " blocks", Chance.HIGH, new String[0]);

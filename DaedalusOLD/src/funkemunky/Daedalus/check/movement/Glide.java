@@ -18,7 +18,7 @@ public class Glide extends Check
     public static Map<UUID, Long> flyTicks;
 
     public Glide(Daedalus Daedalus) {
-        super("Glide", "Glide", Daedalus);
+        super("FlyB", "Fly (Type B)", Daedalus);
         this.flyTicks = new HashMap<UUID, Long>();
         
         this.setEnabled(false);
@@ -90,7 +90,7 @@ public class Glide extends Check
             Time = this.flyTicks.get(player.getUniqueId());
         }
         long MS = System.currentTimeMillis() - Time;
-        if (MS > 500L) {
+        if (MS > 1000L) {
             this.dumplog(player, "Logged. MS: " + MS);
             this.flyTicks.remove(player.getUniqueId());
             if(getDaedalus().getLag().getPing(player) < 275) {
