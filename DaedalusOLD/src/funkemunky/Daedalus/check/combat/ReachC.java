@@ -16,7 +16,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import com.comphenix.protocol.wrappers.EnumWrappers;
 
 import funkemunky.Daedalus.Daedalus;
-import funkemunky.Daedalus.DaedalusAPI;
 import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.check.other.Latency;
 import funkemunky.Daedalus.packets.events.PacketUseEntityEvent;
@@ -54,7 +53,7 @@ public class ReachC extends Check {
     	}
 	   	double OffsetXZ = UtilMath.offset(UtilMath.getHorizontalVector(event.getFrom().toVector()), UtilMath.getHorizontalVector(event.getTo().toVector()));
 	   	double horizontal = Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2.0) + Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2.0));
-	   	this.offsets.put(event.getPlayer(), new AbstractMap.SimpleEntry(Double.valueOf(OffsetXZ), Double.valueOf(horizontal)));
+	   	this.offsets.put(event.getPlayer(), new AbstractMap.SimpleEntry<Double, Double>(Double.valueOf(OffsetXZ), Double.valueOf(horizontal)));
 	   }
 	   
 	   @EventHandler
@@ -114,7 +113,7 @@ public class ReachC extends Check {
 	       if (this.reachTicks.containsKey(damager)) {
 	           attackTime = reachTicks.get(damager);
 	       }
-	       double yawdif = Math.abs(damager.getLocation().getYaw() - player.getLocation().getYaw());
+	       double yawdif = Math.abs(180 - Math.abs(damager.getLocation().getYaw() - player.getLocation().getYaw()));
 	       if(Latency.getLag(damager) > 92 || Latency.getLag(player) > 92) {
 	    	   return;
 	       }
@@ -122,12 +121,12 @@ public class ReachC extends Check {
 	       double lastHorizontal = 0.0D;
 	       double offsetsd = 0.0D;
 	       if(this.offsets.containsKey(damager)) {
-	       	offsetsd = ((Double)((Map.Entry)this.offsets.get(damager)).getKey()).doubleValue();
-	       	lastHorizontal = ((Double)((Map.Entry)this.offsets.get(damager)).getValue()).doubleValue();
+	       	offsetsd = ((this.offsets.get(damager)).getKey()).doubleValue();
+	       	lastHorizontal = ((this.offsets.get(damager)).getValue()).doubleValue();
 	       }
 	       if(this.offsets.containsKey(player)) {
-	          	offsetsp = ((Double)((Map.Entry)this.offsets.get(player)).getKey()).doubleValue();
-	          	lastHorizontal = ((Double)((Map.Entry)this.offsets.get(player)).getValue()).doubleValue();
+	          	offsetsp = ((this.offsets.get(player)).getKey()).doubleValue();
+	          	lastHorizontal = ((this.offsets.get(player)).getValue()).doubleValue();
 	       }
 	       Reach -= UtilMath.trim(2, offsetsd);
 	       Reach -= UtilMath.trim(2, offsetsp);

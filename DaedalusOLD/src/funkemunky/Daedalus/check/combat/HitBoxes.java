@@ -23,15 +23,15 @@ public class HitBoxes extends Check {
 	public HitBoxes(Daedalus Daedalus) {
 		super("HitBoxes", "Hitboxes", Daedalus);
 
-		this.setEnabled(true);
-		this.setBannable(false);
+		setEnabled(true);
+		setBannable(false);
 
 		setMaxViolations(5);
 	}
 
-	public static Map<UUID, Integer> count = new HashMap();
-	public static Map<UUID, Player> lastHit = new HashMap();
-	public static Map<UUID, Double> yawDif = new HashMap();
+	public static Map<UUID, Integer> count = new HashMap<UUID, Integer>();
+	public static Map<UUID, Player> lastHit = new HashMap<UUID, Player>();
+	public static Map<UUID, Double> yawDif = new HashMap<UUID, Double>();
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onQuit(PlayerQuitEvent e) {
@@ -42,7 +42,7 @@ public class HitBoxes extends Check {
 			yawDif.remove(e.getPlayer().getUniqueId());
 		}
 		if (lastHit.containsKey(e.getPlayer().getUniqueId())) {
-			this.lastHit.remove(e.getPlayer().getUniqueId());
+			lastHit.remove(e.getPlayer().getUniqueId());
 		}
 	}
 
@@ -73,8 +73,8 @@ public class HitBoxes extends Check {
 		double yawDif = 0;
 		Player lastPlayer = attacked;
 
-		if (this.lastHit.containsKey(player.getUniqueId())) {
-			lastPlayer = this.lastHit.get(player.getUniqueId());
+		if (lastHit.containsKey(player.getUniqueId())) {
+			lastPlayer = lastHit.get(player.getUniqueId());
 		}
 
 		if (count.containsKey(player.getUniqueId())) {
@@ -85,7 +85,7 @@ public class HitBoxes extends Check {
 		}
 
 		if (lastPlayer != attacked) {
-			this.lastHit.put(player.getUniqueId(), attacked);
+			lastHit.put(player.getUniqueId(), attacked);
 			return;
 		}
 
@@ -103,17 +103,17 @@ public class HitBoxes extends Check {
 		if (offset > Limit) {
 			Count++;
 		} else {
-			Count = 0;
+			Count = Count > 0 ? Count - 1 : Count;
 		}
 
-		if (Count > 1) {
+		if (Count > 8) {
 			getDaedalus().logCheat(this, player, offset + " > " + Limit, Chance.LIKELY,
 					new String[] { "Experimental" });
 			Count = 0;
 		}
 
-		this.count.put(player.getUniqueId(), Count);
-		this.lastHit.put(player.getUniqueId(), attacked);
+		count.put(player.getUniqueId(), Count);
+		lastHit.put(player.getUniqueId(), attacked);
 	}
 
 }

@@ -1,7 +1,6 @@
 package funkemunky.Daedalus.check.movement;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,7 +23,7 @@ public class FastLadder extends Check {
 		this.setMaxViolations(7);
 	}
 	
-	public static HashMap<Player, Integer> count =  new HashMap();
+	public static HashMap<Player, Integer> count =  new HashMap<Player, Integer>();
 	
     @EventHandler
     public void onLog(PlayerQuitEvent e) {
@@ -63,7 +62,6 @@ public class FastLadder extends Check {
 	     }
 		 
 		 int Count = count.get(player);
-		 long Time = 0;
 		 
 		 if(!UtilPlayer.isOnClimbable(player, 1) || !UtilPlayer.isOnClimbable(player, 0)) {
 			 return;

@@ -2324,3 +2324,23 @@ java.lang.NullPointerException
 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:44)
 	at org.eclipse.ui.internal.Workbench$40.run(Workbench.java:2747)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+!SESSION 2018-01-18 16:30:02.184 -----------------------------------------------
+eclipse.buildId=4.7.1.M20170906-1700
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/kachow/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data /Users/kachow/Documents/GitHub/Daedalus -product org.eclipse.epp.package.java.product -keyring /Users/kachow/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-01-18 16:30:18.157
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2018-01-18 20:16:31.389 -----------------------------------------------
+eclipse.buildId=4.7.1.M20170906-1700
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/kachow/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data /Users/kachow/Documents/GitHub/Daedalus -product org.eclipse.epp.package.java.product -keyring /Users/kachow/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-01-18 20:16:51.413
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

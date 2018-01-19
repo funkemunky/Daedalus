@@ -1,6 +1,5 @@
 package funkemunky.Daedalus.check.combat;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,34 +23,34 @@ public class KillauraF extends Check {
 
 	public KillauraF(Daedalus Daedalus) {
 		super("KillAuraF", "KillAura (Wall)", Daedalus);
-		
+
 		setEnabled(true);
 		setBannable(false);
-		
+
 		setMaxViolations(7);
 	}
-	
+
 	public static HashMap<Player, Integer> counts = new HashMap();
 	private ArrayList<Player> blockGlitched = new ArrayList();
-	
+
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerLogout(PlayerQuitEvent e) {
-		if(counts.containsKey(e.getPlayer())) {
+		if (counts.containsKey(e.getPlayer())) {
 			counts.remove(e.getPlayer());
 		}
-		if(blockGlitched.contains(e.getPlayer())) {
+		if (blockGlitched.contains(e.getPlayer())) {
 			blockGlitched.remove(e.getPlayer());
 		}
 	}
-	
+
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
-		if(e.isCancelled()) {
+		if (e.isCancelled()) {
 			blockGlitched.add(e.getPlayer());
 		}
 	}
-	
-	@EventHandler(priority = EventPriority.MONITOR)
+
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void checkKillaura(PacketUseEntityEvent e) {
 		if(e.getAction() != EntityUseAction.ATTACK) {
 			return;
@@ -64,29 +63,25 @@ public class KillauraF extends Check {
 			return;
 		}
 		
-		if(blockGlitched.contains(e.getAttacker())) {
-			blockGlitched.remove(e.getAttacker());
-			return;
-		}
-		
 		Player p = e.getAttacker();
 	    if(p.hasPermission("daedalus.bypass")) {
 	        return;
 	    }
 	    
 	    if(UtilCheat.slabsNear(p.getEyeLocation()) || UtilCheat.slabsNear(p.getEyeLocation().clone().add(0.0D, 0.5D, 0.0D))) {
-	    	return;
+	       	return;
 	    }
 	    int Count = 0;
+	    
 	    if(counts.containsKey(p)) {
-	    	Count = counts.get(p);
+	     	Count = counts.get(p);
 	    }
+	    
 		Player attacked = (Player) e.getAttacked();
 		Location dloc = p.getLocation();
 		Location aloc = attacked.getLocation();
 		double zdif = Math.abs(dloc.getZ() - aloc.getZ());
 		double xdif = Math.abs(dloc.getX() - aloc.getX());
-		
 		
 		if(xdif == 0 || zdif == 0) {
 			return;

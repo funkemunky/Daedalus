@@ -17,7 +17,6 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -58,13 +57,11 @@ import funkemunky.Daedalus.check.movement.Glide;
 import funkemunky.Daedalus.check.movement.Jesus;
 import funkemunky.Daedalus.check.movement.NoFall;
 import funkemunky.Daedalus.check.movement.NoSlowdown;
-import funkemunky.Daedalus.check.movement.NormalMovements;
 import funkemunky.Daedalus.check.movement.PhaseA;
 import funkemunky.Daedalus.check.movement.SpeedA;
 import funkemunky.Daedalus.check.movement.SpeedB;
 import funkemunky.Daedalus.check.movement.Spider;
 import funkemunky.Daedalus.check.movement.Step;
-import funkemunky.Daedalus.check.movement.Test;
 import funkemunky.Daedalus.check.movement.VClip;
 import funkemunky.Daedalus.check.other.Crash;
 import funkemunky.Daedalus.check.other.Exploit;
@@ -150,7 +147,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 		this.Checks.add(new FastBow(this));
 		this.Checks.add(new Twitch(this));
 		this.Checks.add(new NoSlowdown(this));
-		this.Checks.add(new NormalMovements(this));
 		this.Checks.add(new Crits(this));
 		this.Checks.add(new ReachA(this));
 		this.Checks.add(new ReachB(this));
@@ -319,8 +315,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 				FastLadder.count.clear();
 			if (!Fly.flyTicksA.isEmpty())
 				Fly.flyTicksA.clear();
-			if (!NormalMovements.count.isEmpty())
-				NormalMovements.count.clear();
 			if (!Glide.flyTicks.isEmpty())
 				Glide.flyTicks.clear();
 			if (!NoFall.FallDistance.isEmpty())

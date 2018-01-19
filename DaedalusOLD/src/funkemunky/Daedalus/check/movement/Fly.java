@@ -26,7 +26,7 @@ public class Fly extends Check {
 		setMaxViolations(5);
 	}
 
-	public static Map<UUID, Long> flyTicksA = new HashMap();
+	public static Map<UUID, Long> flyTicksA = new HashMap<UUID, Long>();
 
 	@EventHandler
 	public void onLog(PlayerQuitEvent e) {
@@ -72,8 +72,8 @@ public class Fly extends Check {
 			return;
 		}
 		if (UtilCheat.blocksNear(player.getLocation())) {
-			if (this.flyTicksA.containsKey(player.getUniqueId())) {
-				this.flyTicksA.remove(player.getUniqueId());
+			if (flyTicksA.containsKey(player.getUniqueId())) {
+				flyTicksA.remove(player.getUniqueId());
 			}
 			return;
 		}
@@ -81,24 +81,24 @@ public class Fly extends Check {
 			return;
 		}
 		if (Math.abs(event.getTo().getY() - event.getFrom().getY()) > 0.06) {
-			if (this.flyTicksA.containsKey(player.getUniqueId())) {
-				this.flyTicksA.remove(player.getUniqueId());
+			if (flyTicksA.containsKey(player.getUniqueId())) {
+				flyTicksA.remove(player.getUniqueId());
 			}
 			return;
 		}
 		long Time = System.currentTimeMillis();
-		if (this.flyTicksA.containsKey(player.getUniqueId())) {
-			Time = ((Long) this.flyTicksA.get(player.getUniqueId())).longValue();
+		if (flyTicksA.containsKey(player.getUniqueId())) {
+			Time = flyTicksA.get(player.getUniqueId()).longValue();
 		}
 		long MS = System.currentTimeMillis() - Time;
-		if (MS > 500L) {
+		if (MS > 200L) {
 			dumplog(player, "Logged Fly. MS: " + MS);
 			getDaedalus().logCheat(this, player,
 					"Hovering for " + UtilMath.trim(1, Double.valueOf((MS / 1000))) + " second(s)", Chance.HIGH,
 					new String[0]);
-			this.flyTicksA.remove(player.getUniqueId());
+			flyTicksA.remove(player.getUniqueId());
 			return;
 		}
-		this.flyTicksA.put(player.getUniqueId(), Time);
+		flyTicksA.put(player.getUniqueId(), Time);
 	}
 }

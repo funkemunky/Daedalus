@@ -2,12 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="PlayerQuitEvent" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="(Double)((Map.Entry)"/>
+			<item value="(Double)"/>
+			<item value="(Map.Entry)"/>
+			<item value="this."/>
 			<item value="PlayerQuitEvent"/>
 			<item value="isStaff"/>
 			<item value="toggle"/>
@@ -19,14 +23,10 @@
 			<item value="�"/>
 			<item value="isInwater"/>
 			<item value="maxSpeed"/>
-			<item value="broadcast"/>
-			<item value="packet"/>
-			<item value="user.setVL(this, user.getVL(this) + 1);"/>
-			<item value="user"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Fiona.getAC().getPrefix()"/>
 			<item value=""/>
+			<item value="Fiona.getAC().getPrefix()"/>
 			<item value="MathUtils"/>
 			<item value="§"/>
 			<item value="user.setVL(KillAuraA.this, user.getVL(KillAuraA.this) + 1);"/>
