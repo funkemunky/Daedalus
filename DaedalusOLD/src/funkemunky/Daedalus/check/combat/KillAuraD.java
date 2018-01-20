@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
@@ -17,68 +15,60 @@ import funkemunky.Daedalus.packets.events.PacketPlayerType;
 import funkemunky.Daedalus.utils.Chance;
 
 public class KillAuraD extends Check {
-	
+
 	public static Map<UUID, Map.Entry<Double, Double>> packetTicks;
-	
+
 	public KillAuraD(Daedalus Daedalus) {
 		super("KillAuraD", "KillAura (Packet)", Daedalus);
-		
-		this.setEnabled(true);
-		this.setBannable(false);
-		
-		this.setMaxViolations(5);
-		this.setViolationResetTime(60000);
-		
-		this.packetTicks = new HashMap<UUID, Map.Entry<Double, Double>>();
-		
-		new BukkitRunnable() {
-			public void run() {
-				for(Player player : Bukkit.getOnlinePlayers()) {
-					if(player.hasPermission("daedalus.bypass")) {
-						return;
-					}
-					double Count = 0;
-					double Other = 0;
-					if(packetTicks.containsKey(player.getUniqueId())) {
-						Count = packetTicks.get(player.getUniqueId()).getKey();
-						Other = packetTicks.get(player.getUniqueId()).getValue();
-					}
-					if(Count > Other) {
-						getDaedalus().logCheat(KillAuraD.this, player, Count + " Use : " + Other + " Arm", Chance.HIGH, new String[0]);
-					}
-					if(packetTicks.containsKey(player.getUniqueId())) {
-						packetTicks.remove(player.getUniqueId());
-					}
-				}
-			}
-		}.runTaskTimer(Daedalus, 20L, 20L);
+
+		setEnabled(true);
+		setBannable(false);
+
+		setMaxViolations(5);
+		setViolationResetTime(60000);
+
+		packetTicks = new HashMap<UUID, Map.Entry<Double, Double>>();
 	}
 
-	
 	@EventHandler
 	public void packet(PacketKillauraEvent e) {
-		if(!getDaedalus().isEnabled()) {
+		if (!getDaedalus().isEnabled()) {
 			return;
 		}
-		if(e.getPlayer().hasPermission("daedalus.bypass")) {
+		if (e.getPlayer().hasPermission("daedalus.bypass")) {
 			return;
 		}
 		double Count = 0;
 		double Other = 0;
-		if(packetTicks.containsKey(e.getPlayer().getUniqueId())) {
+		if (packetTicks.containsKey(e.getPlayer().getUniqueId())) {
 			Count = packetTicks.get(e.getPlayer().getUniqueId()).getKey();
 			Other = packetTicks.get(e.getPlayer().getUniqueId()).getValue();
 		}
-		
-		if(e.getType() == PacketPlayerType.ARM_SWING) {
+
+		if (e.getType() == PacketPlayerType.ARM_SWING) {
 			Other++;
 		}
-		
-		if(e.getType() == PacketPlayerType.USE) {
+
+		if (e.getType() == PacketPlayerType.USE) {
 			Count++;
 		}
 		
-		this.packetTicks.put(e.getPlayer().getUniqueId(), new AbstractMap.SimpleEntry<Double, Double>(Count, Other));
+		if(Count > Other && Other == 2) {
+			getDaedalus().logCheat(this, e.getPlayer(), null, Chance.HIGH, new String[0]);
+		}
+
+		if(Count > 3 || Other > 3) {
+			Count = 0;
+			Other = 0;
+		}
+		packetTicks.put(e.getPlayer().getUniqueId(), new AbstractMap.SimpleEntry<Double, Double>(Count, Other));
+	}
+	
+	@EventHandler
+	public void logout(PlayerQuitEvent e) {
+		if(packetTicks.containsKey(e.getPlayer().getUniqueId())) {
+			packetTicks.remove(e.getPlayer().getUniqueId());
+		}
 	}
 
 }

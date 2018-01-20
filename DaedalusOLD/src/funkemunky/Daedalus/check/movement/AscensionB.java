@@ -23,130 +23,120 @@ public class AscensionB extends Check {
 
 	public AscensionB(funkemunky.Daedalus.Daedalus Daedalus) {
 		super("AscensionB", "Ascension (Type B)", Daedalus);
-		
-		this.setBannable(true);
-		this.setEnabled(true);
+
+		setBannable(true);
+		setEnabled(true);
 		setMaxViolations(5);
 	}
-	
-	public static Map<UUID, Map.Entry<Integer, Long>> flyTicks = new HashMap();
-	public static Map<UUID, Double> velocity =  new HashMap();
-	
-    @EventHandler
-    public void onLog(PlayerQuitEvent e) {
-    	Player p = e.getPlayer();
-    	UUID uuid = p.getUniqueId();
-    	
-    	if(flyTicks.containsKey(uuid)) {
-    		flyTicks.remove(uuid);
-    	}
-    }
-	
+
+	public static Map<UUID, Map.Entry<Integer, Long>> flyTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+	public static Map<UUID, Double> velocity = new HashMap<UUID, Double>();
+
+	@EventHandler
+	public void onLog(PlayerQuitEvent e) {
+		Player p = e.getPlayer();
+		UUID uuid = p.getUniqueId();
+
+		if (flyTicks.containsKey(uuid)) {
+			flyTicks.remove(uuid);
+		}
+	}
+
 	@EventHandler
 	public void CheckAscension(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
+
+		if (!getDaedalus().isEnabled()) {
+			return;
+		}
+
+		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
+			return;
+		}
+
+		if (e.getFrom().getY() >= e.getTo().getY()) {
+			return;
+		}
+
+		if (p.getAllowFlight()) {
+			return;
+		}
 		
-        if (!getDaedalus().isEnabled()) {
-            return;
-        }
-        
-        if(getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-        	return;
-        }
-        
-        if (e.getFrom().getY() >= e.getTo().getY()) {
-            return;
-        }
-        
-        if(p.getAllowFlight()) {
-        	return;
-        }
-        
-        if(p.hasPermission("daedalus.bypass")) {
-        	return;
-        }
-        
-    	if(getDaedalus().isSotwMode()) {
-    		return;
-    	}
-        
-        
-        if(p.getVelocity().length() < velocity.getOrDefault(p.getUniqueId(), 0.0D)) {
-      	  return;
-        }
-        
-        if(Latency.getLag(p) > 75) {
-        	return;
-        }
-        if(this.getDaedalus().getLastVelocity().containsKey(p.getUniqueId())) {
-        	return;
-        }
-        
-        if(e.isCancelled()) {
-        	return;
-        }
-        
-        if (p.getVehicle() != null) {
-            return;
-        }
-        
+		if(!UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(p.getUniqueId(), 0L), 4200L)) {
+			return;
+		}
+
+		if (p.hasPermission("daedalus.bypass")) {
+			return;
+		}
+
+		if (getDaedalus().isSotwMode()) {
+			return;
+		}
+
+		if (Latency.getLag(p) > 75) {
+			return;
+		}
+		if (this.getDaedalus().getLastVelocity().containsKey(p.getUniqueId())) {
+			return;
+		}
+
+		if (e.isCancelled()) {
+			return;
+		}
+
+		if (p.getVehicle() != null) {
+			return;
+		}
+
 		Location to = e.getTo();
 		Location from = e.getFrom();
-        int Count = 0;
-        long Time = UtilTime.nowlong();
-        if (this.flyTicks.containsKey(p.getUniqueId()))
-        {
-            Count = ((Integer)((Map.Entry)this.flyTicks.get(p.getUniqueId())).getKey()).intValue();
-            Time = ((Long)((Map.Entry)this.flyTicks.get(p.getUniqueId())).getValue()).longValue();
-        }
-		if(flyTicks.containsKey(p.getUniqueId())) {
+		int Count = 0;
+		long Time = UtilTime.nowlong();
+		if (flyTicks.containsKey(p.getUniqueId())) {
+			Count = flyTicks.get(p.getUniqueId()).getKey().intValue();
+			Time = flyTicks.get(p.getUniqueId()).getValue().longValue();
+		}
+		if (flyTicks.containsKey(p.getUniqueId())) {
 			double Offset = to.getY() - from.getY();
 			double Limit = 0.5D;
 			double TotalBlocks = Offset;
-			
+
 			if (UtilCheat.blocksNear(p)) {
-	            TotalBlocks = 0.0D;
-	        }
-	        Location a = p.getLocation().subtract(0.0D, 1.0D, 0.0D);
-	        if (UtilCheat.blocksNear(a)) {
-	            TotalBlocks = 0.0D;
-	        }
-		       if (p.hasPotionEffect(PotionEffectType.JUMP)) {
-		           for (PotionEffect effect : p.getActivePotionEffects()) {
-		               if (effect.getType().equals(PotionEffectType.JUMP))
-		               {
-		                   int level = effect.getAmplifier() + 1;
-		                   Limit += Math.pow(level + 4.1D, 2.0D) / 16.0D;
-		                   break;
-		               }
-		           }
-		       }
-		    
-		    if(TotalBlocks >= Limit) {
-		    	Count+= 2;
-		    } else {
-		    	if(Count > 0) {
-		    		Count--;
-		    	}
-		    }
+				TotalBlocks = 0.0D;
+			}
+			Location a = p.getLocation().subtract(0.0D, 1.0D, 0.0D);
+			if (UtilCheat.blocksNear(a)) {
+				TotalBlocks = 0.0D;
+			}
+			if (p.hasPotionEffect(PotionEffectType.JUMP)) {
+				for (PotionEffect effect : p.getActivePotionEffects()) {
+					if (effect.getType().equals(PotionEffectType.JUMP)) {
+						int level = effect.getAmplifier() + 1;
+						Limit += Math.pow(level + 4.1D, 2.0D) / 16.0D;
+						break;
+					}
+				}
+			}
+
+			if (TotalBlocks >= Limit) {
+				Count += 2;
+			} else {
+				if (Count > 0) {
+					Count--;
+				}
+			}
 		}
-		 if ((this.flyTicks.containsKey(p.getUniqueId())) &&
-	                (UtilTime.elapsed(Time, 30000L)))
-	        {
-	            Count = 0;
-	            Time = UtilTime.nowlong();
-	        }
-		 if(Count >= 4) {
-			 Count = 0;
-			 dumplog(p, "Logged for Ascension Type B");
-			 this.getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[0]);
-		 }
-		this.flyTicks.put(p.getUniqueId(), new AbstractMap.SimpleEntry(Integer.valueOf(Count), Long.valueOf(Time)));
-	      if(!p.isOnGround()) {
-	    	  this.velocity.put(p.getUniqueId(), p.getVelocity().length());
-	      } else {
-	    	  this.velocity.put(p.getUniqueId(), -1.0D);
-	      }
+		if ((flyTicks.containsKey(p.getUniqueId())) && (UtilTime.elapsed(Time, 30000L))) {
+			Count = 0;
+			Time = UtilTime.nowlong();
+		}
+		if (Count >= 4) {
+			Count = 0;
+			dumplog(p, "Logged for Ascension Type B");
+			this.getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[0]);
+		}
+		flyTicks.put(p.getUniqueId(), new AbstractMap.SimpleEntry<Integer, Long>(Count, Time));
 	}
 
 }

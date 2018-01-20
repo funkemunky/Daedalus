@@ -20,7 +20,7 @@ public class ConfigFile {
 		this.file = new File(Daedalus.Instance.getDataFolder(), "config.yml");
 		this.configuration = YamlConfiguration.loadConfiguration(this.file);
 	}
-	
+
 	public void load() {
 		this.file = new File(Daedalus.Instance.getDataFolder(), "config.yml");
 		if (!this.file.exists()) {
@@ -30,19 +30,19 @@ public class ConfigFile {
 	}
 
 	public void save() {
-		
+
 		try {
 			this.configuration.save(this.file);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public YamlConfiguration getConfiguration() {
 		return this.configuration;
 	}
-	
+
 	public File getFile() {
 		return file;
 	}
@@ -53,13 +53,13 @@ public class ConfigFile {
 		}
 		return 0.0;
 	}
-	
+
 	public void set(String path, Object object) {
 		this.configuration.set(path, object);
 	}
-	
+
 	public Object get(String path) {
-		if(this.configuration.contains(path)) {
+		if (this.configuration.contains(path)) {
 			return this.configuration.get(path);
 		}
 		return null;

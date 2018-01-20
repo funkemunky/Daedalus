@@ -1,11 +1,5 @@
 package funkemunky.Daedalus.commands;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,7 +12,6 @@ import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.gui.ChecksGUI;
 import funkemunky.Daedalus.utils.C;
 import funkemunky.Daedalus.utils.UtilMath;
-import net.minecraft.util.org.apache.commons.io.FileUtils;
 
 public class DaedalusCommand implements CommandExecutor {
 	private Daedalus Daedalus;
@@ -95,19 +88,25 @@ public class DaedalusCommand implements CommandExecutor {
 						+ UtilMath.trim(3, Daedalus.getLag().getMaxRam()) + C.Gray + "]");
 				return true;
 			}
-			if(args[0].equalsIgnoreCase("lag") || args[0].equalsIgnoreCase("performance")) {
+			if (args[0].equalsIgnoreCase("lag") || args[0].equalsIgnoreCase("performance")) {
 				sender.sendMessage(C.DGray + C.Strike + "----------------------------------------------------");
 				sender.sendMessage(C.Red + C.Bold + "Performance Usage:");
 				sender.sendMessage("");
 				sender.sendMessage(C.Gray + "TPS: " + C.White + UtilMath.trim(2, Daedalus.getLag().getTPS()));
-				sender.sendMessage(C.Gray + "Free Ram: " + C.White  + Daedalus.getLag().getFreeRam() + "MB");
+				sender.sendMessage(C.Gray + "Free Ram: " + C.White + Daedalus.getLag().getFreeRam() + "MB");
 				sender.sendMessage(C.Gray + "Max Ram: " + C.White + Daedalus.getLag().getMaxRam() + "MB");
-				sender.sendMessage(C.Gray + "Used Ram: " + C.White +  Math.abs(Daedalus.getLag().getMaxRam() - Daedalus.getLag().getFreeRam()) + "MB");
-				if(Math.abs(Daedalus.getLag().getMaxRam() - Daedalus.getLag().getFreeRam()) > Daedalus.getLag().getMaxRam() / 2.1) {
-					sender.sendMessage(C.Aqua + C.Italics + "It is recommended you do /daedalus clean to clear up some RAM.");
+				sender.sendMessage(C.Gray + "Used Ram: " + C.White
+						+ Math.abs(Daedalus.getLag().getMaxRam() - Daedalus.getLag().getFreeRam()) + "MB");
+				if (Math.abs(
+						Daedalus.getLag().getMaxRam() - Daedalus.getLag().getFreeRam()) > Daedalus.getLag().getMaxRam()
+								/ 2.1) {
+					sender.sendMessage(
+							C.Aqua + C.Italics + "It is recommended you do /daedalus clean to clear up some RAM.");
 				}
-				sender.sendMessage(Daedalus.getLag().getLag() > 20 ? C.Red + "Server Usage: " + Daedalus.getLag().getLag() + "%" : C.Green + "Server Usage: " + Daedalus.getLag().getLag() + "%");
-				
+				sender.sendMessage(
+						Daedalus.getLag().getLag() > 20 ? C.Red + "Server Usage: " + Daedalus.getLag().getLag() + "%"
+								: C.Green + "Server Usage: " + Daedalus.getLag().getLag() + "%");
+
 				sender.sendMessage(C.DGray + C.Strike + "----------------------------------------------------");
 				return true;
 			}
@@ -138,7 +137,8 @@ public class DaedalusCommand implements CommandExecutor {
 				sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " reload" + C.Gray + "   - Reload Daedalus.");
 				sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " violations <player>" + C.Gray
 						+ " - Gets the violations of a player.");
-				sender.sendMessage(C.Gray + "/daedalus" + C.Reset + " lag" + C.Gray + "  - Get server performance info.");
+				sender.sendMessage(
+						C.Gray + "/daedalus" + C.Reset + " lag" + C.Gray + "  - Get server performance info.");
 				sender.sendMessage(C.DGray + C.Strike + "----------------------------------------------------");
 				return true;
 			}

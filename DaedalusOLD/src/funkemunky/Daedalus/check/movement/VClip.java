@@ -17,101 +17,102 @@ import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.utils.Chance;
 import funkemunky.Daedalus.utils.UtilCheat;
 
-public class VClip extends Check
-{
-	
-    public VClip(final Daedalus Daedalus) {
-        super("VClip", "VClip", Daedalus);
-        
-        this.setBannable(false);
-        this.setEnabled(true);
-        this.setMaxViolations(19);
-        this.setViolationResetTime(10000);
-    }
-    public static List<Material> allowed = new ArrayList();
-    public static ArrayList<Player> teleported = new ArrayList();
-    public static HashMap<Player, Location> lastLocation = new HashMap();
-	
-    static {
-    	allowed.add(Material.PISTON_EXTENSION);
-    	allowed.add(Material.PISTON_STICKY_BASE);
-    	allowed.add(Material.PISTON_BASE);
-    	allowed.add(Material.SIGN_POST);
-    	allowed.add(Material.WALL_SIGN);
-    	allowed.add(Material.STRING);
-    	allowed.add(Material.AIR);
-    	allowed.add(Material.FENCE_GATE);
-    	allowed.add(Material.CHEST);
-    }
-    
-    @EventHandler
-    public void onTeleport(PlayerTeleportEvent e) {
-    	if(e.getCause() != TeleportCause.UNKNOWN) {
-    		return;
-    	}
-    }
+public class VClip extends Check {
 
-    @EventHandler
-    public void onMove(PlayerMoveEvent e)
-    {
-        Player p = e.getPlayer();
-        
-	    if(p.hasPermission("daedalus.bypass")) {
-	        return;
-	    }
-        
-        Location to = e.getTo().clone();
-        Location from = e.getFrom().clone();
-        
-        if(from.getY() == to.getY()) {
-        	return;
-        }
-        
-        if(teleported.contains(e.getPlayer())) {
-        	teleported.remove(e.getPlayer());
-        	return;
-        }
-        
-        if(!getDaedalus().isEnabled()) {
-        	return;
-        }
-    	if(getDaedalus().isSotwMode()) {
-    		return;
-    	}
-        if (p.getAllowFlight()) {
-          return;
-        }
-        if (p.getVehicle() != null) {
-          return;
-        }
-        
-        if(e.getTo().getY() <= 0 || e.getTo().getY() >= p.getWorld().getMaxHeight()) {
-        	return;
-        }
-        
-        if(!UtilCheat.blocksNear(p)) {
-        	return;
-        }
-        
-        if ((p.getLocation().getY() < 0.0D) || (p.getLocation().getY() > p.getWorld().getMaxHeight())) {
-            return;
-          }
-        
-        double yDist = from.getY() - to.getY();
-        for(double y=0; y < Math.abs(yDist); y++) {
-        	Location l = yDist < -0.2 ? from.clone().add(0.0D, y, 0.0D) : to.clone().add(0.0D, y, 0.0D);
-        	if((yDist > 20 || yDist < -20) && l.getBlock().getType() != Material.AIR && l.getBlock().getType().isSolid() && !allowed.contains(l.getBlock().getType())) {
-        		p.kickPlayer("No");
-        		getDaedalus().logCheat(this, p, "More than 20 blocks.", Chance.HIGH, new String[0]);
-        		p.teleport(from);
-        		return;
-        	}
-        	if(l.getBlock().getType() != Material.AIR && Math.abs(yDist) > 1.0 && l.getBlock().getType().isSolid() && !allowed.contains(l.getBlock().getType())) {
-        		getDaedalus().logCheat(this, p, y + " blocks", Chance.LIKELY, new String[0]);
-        		p.teleport(lastLocation.get(p));
-        	} else {
-        		lastLocation.put(p, p.getLocation());
-        	}
-        }
-    }
+	public VClip(final Daedalus Daedalus) {
+		super("VClip", "VClip", Daedalus);
+
+		this.setBannable(false);
+		this.setEnabled(true);
+		this.setMaxViolations(19);
+		this.setViolationResetTime(10000);
+	}
+
+	public static List<Material> allowed = new ArrayList<Material>();
+	public static ArrayList<Player> teleported = new ArrayList<Player>();
+	public static HashMap<Player, Location> lastLocation = new HashMap<Player, Location>();
+
+	static {
+		allowed.add(Material.PISTON_EXTENSION);
+		allowed.add(Material.PISTON_STICKY_BASE);
+		allowed.add(Material.PISTON_BASE);
+		allowed.add(Material.SIGN_POST);
+		allowed.add(Material.WALL_SIGN);
+		allowed.add(Material.STRING);
+		allowed.add(Material.AIR);
+		allowed.add(Material.FENCE_GATE);
+		allowed.add(Material.CHEST);
+	}
+
+	@EventHandler
+	public void onTeleport(PlayerTeleportEvent e) {
+		if (e.getCause() != TeleportCause.UNKNOWN) {
+			return;
+		}
+	}
+
+	@EventHandler
+	public void onMove(PlayerMoveEvent e) {
+		Player p = e.getPlayer();
+
+		if (p.hasPermission("daedalus.bypass")) {
+			return;
+		}
+
+		Location to = e.getTo().clone();
+		Location from = e.getFrom().clone();
+
+		if (from.getY() == to.getY()) {
+			return;
+		}
+
+		if (teleported.contains(e.getPlayer())) {
+			teleported.remove(e.getPlayer());
+			return;
+		}
+
+		if (!getDaedalus().isEnabled()) {
+			return;
+		}
+		if (getDaedalus().isSotwMode()) {
+			return;
+		}
+		if (p.getAllowFlight()) {
+			return;
+		}
+		if (p.getVehicle() != null) {
+			return;
+		}
+
+		if (e.getTo().getY() <= 0 || e.getTo().getY() >= p.getWorld().getMaxHeight()) {
+			return;
+		}
+
+		if (!UtilCheat.blocksNear(p)) {
+			return;
+		}
+
+		if ((p.getLocation().getY() < 0.0D) || (p.getLocation().getY() > p.getWorld().getMaxHeight())) {
+			return;
+		}
+
+		double yDist = from.getY() - to.getY();
+		for (double y = 0; y < Math.abs(yDist); y++) {
+			Location l = yDist < -0.2 ? from.clone().add(0.0D, y, 0.0D) : to.clone().add(0.0D, y, 0.0D);
+			if ((yDist > 20 || yDist < -20) && l.getBlock().getType() != Material.AIR
+					&& l.getBlock().getType().isSolid() && !allowed.contains(l.getBlock().getType())) {
+				p.kickPlayer("No");
+				getDaedalus().logCheat(this, p, "More than 20 blocks.", Chance.HIGH, new String[0]);
+				p.teleport(from);
+				return;
+			}
+			if (l.getBlock().getType() != Material.AIR && Math.abs(yDist) > 1.0 && l.getBlock().getType().isSolid()
+					&& !allowed.contains(l.getBlock().getType())) {
+				getDaedalus().logCheat(this, p, y + " blocks", Chance.LIKELY, new String[0]);
+				p.teleport(lastLocation.get(p));
+			} else {
+				lastLocation.put(p, p.getLocation());
+			}
+		}
+	}
 }

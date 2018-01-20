@@ -1,19 +1,14 @@
 package funkemunky.Daedalus.check.combat;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
@@ -25,18 +20,19 @@ import funkemunky.Daedalus.utils.UtilTime;
 
 public class ReachB extends Check {
 
-	public static Map<Player, Integer> count = new HashMap();
-	public static Map<Player, Map.Entry<Double, Double>> offsets = new HashMap();
-	public static Map<Player, Long> reachTicks = new HashMap();
+	public Map<Player, Integer> count;
+	public Map<Player, Map.Entry<Double, Double>> offsets;
 
 	public ReachB(Daedalus Daedalus) {
 		super("ReachB", "Reach (Type B)", Daedalus);
 
-		this.setEnabled(true);
-		this.setMaxViolations(7);
-		this.setBannable(true);
-		this.setViolationsToNotify(1);
+		setEnabled(true);
+		setMaxViolations(7);
+		setBannable(true);
+		setViolationsToNotify(1);
 
+		offsets = new WeakHashMap<Player, Map.Entry<Double, Double>>();
+		count = new WeakHashMap<Player, Integer>();
 	}
 
 	@EventHandler
@@ -48,21 +44,8 @@ public class ReachB extends Check {
 				UtilMath.getHorizontalVector(event.getTo().toVector()));
 		double horizontal = Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2.0)
 				+ Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2.0));
-		this.offsets.put(event.getPlayer(),
+		offsets.put(event.getPlayer(),
 				new AbstractMap.SimpleEntry<Double, Double>(Double.valueOf(OffsetXZ), Double.valueOf(horizontal)));
-	}
-
-	@EventHandler
-	public void onLogout(PlayerQuitEvent e) {
-		if (offsets.containsKey(e.getPlayer())) {
-			offsets.remove(e.getPlayer());
-		}
-		if (count.containsKey(e.getPlayer())) {
-			count.remove(e.getPlayer());
-		}
-		if (reachTicks.containsKey(e.getPlayer())) {
-			reachTicks.remove(e.getPlayer());
-		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
@@ -99,16 +82,12 @@ public class ReachB extends Check {
 		double MaxReach = 3.1;
 		double YawDifference = Math.abs(damager.getEyeLocation().getYaw() - player.getEyeLocation().getYaw());
 		double speedToVelocityDif = 0;
-		double velocityDifference2 = Math.abs(damager.getVelocity().length() + player.getVelocity().length());
 		double offsets = 0.0D;
-		double offsetsp = 0.0D;
+
 		double lastHorizontal = 0.0D;
 		if (this.offsets.containsKey(damager)) {
 			offsets = (this.offsets.get(damager)).getKey().doubleValue();
 			lastHorizontal = (this.offsets.get(damager)).getValue().doubleValue();
-		}
-		if (this.offsets.containsKey(player)) {
-			offsetsp = (this.offsets.get(player)).getKey().doubleValue();
 		}
 		if (Latency.getLag(damager) > 92 || Latency.getLag(player) > 92) {
 			return;
@@ -125,11 +104,10 @@ public class ReachB extends Check {
 			MaxReach += Difference / 2.5;
 		}
 		MaxReach += damager.getWalkSpeed() <= 0.2 ? 0 : damager.getWalkSpeed() - 0.2;
-		
+
 		int PingD = this.getDaedalus().getLag().getPing(damager);
 		int PingP = this.getDaedalus().getLag().getPing(player);
 		MaxReach += ((PingD + PingP) / 2) * 0.0024;
-		Reach2 -= UtilMath.trim(2, velocityDifference2);
 		if (UtilTime.elapsed(Time, 10000)) {
 			count.remove(damager);
 			Time = System.currentTimeMillis();
@@ -151,48 +129,13 @@ public class ReachB extends Check {
 		if (Count >= 2 && Reach > MaxReach && Reach < 20.0) {
 			count.remove(damager);
 			if (Latency.getLag(player) < 115) {
-				this.getDaedalus().logCheat(this, damager,
+				getDaedalus().logCheat(this, damager,
 						Reach + " > " + MaxReach + " MS: " + PingD + " Velocity Difference: " + speedToVelocityDif,
 						Chance.HIGH, new String[0]);
 
 			}
-			this.dumplog(damager, "Logged for Reach" + Reach2 + " > " + MaxReach);
+			dumplog(damager, "Logged for Reach" + Reach2 + " > " + MaxReach);
 			return;
-		}
-		long attackTime = System.currentTimeMillis();
-		if (this.reachTicks.containsKey(damager)) {
-			attackTime = reachTicks.get(damager);
-		}
-	}
-
-	public class ReachEntry {
-		public Long LastTime;
-		public List<Double> Reachs;
-
-		public ReachEntry(Long LastTime, List<Double> Reachs) {
-			this.Reachs = new ArrayList<Double>();
-			this.LastTime = LastTime;
-			this.Reachs = Reachs;
-		}
-
-		public Long getLastTime() {
-			return this.LastTime;
-		}
-
-		public List<Double> getReachs() {
-			return this.Reachs;
-		}
-
-		public void setLastTime(Long LastTime) {
-			this.LastTime = LastTime;
-		}
-
-		public void setReachs(List<Double> Reachs) {
-			this.Reachs = Reachs;
-		}
-
-		public void addReach(Double Reach2) {
-			this.Reachs.add(Reach2);
 		}
 	}
 

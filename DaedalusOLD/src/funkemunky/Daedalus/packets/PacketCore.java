@@ -1,7 +1,10 @@
 package funkemunky.Daedalus.packets;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -17,9 +20,9 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.events.PacketListener;
 import com.comphenix.protocol.wrappers.EnumWrappers;
+import com.comphenix.protocol.wrappers.EnumWrappers.EntityUseAction;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
 import com.comphenix.protocol.wrappers.WrappedWatchableObject;
-import com.comphenix.protocol.wrappers.EnumWrappers.EntityUseAction;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.packets.events.PacketBlockPlacementEvent;
@@ -32,18 +35,20 @@ import funkemunky.Daedalus.packets.events.PacketPlayerType;
 import funkemunky.Daedalus.packets.events.PacketSwingArmEvent;
 import funkemunky.Daedalus.packets.events.PacketUseEntityEvent;
 
-public class PacketCore
-{
+public class PacketCore {
 	public Daedalus Daedalus;
-    private HashSet<EntityType> enabled;
-    private static final PacketType[] ENTITY_PACKETS = new PacketType[]{PacketType.Play.Server.SPAWN_ENTITY_LIVING, PacketType.Play.Server.NAMED_ENTITY_SPAWN, PacketType.Play.Server.ENTITY_METADATA};
+	private HashSet<EntityType> enabled;
+	public Map<UUID, Integer> movePackets;
+	private static final PacketType[] ENTITY_PACKETS = new PacketType[] { PacketType.Play.Server.SPAWN_ENTITY_LIVING,
+			PacketType.Play.Server.NAMED_ENTITY_SPAWN, PacketType.Play.Server.ENTITY_METADATA };
 
-    public PacketCore(Daedalus Daedalus) {
+	public PacketCore(Daedalus Daedalus) {
 		super();
 		this.Daedalus = Daedalus;
 		enabled = new HashSet<EntityType>();
 		enabled.add(EntityType.valueOf((String) "PLAYER"));
-
+        movePackets = new HashMap<UUID, Integer>();
+		
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Client.USE_ENTITY }) {
 			public void onPacketReceiving(final PacketEvent event) {
@@ -160,6 +165,19 @@ public class PacketCore
 								(double) event.getPacket().getDoubles().read(1),
 								(double) event.getPacket().getDoubles().read(2), player.getLocation().getYaw(),
 								player.getLocation().getPitch(), PacketPlayerType.POSITION));
+			}
+		});
+		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
+				new PacketType[] { PacketType.Play.Server.POSITION}) {
+			public void onPacketSending(final PacketEvent event) {
+				final Player player = event.getPlayer();
+				if (player == null) {
+					return;
+				}
+				
+				int i = movePackets.getOrDefault(player.getUniqueId(), 0);
+				i++;
+				movePackets.put(player.getUniqueId(), i);
 			}
 		});
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,

@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import funkemunky.Daedalus.utils.PearlGlitchType;
 
 public class PearlGlitchEvent extends Event implements Cancellable {
-	
+
 	private Player player;
 	private Location from;
 	private Location to;
@@ -24,48 +24,47 @@ public class PearlGlitchEvent extends Event implements Cancellable {
 		this.from = from;
 		this.to = to;
 		this.pearls = pearls;
-	    this.type = type;
+		this.type = type;
 	}
-	
+
 	public Player getPlayer() {
 		return this.player;
 	}
-	
+
 	public Location getFrom() {
 		return this.from;
 	}
-	
+
 	public Location getTo() {
 		return this.to;
 	}
-	
+
 	public ItemStack getItems() {
 		return this.pearls;
 	}
-	
+
 	public PearlGlitchType getType() {
 		return type;
 	}
-	
+
 	public boolean isType(PearlGlitchType type) {
-		if(type == this.type) {
+		if (type == this.type) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isCancelled() {
 		return this.cancelled;
 	}
-	
+
 	public void setCancelled(boolean cancelled) {
 		this.cancelled = cancelled;
 	}
-	
-    public static HandlerList getHandlerList()
-    {
-        return handlers;
-    }
+
+	public static HandlerList getHandlerList() {
+		return handlers;
+	}
 
 	public HandlerList getHandlers() {
 		// TODO Auto-generated method stub

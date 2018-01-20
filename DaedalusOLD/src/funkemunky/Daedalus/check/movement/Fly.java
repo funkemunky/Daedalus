@@ -17,7 +17,7 @@ import funkemunky.Daedalus.utils.UtilMath;
 import funkemunky.Daedalus.utils.UtilPlayer;
 
 public class Fly extends Check {
-	
+
 	public Fly(Daedalus Daedalus) {
 		super("FlyA", "Fly (Type A)", Daedalus);
 

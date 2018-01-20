@@ -28,12 +28,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
 
 import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.check.combat.AutoclickerA;
 import funkemunky.Daedalus.check.combat.AutoclickerB;
-import funkemunky.Daedalus.check.combat.AutoclickerC;
 import funkemunky.Daedalus.check.combat.Crits;
 import funkemunky.Daedalus.check.combat.FastBow;
 import funkemunky.Daedalus.check.combat.HitBoxes;
@@ -43,7 +41,7 @@ import funkemunky.Daedalus.check.combat.KillAuraC;
 import funkemunky.Daedalus.check.combat.KillAuraD;
 import funkemunky.Daedalus.check.combat.KillAuraE;
 import funkemunky.Daedalus.check.combat.KillauraF;
-import funkemunky.Daedalus.check.combat.NoSwing;
+import funkemunky.Daedalus.check.combat.KillauraG;
 import funkemunky.Daedalus.check.combat.ReachA;
 import funkemunky.Daedalus.check.combat.ReachB;
 import funkemunky.Daedalus.check.combat.ReachC;
@@ -69,7 +67,6 @@ import funkemunky.Daedalus.check.other.FreeCam;
 import funkemunky.Daedalus.check.other.Latency;
 import funkemunky.Daedalus.check.other.MorePackets;
 import funkemunky.Daedalus.check.other.Sneak;
-import funkemunky.Daedalus.check.other.Timer;
 import funkemunky.Daedalus.check.other.TimerB;
 import funkemunky.Daedalus.check.other.Vape;
 import funkemunky.Daedalus.commands.AlertsCommand;
@@ -106,7 +103,7 @@ public class Daedalus extends JavaPlugin implements Listener {
 	Random rand;
 	private Check check;
 	public TxtFile autobanMessages;
-	public Map<UUID, Map.Entry<Long, Vector>> LastVelocity;
+	public Map<UUID, Long> LastVelocity;
 	public ArrayList<UUID> hasInvOpen = new ArrayList<UUID>();
 	public Integer pingToCancel = getConfig().getInt("settings.latency.ping");
 	public Integer tpsToCancel = getConfig().getInt("settings.latency.tps");
@@ -120,7 +117,7 @@ public class Daedalus extends JavaPlugin implements Listener {
 		this.AutoBan = new HashMap<Player, Map.Entry<Check, Long>>();
 		this.NamesBanned = new HashMap<String, Check>();
 		this.rand = new Random();
-		this.LastVelocity = new HashMap<UUID, Map.Entry<Long, Vector>>();
+		this.LastVelocity = new HashMap<UUID, Long>();
 	}
 
 	public void addChecks() {
@@ -140,10 +137,10 @@ public class Daedalus extends JavaPlugin implements Listener {
 		this.Checks.add(new KillAuraD(this));
 		this.Checks.add(new KillAuraE(this));
 		this.Checks.add(new KillauraF(this));
+		this.Checks.add(new KillauraG(this));
 		this.Checks.add(new HitBoxes(this));
 		this.Checks.add(new AutoclickerA(this));
 		this.Checks.add(new AutoclickerB(this));
-		this.Checks.add(new AutoclickerC(this));
 		this.Checks.add(new FastBow(this));
 		this.Checks.add(new Twitch(this));
 		this.Checks.add(new NoSlowdown(this));
@@ -263,18 +260,12 @@ public class Daedalus extends JavaPlugin implements Listener {
 	public String resetData() {
 		try {
 			resetAllViolations();
-			if (!AutoclickerA.attackTicks.isEmpty())
-				AutoclickerA.attackTicks.clear();
-			if (!AutoclickerA.attackTicks.isEmpty())
-				AutoclickerB.Clicks.clear();
 			if (!AutoclickerB.Clicks.isEmpty())
-				AutoclickerB.ClickTicks.clear();
+				AutoclickerB.Clicks.clear();
 			if (!AutoclickerB.LastMS.isEmpty())
 				AutoclickerB.LastMS.clear();
 			if (!AutoclickerB.ClickTicks.isEmpty())
 				AutoclickerB.ClickTicks.clear();
-			if (!AutoclickerC.attackTicks.isEmpty())
-				AutoclickerC.attackTicks.clear();
 			if (!Crits.CritTicks.isEmpty())
 				Crits.CritTicks.clear();
 			if (!KillAuraA.ClickTicks.isEmpty())
@@ -295,14 +286,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 				KillAuraE.lastAttack.clear();
 			if (!KillauraF.counts.isEmpty())
 				KillauraF.counts.clear();
-			if (!NoSwing.LastArmSwing.isEmpty())
-				NoSwing.LastArmSwing.clear();
-			if (!ReachB.count.isEmpty())
-				ReachB.count.clear();
-			if (!ReachB.offsets.isEmpty())
-				ReachB.offsets.clear();
-			if (!ReachB.reachTicks.isEmpty())
-				ReachB.reachTicks.clear();
 			if (!Regen.FastHealTicks.isEmpty())
 				Regen.FastHealTicks.clear();
 			if (!Regen.LastHeal.isEmpty())
@@ -329,23 +312,12 @@ public class Daedalus extends JavaPlugin implements Listener {
 				SpeedA.tooFastTicks.clear();
 			if (!SpeedA.lastHit.isEmpty())
 				SpeedA.lastHit.isEmpty();
-			if (!SpeedB.speedTicks.isEmpty())
-				SpeedB.speedTicks.clear();
-			if (!SpeedB.lastHit.isEmpty())
-				SpeedB.lastHit.clear();
 			if (!MorePackets.lastPacket.isEmpty())
 				MorePackets.lastPacket.clear();
 			if (!MorePackets.packetTicks.isEmpty())
 				MorePackets.packetTicks.clear();
 			if (!Sneak.sneakTicks.isEmpty())
 				Sneak.sneakTicks.clear();
-			if (!Timer.lastTimer.isEmpty())
-				Timer.lastTimer.clear();
-			if (!Timer.MS.isEmpty())
-				Timer.MS.clear();
-			;
-			if (!Timer.timerTicks.isEmpty())
-				Timer.timerTicks.clear();
 			if (!HitBoxes.count.isEmpty())
 				HitBoxes.count.clear();
 			if (!HitBoxes.lastHit.isEmpty())
@@ -636,35 +608,7 @@ public class Daedalus extends JavaPlugin implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void Velocity(PlayerVelocityEvent event) {
-		this.LastVelocity.put(event.getPlayer().getUniqueId(),
-				new AbstractMap.SimpleEntry<Long, Vector>(System.currentTimeMillis(), event.getVelocity()));
-	}
-
-	@EventHandler
-	public void Update(UpdateEvent event) {
-		if (!event.getType().equals(UpdateType.TICK)) {
-			return;
-		}
-		for (UUID uid : this.getLastVelocity().keySet()) {
-			Player player = this.getServer().getPlayer(uid);
-			if (player == null || !player.isOnline()) {
-				this.LastVelocity.remove(uid);
-				continue;
-			}
-			Vector velocity = this.getLastVelocity().get(uid).getValue();
-			Long time = this.getLastVelocity().get(uid).getKey();
-			if (time + 500 > System.currentTimeMillis())
-				continue;
-			double velY = velocity.getY() * velocity.getY();
-			double Y = player.getVelocity().getY() * player.getVelocity().getY();
-			if (Y < 0.02) {
-				this.LastVelocity.remove(uid);
-				continue;
-			}
-			if (Y <= velY * 3.0)
-				continue;
-			this.LastVelocity.remove(uid);
-		}
+		this.LastVelocity.put(event.getPlayer().getUniqueId(), System.currentTimeMillis());
 	}
 
 	public void banPlayer(Player player, Check check) {
@@ -779,8 +723,8 @@ public class Daedalus extends JavaPlugin implements Listener {
 		this.getServer().getPluginManager().registerEvents(listener, (Plugin) this);
 	}
 
-	public Map<UUID, Map.Entry<Long, Vector>> getLastVelocity() {
-		return new HashMap<UUID, Map.Entry<Long, Vector>>(this.LastVelocity);
+	public Map<UUID, Long> getLastVelocity() {
+		return this.LastVelocity;
 	}
 
 	@EventHandler

@@ -1,81 +1,85 @@
 package funkemunky.Daedalus.check.combat;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import com.comphenix.protocol.wrappers.EnumWrappers;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
-import funkemunky.Daedalus.packets.events.PacketUseEntityEvent;
+import funkemunky.Daedalus.packets.events.PacketSwingArmEvent;
 import funkemunky.Daedalus.utils.Chance;
 import funkemunky.Daedalus.utils.UtilTime;
 
-public class AutoclickerA
-        extends Check
-{
-    public static Map<UUID, Map.Entry<Integer, Long>> attackTicks = new HashMap();
+public class AutoclickerA extends Check {
+	
+	public Map<UUID, Integer> clicks;
+	private Map<UUID, Long> recording;
 
-    public AutoclickerA(Daedalus Daedalus)
-    {
-        super("AutoclickerA", "Autoclicker (Type A)", Daedalus);
-        
-        setEnabled(true);
-        setBannable(false);
-        setViolationsToNotify(1);
-        setMaxViolations(5);
-    }
-    
-    @EventHandler
-    public void onLog(PlayerQuitEvent e) {
-    	Player p = e.getPlayer();
-    	UUID uuid = p.getUniqueId();
-    	
-    	if(attackTicks.containsKey(uuid)) {
-    		attackTicks.remove(uuid);
-    	}
-    }
+	public AutoclickerA(Daedalus Daedalus) {
+		super("AutoclickerA", "Autoclicker (Type A)", Daedalus);
 
-    @EventHandler
-    public void UseEntity(PacketUseEntityEvent e)
-    {
-        if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
-            return;
-        }
-    	if(getDaedalus().isSotwMode()) {
-    		return;
-    	}
-        if (!(e.getAttacked() instanceof Player)) {
-            return;
-        }
-        Player player = e.getAttacker();
-	     if(player.hasPermission("daedalus.bypass")) {
-	         return;
-	     }
+		setEnabled(true);
+		setBannable(true);
+		setViolationsToNotify(1);
+		setMaxViolations(5);
+		
+		clicks = new HashMap<UUID, Integer>();
+		recording = new HashMap<UUID, Long>();
+	}
 
-        int Count = 0;
-        long Time = System.currentTimeMillis();
-        if (this.attackTicks.containsKey(player.getUniqueId()))
-        {
-            Count = ((Integer)((Map.Entry)this.attackTicks.get(player.getUniqueId())).getKey()).intValue();
-            Time = ((Long)((Map.Entry)this.attackTicks.get(player.getUniqueId())).getValue()).longValue();
-        }
-        Count++;
-        if ((this.attackTicks.containsKey(player.getUniqueId())) &&
-                (UtilTime.elapsed(Time, 1000L)))
-        {
-            if (Count >= 20) {
-                this.getDaedalus().logCheat(this, player, "FastClick (Not Bannable)", Chance.LIKELY, new String[] { Count + " cps" });
-            }
-            Count = 0;
-            Time = UtilTime.nowlong();
-        }
-        this.attackTicks.put(player.getUniqueId(), new AbstractMap.SimpleEntry(Integer.valueOf(Count), Long.valueOf(Time)));
-    }
+	@EventHandler
+	public void onLog(PlayerQuitEvent e) {
+		Player p = e.getPlayer();
+		UUID uuid = p.getUniqueId();
+
+		if (clicks.containsKey(uuid)) {
+			clicks.remove(uuid);
+		}
+		if(recording.containsKey(uuid)) {
+			recording.remove(uuid);
+		}
+	}
+
+	@EventHandler
+	public void onSwing(PacketSwingArmEvent e) {
+
+		if (getDaedalus().isSotwMode()) {
+			return;
+		}
+
+		Player player = e.getPlayer();
+		if (player.hasPermission("daedalus.bypass")) {
+			return;
+		}
+		
+		int clicks = this.clicks.getOrDefault(this, 0);
+		long time = recording.getOrDefault(player.getUniqueId(), System.currentTimeMillis());
+		if(UtilTime.elapsed(time, 1000L)) {
+			if(clicks > 30) {
+				getDaedalus().logCheat(this, player, null, Chance.HIGH, new String[] {clicks + " Clicks/Second"});
+			}
+			clicks = 0;
+			recording.remove(player.getUniqueId());
+		} else {
+			clicks++;
+		}
+		
+		this.clicks.put(player.getUniqueId(), clicks);
+		recording.put(player.getUniqueId(), time);
+	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onLeave(PlayerQuitEvent e) {
+		if(clicks.containsKey(e.getPlayer().getUniqueId())) {
+			clicks.remove(e.getPlayer().getUniqueId());
+		}
+		if(recording.containsKey(e.getPlayer().getUniqueId())) {
+			recording.remove(e.getPlayer().getUniqueId());
+		}
+	}
 }

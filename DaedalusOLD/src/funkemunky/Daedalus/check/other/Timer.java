@@ -1,13 +1,12 @@
 package funkemunky.Daedalus.check.other;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -16,104 +15,93 @@ import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.packets.events.PacketPlayerEvent;
 import funkemunky.Daedalus.utils.Chance;
-import funkemunky.Daedalus.utils.UtilMath;
-import funkemunky.Daedalus.utils.UtilPlayer;
+import funkemunky.Daedalus.utils.UtilTime;
 
-public class Timer extends Check
-{
-    public static Map<UUID, Long> lastTimer;
-    public static Map<UUID, List<Long>> MS;
-    public static Map<UUID, Integer> timerTicks;
+public class Timer extends Check {
+	private Map<UUID, Map.Entry<Integer, Long>> packets;
+	private Map<UUID, Integer> verbose;
+	private Map<UUID, Long> lastPacket;
+	private List<Player> toCancel;
 
-    public Timer(Daedalus Daedalus) {
-        super("TimerA", "Timer (Type A)", Daedalus);
-        this.lastTimer = new HashMap<UUID, Long>();
-        this.MS = new HashMap<UUID, List<Long>>();
-        this.timerTicks = new HashMap<UUID, Integer>();
-        
-        this.setEnabled(true);
-        this.setBannable(false);
-        setMaxViolations(5);
-    }
-    
-    @EventHandler
-    public void onLogout(PlayerQuitEvent e) {
-    	if(lastTimer.containsKey(e.getPlayer().getUniqueId())) {
-    		lastTimer.remove(e.getPlayer().getUniqueId());
-    	}
-    	if(MS.containsKey(e.getPlayer().getUniqueId())) {
-    		MS.remove(e.getPlayer().getUniqueId());
-    	}
-    	if(timerTicks.containsKey(e.getPlayer().getUniqueId())) {
-    		timerTicks.remove(e.getPlayer().getUniqueId());
-    	}
-    }
+	public Timer(Daedalus Daedalus) {
+		super("TimerA", "Timer (Type A)", Daedalus);
+		
+		packets = new HashMap<UUID, Map.Entry<Integer, Long>>();
+		verbose = new HashMap<UUID, Integer>();
+		toCancel = new ArrayList<Player>();
+		lastPacket = new HashMap<UUID, Long>();
 
-    @EventHandler
-    public void PacketPlayer(PacketPlayerEvent event) {
-        Player player = event.getPlayer();
-        if (!this.getDaedalus().isEnabled()) {
-            return;
-        }
-        
-	    if(player.hasPermission("daedalus.bypass")) {
-	        return;
-	    }
-	    
-	    if(getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-	    	return;
-	    }
-        
-        if(getDaedalus().getLag().getPing(player) > 340) {
-        	return;
-        }
-        
-        int Count = 0;
-        if (this.timerTicks.containsKey(player.getUniqueId())) {
-          Count = ((Integer)this.timerTicks.get(player.getUniqueId())).intValue();
-        }
-        if (this.lastTimer.containsKey(player.getUniqueId()))
-        {
-          long MS = System.currentTimeMillis() - ((Long)this.lastTimer.get(player.getUniqueId())).longValue();
-          
-          List<Long> List = new ArrayList();
-          if (this.MS.containsKey(player.getUniqueId())) {
-            List = (List)this.MS.get(player.getUniqueId());
-          }
-          List.add(Long.valueOf(MS));
-          if (List.size() == 20)
-          {
-            boolean doeet = true;
-            for (Long ListMS : List) {
-              if (ListMS.longValue() < 1L) {
-                doeet = false;
-              }
-            }
-            Long average = Long.valueOf(UtilMath.averageLong(List));
-            if ((average.longValue() < 48L) && (doeet))
-            {
-              Count++;
-              dumplog(player, "New Count: " + Count + "Average MS for 20 ticks: " + average);
-            }
-            else
-            {
-              Count = 0;
-            }
-            this.MS.remove(player.getUniqueId());
-          }
-          else
-          {
-            this.MS.put(player.getUniqueId(), List);
-          }
-        }
-        if (Count > 4)
-        {
-          dumplog(player, "Logged for timer. Count: " + Count);
-          Count = 0;
-          
-          getDaedalus().logCheat(this, player, null, Chance.HIGH, new String[0]);
-        }
-        this.lastTimer.put(player.getUniqueId(), Long.valueOf(System.currentTimeMillis()));
-        this.timerTicks.put(player.getUniqueId(), Integer.valueOf(Count));
-    }
+		setEnabled(true);
+		setBannable(false);
+		setMaxViolations(5);
+	}
+
+	@EventHandler
+	public void onLogout(PlayerQuitEvent e) {
+		if(packets.containsKey(e.getPlayer().getUniqueId())) {
+			packets.remove(e.getPlayer().getUniqueId());
+		}
+		if(verbose.containsKey(e.getPlayer().getUniqueId())) {
+			verbose.remove(e.getPlayer().getUniqueId());
+		}
+		if(lastPacket.containsKey(e.getPlayer().getUniqueId())) {
+			lastPacket.remove(e.getPlayer().getUniqueId());
+		}
+		if(toCancel.contains(e.getPlayer())) {
+			toCancel.remove(e.getPlayer());
+		}
+	}
+
+	@EventHandler
+	public void PacketPlayer(PacketPlayerEvent event) {
+		Player player = event.getPlayer();
+		if (!this.getDaedalus().isEnabled()) {
+			return;
+		}
+
+		if (player.hasPermission("daedalus.bypass")) {
+			return;
+		}
+
+		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
+			return;
+		}
+		
+		long lastPacket = this.lastPacket.getOrDefault(player.getUniqueId(), System.currentTimeMillis());
+		int packets = 0;
+		long Time = System.currentTimeMillis();
+		int verbose = this.verbose.getOrDefault(player.getUniqueId(), 0);
+		
+		if (this.packets.containsKey(player.getUniqueId())) {
+			packets = this.packets.get(player.getUniqueId()).getKey().intValue();
+			Time = this.packets.get(player.getUniqueId()).getValue().longValue();
+		}
+		
+		if((System.currentTimeMillis() - lastPacket) > 100L) {
+			toCancel.add(player);
+		}
+		double threshold = 23;
+		if(UtilTime.elapsed(Time, 1000L)) {
+			if(toCancel.remove(player) && packets <= 13) {
+				return;
+			}
+			if(packets > threshold + getDaedalus().packet.movePackets.getOrDefault(player.getUniqueId(), 0) && getDaedalus().packet.movePackets.getOrDefault(player.getUniqueId(), 0) < 5) {
+				verbose = (packets - threshold) > 10 ? verbose + 2 : verbose + 1;
+			} else {
+				verbose = 0;
+			}
+			
+			if(verbose > 2) {
+				getDaedalus().logCheat(this, player, "Packets: " + packets, Chance.HIGH, new String[0]);
+			}
+			packets = 0;
+			Time = UtilTime.nowlong();
+			getDaedalus().packet.movePackets.remove(player.getUniqueId());
+		}
+		packets++;
+		
+        this.lastPacket.put(player.getUniqueId(), System.currentTimeMillis());
+		this.packets.put(player.getUniqueId(), new SimpleEntry<Integer, Long>(packets, Time));
+		this.verbose.put(player.getUniqueId(), verbose);
+	}
 }

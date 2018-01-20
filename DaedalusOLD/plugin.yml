@@ -1,5 +1,5 @@
 name: Daedalus
-version: 48
+version: 49
 author: funkemunky
 main: funkemunky.Daedalus.Daedalus
 load: STARTUP
@@ -24,3 +24,6 @@ permissions:
   daedalus.log:
     description: Gives access to /getlog
     default: op
+  daedalus.bypass:
+    default: false
+    description: Bypass node.

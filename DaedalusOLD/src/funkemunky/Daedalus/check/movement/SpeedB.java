@@ -1,178 +1,247 @@
 package funkemunky.Daedalus.check.movement;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
 import funkemunky.Daedalus.utils.Chance;
-import funkemunky.Daedalus.utils.UtilCheat;
+import funkemunky.Daedalus.utils.UtilBlock;
 import funkemunky.Daedalus.utils.UtilMath;
-import funkemunky.Daedalus.utils.UtilPlayer;
-import funkemunky.Daedalus.utils.UtilTime;
 
-public class SpeedB
-        extends Check
-{
-    public SpeedB(Daedalus Daedalus)
-    {
-        super("SpeedB", "Speed (Type B)", Daedalus);
+public class SpeedB extends Check {
 
-        setEnabled(true);
+	public Location location;
+	public Map<UUID, Map.Entry<Integer, Long>> speedTicks;
+	public Map<UUID, Map.Entry<Integer, Long>> tooFastTicks;
+	public Map<UUID, Long> lastHit;
+
+	public SpeedB(Daedalus Daedalus) {
+		super("SpeedB", "Speed (Type B)", Daedalus);
+		
+		setEnabled(true);
+		setMaxViolations(15);
+		setViolationResetTime(TimeUnit.MINUTES.toMillis(2));
         setBannable(true);
-        this.setMaxViolations(5);
-    }
-    
-    public boolean isOnIce(final Player player) {
-        final Location a = player.getLocation();
-        a.setY(a.getY() - 1.0);
-        if (a.getBlock().getType().equals((Object)Material.ICE)) {
-            return true;
-        }
-        a.setY(a.getY() - 1.0);
-        return a.getBlock().getType().equals((Object)Material.ICE);
-    }
-    
-    public static Map<UUID, Map.Entry<Integer, Long>> speedTicks = new HashMap();
-    public static Map<UUID, Long> lastHit = new HashMap();
-    public static Map<UUID, Double> velocity =  new HashMap();
-    
-    @EventHandler
-    public void onHit(EntityDamageByEntityEvent e) {
-    	if(getDaedalus().isSotwMode()) {
-    		return;
-    	}
-    	if(e.getEntity() instanceof Player) {
-    		Player player = (Player) e.getEntity();
-    		
-    		lastHit.put(player.getUniqueId(), System.currentTimeMillis());
-    	}
-    }
-    @EventHandler
-    public void onLogout(PlayerQuitEvent e) {
-    	if(speedTicks.containsKey(e.getPlayer().getUniqueId())) {
-    		speedTicks.remove(e.getPlayer().getUniqueId());
-    	}
-    	if(lastHit.containsKey(e.getPlayer().getUniqueId())) {
-    		lastHit.remove(e.getPlayer().getUniqueId());
-    	}
-    	if(velocity.containsKey(e.getPlayer().getUniqueId())) {
-    		velocity.remove(e.getPlayer().getUniqueId());
-    	}
-    }
+        setViolationsToNotify(4);
+        
+		this.lastHit = new HashMap<UUID, Long>();
+		this.tooFastTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+		this.speedTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+	}
 
-    @SuppressWarnings("rawtypes")
-	@EventHandler
-    public void CheckSpeed(PlayerMoveEvent event)
-    {
-        Player player = event.getPlayer();
-        if ((event.getFrom().getX() == event.getTo().getX()) && (event.getFrom().getY() == event.getTo().getY()) &&
-                (event.getFrom().getZ() == event.getFrom().getZ())) {
-            return;
-        }
-	    if(player.hasPermission("daedalus.bypass")) {
-	        return;
-	    }
-        if (!getDaedalus().isEnabled()) {
-            return;
-        }
-    	if(getDaedalus().isSotwMode()) {
-    		return;
-    	}
-        if (player.getAllowFlight()) {
-            return;
-        }
-        if (player.getVehicle() != null) {
-            return;
-        }
-        if(player.getVelocity().length() + 0.1 < velocity.getOrDefault(player.getUniqueId(), -1.0D)) {
-        	  return;
-        }
-        long lastHitDiff = this.lastHit.containsKey(player.getUniqueId()) ? this.lastHit.get(player.getUniqueId()) - System.currentTimeMillis() : 2001L;
-        
-        if (getDaedalus().LastVelocity.containsKey(player.getUniqueId()) && !player.getActivePotionEffects().contains(PotionEffectType.POISON) && !player.getActivePotionEffects().contains(PotionEffectType.WITHER) && player.getFireTicks() == 0) {
-            return;
-        }
-        
-        int Count = 0;
-        long Time = UtilTime.nowlong();
-        if (this.speedTicks.containsKey(player.getUniqueId()))
-        {
-            Count = ((Integer)((Map.Entry)this.speedTicks.get(player.getUniqueId())).getKey()).intValue();
-            Time = ((Long)((Map.Entry)this.speedTicks.get(player.getUniqueId())).getValue()).longValue();
-        }
-            double OffsetXZ = UtilMath.offset(UtilMath.getHorizontalVector(event.getFrom().toVector()), UtilMath.getHorizontalVector(event.getTo().toVector()));
-            double LimitXZ = 0.0D;
-            if (player.getVehicle() == null) {
-                LimitXZ = 0.62D;
-            } else {
-            	LimitXZ = 2D;
-            }
-            if (lastHitDiff < 800L) {
-                LimitXZ += 2;
-            }
-            else if (lastHitDiff < 1600L) {
-                LimitXZ += 1.0;
-            }
-            else if (lastHitDiff < 2000L) {
-                LimitXZ += 0.8;
-            }
-            LimitXZ += player.getVelocity().length() * 1.35;
-            if (UtilCheat.slabsNear(player.getLocation())) {
-                LimitXZ += 0.08D;
-            }
-            Location b = UtilPlayer.getEyeLocation(player);b.add(0.0D, 1.0D, 0.0D);
-            
-            if (isOnIce(player)) {
-                if ((b.getBlock().getType() != Material.AIR) && (!UtilCheat.canStandWithin(b.getBlock()))) {
-                    LimitXZ = 1.0D;
-                } else {
-                    LimitXZ = 0.7D;
-                }
-            }
-            float speed = player.getWalkSpeed();LimitXZ += (speed > 0.2F ? speed * 10.0F * 0.33F : 0.0F);
-            for (PotionEffect effect : player.getActivePotionEffects()) {
-                if (effect.getType().equals(PotionEffectType.SPEED)) {
-                    if (player.isOnGround()) {
-                        LimitXZ += 0.059D * (effect.getAmplifier() + 1);
-                    } else {
-                        LimitXZ += 0.04D * (effect.getAmplifier() + 1);
-                    }
-                }
-            }
-            if ((OffsetXZ > LimitXZ))
-            {
-            	Count++;
-                dumplog(player, "New Count: " + Count + "Speed XZ: " + OffsetXZ);
-            }
-        if ((this.speedTicks.containsKey(player.getUniqueId())) &&
-                (UtilTime.elapsed(Time, 30000L)))
-        {
-            dumplog(player, "Count Reset after 30 seconds.");
-            Count = 0;
-            Time = UtilTime.nowlong();
-        }
-        if(Count >= 2) {
-        	getDaedalus().logCheat(this, player, OffsetXZ +  " > " + LimitXZ, Chance.HIGH, new String[0]);
-        	Count = 0;
-        }
-        if(!player.isOnGround()) {
-        	  this.velocity.put(player.getUniqueId(), player.getVelocity().length());
-          } else {
-        	  this.velocity.put(player.getUniqueId(), -1.0D);
-          }
-        this.speedTicks.put(player.getUniqueId(), new AbstractMap.SimpleEntry(Integer.valueOf(Count), Long.valueOf(Time)));
-    }
+	@EventHandler(ignoreCancelled = true)
+	public void onMove(PlayerMoveEvent e) {
+
+		Location from = e.getFrom().clone();
+		Location to = e.getTo().clone();
+		Player p = e.getPlayer();
+
+		Location l = p.getLocation();
+		int x = l.getBlockX();
+		int y = l.getBlockY();
+		int z = l.getBlockZ();
+		Location blockLoc = new Location(p.getWorld(), x, y - 1, z);
+		Location loc = new Location(p.getWorld(), x, y, z);
+		Location loc2 = new Location(p.getWorld(), x, y + 1, z);
+		Location above = new Location(p.getWorld(), x, y + 2, z);
+		Location above3 = new Location(p.getWorld(), x - 1, y + 2, z - 1);
+		long lastHitDiff = Math.abs(System.currentTimeMillis() - SpeedA.lastHit.getOrDefault(p.getUniqueId(), 0L));
+		
+		if (lastHitDiff < 1500L || p.getNoDamageTicks() != 0) {
+			return;
+		}
+
+		if (p.getVehicle() != null) {
+			return;
+		}
+
+		if (p.getGameMode().equals(GameMode.CREATIVE)) {
+			return;
+		}
+
+		if (p.getAllowFlight()) {
+			return;
+		}
+
+		if ((e.getTo().getX() == e.getFrom().getX()) && (e.getTo().getZ() == e.getFrom().getZ())
+				&& (e.getTo().getY() == e.getFrom().getY())) {
+			return;
+		}
+
+
+		double Airmaxspeed = 0.4;
+		double maxSpeed = 0.42;
+		double newmaxspeed = 0.75;
+		if (isOnIce(p)) {
+			newmaxspeed = 1.0;
+		}
+
+		double ig = 0.28;
+		double speed = UtilMath.offset(getHV(to.toVector()), getHV(from.toVector()));
+		double onGroundDiff = (to.getY() - from.getY());
+
+		if (p.hasPotionEffect(PotionEffectType.SPEED)) {
+			int level = getPotionEffectLevel(p, PotionEffectType.SPEED);
+			if (level > 0) {
+				newmaxspeed = (newmaxspeed * (((level * 20) * 0.011) + 1));
+				Airmaxspeed = (Airmaxspeed * (((level * 20) * 0.011) + 1));
+				maxSpeed = (maxSpeed * (((level * 20) * 0.011) + 1));
+				ig = (ig * (((level * 20) * 0.011) + 1));
+			}
+		}
+		Airmaxspeed += p.getWalkSpeed() > 0.2 ? p.getWalkSpeed() * 0.8 : 0;
+		maxSpeed += p.getWalkSpeed() > 0.2 ? p.getWalkSpeed() * 0.8 : 0;
+
+		/** ONGROUND SPEEDS **/
+		if (isReallyOnGround(p) && to.getY() == from.getY()) {
+			if (speed >= maxSpeed && p.isOnGround() && p.getFallDistance() < 0.15
+					&& blockLoc.getBlock().getType() != Material.ICE
+					&& blockLoc.getBlock().getType() != Material.PACKED_ICE
+					&& loc2.getBlock().getType() != Material.TRAP_DOOR && above.getBlock().getType() == Material.AIR
+					&& above3.getBlock().getType() == Material.AIR) {
+				getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[] {"onGround"});
+			}
+		}
+
+		/** MIDAIR MODIFIED SPEEDS **/
+			if (!isReallyOnGround(p) && speed >= Airmaxspeed && !isOnIce(p)
+					&& blockLoc.getBlock().getType() != Material.ICE && !blockLoc.getBlock().isLiquid()
+					&& !loc.getBlock().isLiquid() && blockLoc.getBlock().getType() != Material.PACKED_ICE
+					&& above.getBlock().getType() == Material.AIR && above3.getBlock().getType() == Material.AIR
+					&& blockLoc.getBlock().getType() != Material.AIR) {
+				getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[] {"MidAir"});
+			}
+		/** GOING ABOVE THE SPEED LIMIT **/
+		if (speed >= newmaxspeed && isOnIce(p) && p.getFallDistance() < 0.6
+				&& loc2.getBlock().getType() != Material.TRAP_DOOR && above.getBlock().getType() == Material.AIR
+				&& loc2.getBlock().getType() == Material.AIR) {
+			getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[] {"Limit"});
+
+		}
+
+		/** Vanilla speeds check **/
+		if (speed > ig && !isAir(p) && onGroundDiff <= -0.4 && p.getFallDistance() <= 0.4
+				&& !flaggyStuffNear(p.getLocation()) && blockLoc.getBlock().getType() != Material.ICE
+				&& e.getTo().getY() != e.getFrom().getY() && blockLoc.getBlock().getType() != Material.PACKED_ICE
+				&& loc2.getBlock().getType() != Material.TRAP_DOOR && above.getBlock().getType() == Material.AIR
+				&& above3.getBlock().getType() == Material.AIR) {
+			getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[] {"Vanilla"});
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onPlayerQuit(PlayerQuitEvent e) {
+		if (speedTicks.containsKey(e.getPlayer().getUniqueId())) {
+			speedTicks.remove(e.getPlayer().getUniqueId());
+		}
+		if (tooFastTicks.containsKey(e.getPlayer().getUniqueId())) {
+			tooFastTicks.remove(e.getPlayer().getUniqueId());
+		}
+		if (lastHit.containsKey(e.getPlayer().getUniqueId())) {
+			lastHit.remove(e.getPlayer().getUniqueId());
+		}
+	}
+
+	public boolean isOnIce(final Player player) {
+		final Location a = player.getLocation();
+		a.setY(a.getY() - 1.0);
+		if (a.getBlock().getType().equals((Object) Material.ICE)) {
+			return true;
+		}
+		a.setY(a.getY() - 1.0);
+		return a.getBlock().getType().equals((Object) Material.ICE);
+	}
+
+	private int getPotionEffectLevel(Player p, PotionEffectType pet) {
+		for (PotionEffect pe : p.getActivePotionEffects()) {
+			if (pe.getType().getName().equals(pet.getName())) {
+				return pe.getAmplifier() + 1;
+			}
+		}
+		return 0;
+	}
+
+	private Vector getHV(Vector V) {
+		V.setY(0);
+		return V;
+	}
+	public static boolean isReallyOnGround(Player p) {
+		Location l = p.getLocation();
+		int x = l.getBlockX();
+		int y = l.getBlockY();
+		int z = l.getBlockZ();
+		Location b = new Location(p.getWorld(), x, y - 1, z);
+
+		if (p.isOnGround() && b.getBlock().getType() != Material.AIR && b.getBlock().getType() != Material.WEB
+				&& !b.getBlock().isLiquid()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean flaggyStuffNear(Location loc) {
+		boolean nearBlocks = false;
+		for (Block bl : UtilBlock.getSurrounding(loc.getBlock(), true)) {
+			if ((bl.getType().equals(Material.STEP)) || (bl.getType().equals(Material.DOUBLE_STEP))
+					|| (bl.getType().equals(Material.BED)) || (bl.getType().equals(Material.WOOD_DOUBLE_STEP))
+					|| (bl.getType().equals(Material.WOOD_STEP))) {
+				nearBlocks = true;
+				break;
+			}
+		}
+		for (Block bl : UtilBlock.getSurrounding(loc.getBlock(), false)) {
+			if ((bl.getType().equals(Material.STEP)) || (bl.getType().equals(Material.DOUBLE_STEP))
+					|| (bl.getType().equals(Material.BED)) || (bl.getType().equals(Material.WOOD_DOUBLE_STEP))
+					|| (bl.getType().equals(Material.WOOD_STEP))) {
+				nearBlocks = true;
+				break;
+			}
+		}
+		if (isBlock(loc.getBlock().getRelative(BlockFace.DOWN), new Material[] { Material.STEP, Material.BED,
+				Material.DOUBLE_STEP, Material.WOOD_DOUBLE_STEP, Material.WOOD_STEP })) {
+			nearBlocks = true;
+		}
+		return nearBlocks;
+	}
+	
+
+	public static boolean isBlock(Block block, Material[] materials) {
+		Material type = block.getType();
+		Material[] arrayOfMaterial;
+		int j = (arrayOfMaterial = materials).length;
+		for (int i = 0; i < j; i++) {
+			Material m = arrayOfMaterial[i];
+			if (m == type) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean isAir(final Player player) {
+		final Block b = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+		return b.getType().equals((Object) Material.AIR)
+				&& b.getRelative(BlockFace.WEST).getType().equals((Object) Material.AIR)
+				&& b.getRelative(BlockFace.NORTH).getType().equals((Object) Material.AIR)
+				&& b.getRelative(BlockFace.EAST).getType().equals((Object) Material.AIR)
+				&& b.getRelative(BlockFace.SOUTH).getType().equals((Object) Material.AIR);
+	}
 }
