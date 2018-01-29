@@ -103,7 +103,7 @@ public class NoSlowdown extends Check {
 					? (diff <= 51.0 ? (level += 2)
 							: (diff <= 100.0 ? (level += 0) : (diff <= 500.0 ? (level -= 6) : (level -= 12))))
 					: ++level;
-			int max = 13;
+			int max = 50;
 			if (level > max * 0.9D && diff <= 100.0D) {
 				getDaedalus().logCheat(this, player, "Level: " + level + " Ping: " + getDaedalus().lag.getPing(player),
 						Chance.HIGH, new String[0]);

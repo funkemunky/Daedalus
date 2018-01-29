@@ -96,9 +96,9 @@ public class VClip extends Check {
 			return;
 		}
 
-		double yDist = from.getY() - to.getY();
+		double yDist = from.getBlockY() - to.getBlockY();
 		for (double y = 0; y < Math.abs(yDist); y++) {
-			Location l = yDist < -0.2 ? from.clone().add(0.0D, y, 0.0D) : to.clone().add(0.0D, y, 0.0D);
+			Location l = yDist < -0.2 ? from.getBlock().getLocation().clone().add(0.0D, y, 0.0D) : to.getBlock().getLocation().clone().add(0.0D, y, 0.0D);
 			if ((yDist > 20 || yDist < -20) && l.getBlock().getType() != Material.AIR
 					&& l.getBlock().getType().isSolid() && !allowed.contains(l.getBlock().getType())) {
 				p.kickPlayer("No");

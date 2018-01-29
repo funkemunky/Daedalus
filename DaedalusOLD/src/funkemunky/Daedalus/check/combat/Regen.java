@@ -81,10 +81,14 @@ public class Regen extends Check {
 			Count = FastHealTicks.get(player.getUniqueId()).getKey().intValue();
 			Time = FastHealTicks.get(player.getUniqueId()).getValue().longValue();
 		}
-		if (checkFastHeal(player)) {
-			if (!UtilPlayer.isFullyStuck(player) && !UtilPlayer.isPartiallyStuck(player)) {
-				getDaedalus().logCheat(this, player, null, Chance.HIGH, new String[0]);
-			}
+		if (checkFastHeal(player) && !UtilPlayer.isFullyStuck(player) && !UtilPlayer.isPartiallyStuck(player)) {
+			Count++;
+		} else {
+			Count = Count > 0 ? Count - 1 : Count;
+		}
+		
+		if(Count > 2) {
+			getDaedalus().logCheat(this, player, null, Chance.HIGH, new String[0]);
 		}
 		if (FastHealTicks.containsKey(player.getUniqueId()) && UtilTime.elapsed(Time, 60000L)) {
 			Count = 0;

@@ -95,7 +95,7 @@ public class ReachB extends Check {
 		speedToVelocityDif = Math.abs(offsets - player.getVelocity().length());
 		MaxReach += (YawDifference * 0.001);
 		MaxReach += lastHorizontal * 1.5;
-		MaxReach += speedToVelocityDif * 0.09;
+		MaxReach += speedToVelocityDif * 0.08;
 		if (damager.getLocation().getY() > player.getLocation().getY()) {
 			Difference = damager.getLocation().getY() - player.getLocation().getY();
 			MaxReach += Difference / 2.5;

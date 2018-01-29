@@ -20,12 +20,12 @@ public class FreeCam extends Check {
 		super("BlockInteract", "Block Interact", Daedalus);
 
 		this.setBannable(false);
-		this.setEnabled(false);
+		this.setEnabled(true);
 
 		setMaxViolations(29);
 	}
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void checkFreecam(PlayerInteractEvent e) {
 		if (e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getAction() != Action.LEFT_CLICK_BLOCK) {
 			return;

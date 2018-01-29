@@ -2,6 +2,7 @@ package funkemunky.Daedalus.packets;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -85,7 +86,9 @@ public class PacketCore {
 
 				final int entityId = (int) packet.getIntegers().read(0);
 				Entity entity = null;
-				for (final Entity entityentity : player.getWorld().getEntities()) {
+				Iterator<Entity> iterator = player.getWorld().getEntities().iterator();
+				while(iterator.hasNext()) {
+					Entity entityentity = iterator.next();
 					if (entityentity.getEntityId() == entityId) {
 						entity = entityentity;
 					}

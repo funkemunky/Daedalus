@@ -36,14 +36,13 @@ public class TimerB extends Check {
 			return;
 		}
 		Player player = e.getPlayer();
-		if (player.hasPermission("daedalus.bypass")) {
-			return;
-		}
+		
 		if (e.getFrom().getX() == e.getTo().getX() && e.getFrom().getZ() == e.getTo().getZ()
 				&& e.getFrom().getY() == e.getTo().getY()) {
 			return;
 		}
-		if (getDaedalus().isSotwMode()) {
+		if (getDaedalus().isSotwMode() || player.hasPermission("daedalus.bypass")
+				|| Latency.getLag(player) > 500) {
 			return;
 		}
 		int Count = 0;
