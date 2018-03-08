@@ -46,49 +46,21 @@ public class AscensionB extends Check {
 	public void CheckAscension(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
 
-		if (!getDaedalus().isEnabled()) {
-			return;
-		}
-
-		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-			return;
-		}
-
-		if (e.getFrom().getY() >= e.getTo().getY()) {
-			return;
-		}
-
-		if (p.getAllowFlight()) {
+		/** Shit I spent 20 minutes fixing this. Remember me **/
+		if (e.isCancelled()
+				|| !getDaedalus().isEnabled()
+				|| p.getVehicle() != null
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()
+				|| e.getFrom().getY() >= e.getTo().getY()
+				|| p.getAllowFlight()
+				|| !UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(p.getUniqueId(), 0L), 4200L)
+				|| p.hasPermission("daedalus.bypass")
+				|| getDaedalus().isSotwMode()
+				|| Latency.getLag(p) > 75
+				|| this.getDaedalus().getLastVelocity().containsKey(p.getUniqueId())) {
 			return;
 		}
 		
-		if(!UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(p.getUniqueId(), 0L), 4200L)) {
-			return;
-		}
-
-		if (p.hasPermission("daedalus.bypass")) {
-			return;
-		}
-
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-
-		if (Latency.getLag(p) > 75) {
-			return;
-		}
-		if (this.getDaedalus().getLastVelocity().containsKey(p.getUniqueId())) {
-			return;
-		}
-
-		if (e.isCancelled()) {
-			return;
-		}
-
-		if (p.getVehicle() != null) {
-			return;
-		}
-
 		Location to = e.getTo();
 		Location from = e.getFrom();
 		int Count = 0;

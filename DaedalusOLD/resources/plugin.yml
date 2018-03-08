@@ -1,0 +1,29 @@
+name: Daedalus
+version: 52
+author: funkemunky
+main: funkemunky.Daedalus.Daedalus
+load: STARTUP
+depend: [ProtocolLib]
+commands:
+  alerts:
+    description: Toggles off and on alerts
+  autoban:
+    description: Stops autobanning
+  daedalus:
+    description: Daedalus root command
+    aliases: [anticheat] 
+  getlog:
+    description: Get a player's log!
+permissions:
+  daedalus.staff:
+    description: Gives access to staff
+    default: op
+  daedalus.admin:
+    description: Gives access to admin
+    default: op
+  daedalus.log:
+    description: Gives access to /getlog
+    default: op
+  daedalus.bypass:
+    default: false
+    description: Bypass node.

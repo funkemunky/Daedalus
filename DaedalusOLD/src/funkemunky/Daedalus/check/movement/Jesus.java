@@ -13,6 +13,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerVelocityEvent;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
@@ -23,6 +24,7 @@ public class Jesus extends Check {
 	public static Map<Player, Integer> onWater;
 	public static List<Player> placedBlockOnWater;
 	public static Map<Player, Integer> count;
+	public static Map<Player, Long> velocity;
 
 	public Jesus(Daedalus Daedalus) {
 		super("Jesus", "Jesus", Daedalus);
@@ -35,18 +37,13 @@ public class Jesus extends Check {
 		count = new WeakHashMap<Player, Integer>();
 		placedBlockOnWater = new ArrayList<Player>();
 		onWater = new WeakHashMap<Player, Integer>();
+		velocity = new WeakHashMap<Player, Long>();
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onLeave(PlayerQuitEvent e) {
-		if (onWater.containsKey(e.getPlayer())) {
-			onWater.remove(e.getPlayer());
-		}
 		if (placedBlockOnWater.contains(e.getPlayer())) {
 			placedBlockOnWater.remove(e.getPlayer());
-		}
-		if (count.containsKey(e.getPlayer())) {
-			count.remove(e.getPlayer());
 		}
 	}
 
@@ -62,6 +59,11 @@ public class Jesus extends Check {
 			count.remove(e.getEntity());
 		}
 	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onVelocity(PlayerVelocityEvent e) {
+		velocity.put(e.getPlayer(), System.currentTimeMillis());
+	}
 
 	@EventHandler
 	public void OnPlace(BlockPlaceEvent e) {
@@ -72,41 +74,37 @@ public class Jesus extends Check {
 
 	@EventHandler
 	public void CheckJesus(PlayerMoveEvent event) {
-		if ((event.getFrom().getX() == event.getTo().getX()) && (event.getFrom().getZ() == event.getTo().getZ())) {
-			return;
-		}
 		Player p = event.getPlayer();
-		if (p.hasPermission("daedalus.bypass")) {
-			return;
-		}
-		if (p.getAllowFlight()) {
-			return;
-		}
-		if (!p.getNearbyEntities(1.0D, 1.0D, 1.0D).isEmpty()) {
-			return;
-		}
-		if (UtilCheat.isOnLilyPad(p)) {
+		
+		/**False positive/optimization check **/
+		if (event.isCancelled()
+				|| (event.getFrom().getX() == event.getTo().getX()) && (event.getFrom().getZ() == event.getTo().getZ())
+				|| getDaedalus().isSotwMode() 
+				|| p.getAllowFlight()
+				|| p.hasPermission("daedalus.bypass")
+				|| UtilCheat.isOnLilyPad(p)
+				|| p.getLocation().clone().add(0.0D, 0.4D, 0.0D).getBlock().getType().isSolid()
+				|| placedBlockOnWater.remove(p)) {
 			return;
 		}
 
-		if (placedBlockOnWater.remove(p)) {
-			return;
-		}
-		int Count = 0;
-		if (count.containsKey(p)) {
-			Count = count.get(p);
-		}
+		int Count = count.getOrDefault(p, 0);
+
+		/**Checks if the player is standing at water and can't stand **/
 		if ((UtilCheat.cantStandAtWater(p.getWorld().getBlockAt(p.getLocation())))
 				&& (UtilCheat.isHoveringOverWater(p.getLocation())) && (!UtilCheat.isFullyInWater(p.getLocation()))) {
-			count.put(p, Count + 2);
+			Count+= 2;
 		} else {
-			count.put(p, Count > 0 ? -1 : 0);
+			Count = Count > 0 ? Count - 1 : Count;
 		}
 
-		if (Count >= 20) {
-			count.remove(p);
+		/** If verbose count is greater than 19, flag **/
+		if (Count > 19) {
+			Count = 0;
 			getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[0]);
 		}
+		
+		count.put(p, Count);
 	}
 
 }

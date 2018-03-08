@@ -36,30 +36,19 @@ public class Spider extends Check {
 
 	private Map<UUID, Map.Entry<Long, Double>> AscensionTicks = new HashMap<UUID, Map.Entry<Long, Double>>();
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void CheckSpider(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
-		if (event.getFrom().getY() >= event.getTo().getY()) {
+		if (event.getFrom().getY() >= event.getTo().getY()
+				|| !getDaedalus().isEnabled()
+				|| getDaedalus().isSotwMode()
+				|| player.getAllowFlight()
+				|| player.getVehicle() != null
+				|| !UtilBlock.isInAir(player)
+				|| getDaedalus().LastVelocity.containsKey(player.getUniqueId())) {
 			return;
 		}
-		if (!getDaedalus().isEnabled()) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-		if (player.getAllowFlight()) {
-			return;
-		}
-		if (player.getVehicle() != null) {
-			return;
-		}
-		if (!UtilBlock.isInAir(player)) {
-			return;
-		}
-		if (getDaedalus().LastVelocity.containsKey(player.getUniqueId())) {
-			return;
-		}
+
 		long Time = System.currentTimeMillis();
 		double TotalBlocks = 0.0D;
 		if (this.AscensionTicks.containsKey(player.getUniqueId())) {
@@ -84,11 +73,9 @@ public class Spider extends Check {
 		}
 		if (OffsetY > 0.0D) {
 			TotalBlocks += OffsetY;
-		}
-		if ((!ya) || (!UtilCheat.blocksNear(player))) {
+		} else if ((!ya) || (!UtilCheat.blocksNear(player))) {
 			TotalBlocks = 0.0D;
-		}
-		if ((ya) && ((event.getFrom().getY() > event.getTo().getY()) || (UtilPlayer.isOnGround(player)))) {
+		} else if ((ya) && ((event.getFrom().getY() > event.getTo().getY()) || (UtilPlayer.isOnGround(player)))) {
 			TotalBlocks = 0.0D;
 		}
 		double Limit = 0.5D;

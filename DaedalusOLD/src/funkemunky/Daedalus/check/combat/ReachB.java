@@ -50,10 +50,9 @@ public class ReachB extends Check {
 
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if (!(e.getDamager() instanceof Player)) {
-			return;
-		}
-		if (!(e.getEntity() instanceof Player)) {
+		if (!(e.getDamager() instanceof Player)
+				|| !(e.getEntity() instanceof Player)
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
 			return;
 		}
 		Player damager = (Player) e.getDamager();
@@ -62,14 +61,9 @@ public class ReachB extends Check {
 		double Reach2 = UtilMath.trim(2, UtilPlayer.getEyeLocation(damager).distance(player.getEyeLocation()) - 0.32);
 
 		double Difference;
-
-		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-			return;
-		}
-		if (damager.getAllowFlight()) {
-			return;
-		}
-		if (player.getAllowFlight()) {
+		
+		if (damager.getAllowFlight()
+				|| player.getAllowFlight()) {
 			return;
 		}
 
@@ -108,6 +102,9 @@ public class ReachB extends Check {
 		int PingD = this.getDaedalus().getLag().getPing(damager);
 		int PingP = this.getDaedalus().getLag().getPing(player);
 		MaxReach += ((PingD + PingP) / 2) * 0.0024;
+		if(PingD > 400) {
+		     MaxReach += 1.0D;
+		}
 		if (UtilTime.elapsed(Time, 10000)) {
 			count.remove(damager);
 			Time = System.currentTimeMillis();

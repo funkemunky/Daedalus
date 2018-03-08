@@ -17,6 +17,8 @@ import funkemunky.Daedalus.utils.UtilMath;
 import funkemunky.Daedalus.utils.UtilPlayer;
 
 public class Fly extends Check {
+	
+	public static Map<UUID, Long> flyTicksA;
 
 	public Fly(Daedalus Daedalus) {
 		super("FlyA", "Fly (Type A)", Daedalus);
@@ -24,9 +26,9 @@ public class Fly extends Check {
 		this.setEnabled(true);
 		this.setBannable(true);
 		setMaxViolations(5);
+		
+		flyTicksA = new HashMap<UUID, Long>();
 	}
-
-	public static Map<UUID, Long> flyTicksA = new HashMap<UUID, Long>();
 
 	@EventHandler
 	public void onLog(PlayerQuitEvent e) {
@@ -44,48 +46,34 @@ public class Fly extends Check {
 			return;
 		}
 		Player player = event.getPlayer();
-		if (player.getAllowFlight()) {
+		
+		/** False positive/optimization check **/
+		if (event.isCancelled()
+				|| (event.getTo().getX() == event.getFrom().getX()) && (event.getTo().getZ() == event.getFrom().getZ())
+				|| getDaedalus().isSotwMode()
+				|| player.getAllowFlight()
+				|| player.getVehicle() != null
+				|| player.hasPermission("daedalus.bypass")
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()
+				|| UtilPlayer.isInWater(player)
+				|| UtilCheat.isInWeb(player)
+				|| Latency.getLag(player) > 92) {
 			return;
 		}
-		if (player.getVehicle() != null) {
-			return;
-		}
-		if (player.hasPermission("daedalus.bypass")) {
-			return;
-		}
-		if (Latency.getLag(player) > 92) {
-			return;
-		}
-		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-		if (event.isCancelled()) {
-			return;
-		}
-		if (UtilPlayer.isInWater(player)) {
-			return;
-		}
-		if (UtilCheat.isInWeb(player)) {
-			return;
-		}
+		
 		if (UtilCheat.blocksNear(player.getLocation())) {
 			if (flyTicksA.containsKey(player.getUniqueId())) {
 				flyTicksA.remove(player.getUniqueId());
 			}
 			return;
-		}
-		if ((event.getTo().getX() == event.getFrom().getX()) && (event.getTo().getZ() == event.getFrom().getZ())) {
-			return;
-		}
+		} 
 		if (Math.abs(event.getTo().getY() - event.getFrom().getY()) > 0.06) {
 			if (flyTicksA.containsKey(player.getUniqueId())) {
 				flyTicksA.remove(player.getUniqueId());
 			}
 			return;
 		}
+		
 		long Time = System.currentTimeMillis();
 		if (flyTicksA.containsKey(player.getUniqueId())) {
 			Time = flyTicksA.get(player.getUniqueId()).longValue();

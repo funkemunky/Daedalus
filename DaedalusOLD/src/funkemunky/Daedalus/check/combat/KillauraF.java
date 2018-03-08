@@ -3,6 +3,7 @@ package funkemunky.Daedalus.check.combat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import funkemunky.Daedalus.utils.UtilMath;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -51,27 +52,20 @@ public class KillauraF extends Check {
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void checkKillaura(EntityDamageByEntityEvent e) {
-		if (e.getCause() != DamageCause.ENTITY_ATTACK) {
-			return;
-		}
-		if (!getDaedalus().isEnabled()) {
-			return;
-		}
-
-		if (!(e.getDamager() instanceof Player) || !(e.getEntity() instanceof Player)) {
+		if (e.getCause() != DamageCause.ENTITY_ATTACK
+				|| !getDaedalus().isEnabled()
+				|| !(e.getDamager() instanceof Player) || !(e.getEntity() instanceof Player)) {
 			return;
 		}
 
 		Player p = (Player) e.getDamager();
 		
-		if (p.hasPermission("daedalus.bypass")) {
-			return;
-		}
-
-		if (UtilCheat.slabsNear(p.getEyeLocation())
+		if (p.hasPermission("daedalus.bypass")
+				|| UtilCheat.slabsNear(p.getEyeLocation())
 				|| UtilCheat.slabsNear(p.getEyeLocation().clone().add(0.0D, 0.5D, 0.0D))) {
 			return;
 		}
+		
 		int Count = 0;
 
 		if (counts.containsKey(p)) {
@@ -84,7 +78,8 @@ public class KillauraF extends Check {
 		double zdif = Math.abs(dloc.getZ() - aloc.getZ());
 		double xdif = Math.abs(dloc.getX() - aloc.getX());
 
-		if (xdif == 0 || zdif == 0) {
+		if (xdif == 0 || zdif == 0
+				|| UtilCheat.getOffsetOffCursor(p, attacked) > 30) {
 			return;
 		}
 

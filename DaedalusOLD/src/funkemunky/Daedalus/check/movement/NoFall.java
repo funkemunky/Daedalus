@@ -54,6 +54,9 @@ public class NoFall extends Check {
 		if (FallDistance.containsKey(e.getPlayer().getUniqueId())) {
 			FallDistance.containsKey(e.getPlayer().getUniqueId());
 		}
+		if(cancel.contains(e.getPlayer())) {
+			cancel.remove(e.getPlayer());
+		}
 	}
 
 	@EventHandler
@@ -66,32 +69,21 @@ public class NoFall extends Check {
 	@EventHandler
 	public void Move(PlayerMoveEvent e) {
 		Player player = e.getPlayer();
-		if (player.hasPermission("daedalus.bypass")) {
+		if (player.getAllowFlight()
+				|| player.getGameMode().equals(GameMode.CREATIVE)
+				|| player.hasPermission("daedalus.bypass")
+				|| player.getVehicle() != null
+				|| cancel.remove(player)
+				|| UtilPlayer.isOnClimbable(player, 0)
+				|| UtilPlayer.isInWater(player)) {
 			return;
 		}
 		Damageable dplayer = (Damageable) e.getPlayer();
-		if (cancel.contains(player)) {
-			cancel.remove(player);
-			return;
-		}
-		if (player.getAllowFlight()) {
-			return;
-		}
-		if (player.getGameMode().equals(GameMode.CREATIVE)) {
-			return;
-		}
-		if (player.getVehicle() != null) {
-			return;
-		}
+
 		if (dplayer.getHealth() <= 0.0D) {
 			return;
 		}
-		if (UtilPlayer.isOnClimbable(player, 0)) {
-			return;
-		}
-		if (UtilPlayer.isInWater(player)) {
-			return;
-		}
+
 		double Falling = 0.0D;
 		if ((!UtilPlayer.isOnGround(player)) && (e.getFrom().getY() > e.getTo().getY())) {
 			if (FallDistance.containsKey(player.getUniqueId())) {

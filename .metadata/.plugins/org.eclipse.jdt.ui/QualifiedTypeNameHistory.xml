@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="funkemunky.Daedalus.update.UpdateType"/>
-<fullyQualifiedTypeName name="org.bukkit.potion.PotionEffectType"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.check.combat.AutoclickerD"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.utils.Chance"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.utils.UtilTime"/>
@@ -11,7 +9,6 @@
 <fullyQualifiedTypeName name="anticheat.checks.combat.KillAuraA"/>
 <fullyQualifiedTypeName name="anticheat.checks.combat.Reach"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Method"/>
-<fullyQualifiedTypeName name="org.bukkit.event.EventPriority"/>
 <fullyQualifiedTypeName name="org.bukkit.event.entity.PlayerDeathEvent"/>
 <fullyQualifiedTypeName name="org.bukkit.Material"/>
 <fullyQualifiedTypeName name="anticheat.utils.BlockUtils"/>
@@ -43,7 +40,6 @@
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
 <fullyQualifiedTypeName name="anticheat.packets.events.PacketPlayerEvent"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.Map.Entry"/>
 <fullyQualifiedTypeName name="anticheat.user.User"/>
 <fullyQualifiedTypeName name="funkemunky.Daedalus.utils.UtilMath"/>
@@ -59,5 +55,9 @@
 <fullyQualifiedTypeName name="anticheat.Fiona"/>
 <fullyQualifiedTypeName name="anticheat.detections.ChecksManager"/>
 <fullyQualifiedTypeName name="anticheat.utils.Color"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.packets.events.PacketPlayerType"/>
 <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerQuitEvent"/>
+<fullyQualifiedTypeName name="funkemunky.Daedalus.check.other.Latency"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="org.bukkit.event.EventPriority"/>
 </qualifiedTypeNameHistroy>

@@ -57,22 +57,16 @@ public class Regen extends Check {
 
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
 	public void onHeal(EntityRegainHealthEvent event) {
-		if (!event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.SATIATED)) {
+		if (!event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.SATIATED)
+				|| !(event.getEntity() instanceof Player)
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
 			return;
 		}
-		if (!(event.getEntity() instanceof Player)) {
-			return;
-		}
-		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-			return;
-		}
+
 		Player player = (Player) event.getEntity();
 
-		if (player.hasPermission("daedalus.bypass")) {
-			return;
-		}
-
-		if (player.getWorld().getDifficulty().equals(Difficulty.PEACEFUL)) {
+		if (player.hasPermission("daedalus.bypass")
+				|| player.getWorld().getDifficulty().equals(Difficulty.PEACEFUL)) {
 			return;
 		}
 		int Count = 0;

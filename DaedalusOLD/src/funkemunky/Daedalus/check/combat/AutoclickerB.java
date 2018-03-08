@@ -55,13 +55,12 @@ public class AutoclickerB extends Check {
 
 	@EventHandler
 	public void UseEntity(PacketUseEntityEvent e) {
-		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
+		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK
+				|| !((e.getAttacked()) instanceof Player)) {
 			return;
 		}
-		if (!((e.getAttacked()) instanceof Player)) {
-			return;
-		}
-		final Player damager = e.getAttacker();
+		
+        Player damager = e.getAttacker();
 		if (damager.hasPermission("daedalus.bypass")) {
 			return;
 		}

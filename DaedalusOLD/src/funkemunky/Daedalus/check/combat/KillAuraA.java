@@ -24,14 +24,14 @@ public class KillAuraA extends Check {
 
 	public KillAuraA(final Daedalus Daedalus) {
 		super("KillAuraA", "Kill Aura (Click Pattern)", Daedalus);
-		this.LastMS = new HashMap<UUID, Long>();
-		this.Clicks = new HashMap<UUID, List<Long>>();
-		this.ClickTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+		this.LastMS = new HashMap<>();
+		this.Clicks = new HashMap<>();
+		this.ClickTicks = new HashMap<>();
 
 		this.setEnabled(true);
 		this.setBannable(true);
 		this.setViolationResetTime(300000);
-		this.setMaxViolations(7);
+		this.setMaxViolations(10);
 	}
 
 	@EventHandler
@@ -52,12 +52,11 @@ public class KillAuraA extends Check {
 
 	@EventHandler
 	public void UseEntity(PacketUseEntityEvent e) {
-		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
+		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK
+				|| !((e.getAttacked()) instanceof Player)) {
 			return;
 		}
-		if (!((e.getAttacked()) instanceof Player)) {
-			return;
-		}
+
 		Player damager = e.getAttacker();
 		if (damager.hasPermission("daedalus.bypass")) {
 			return;
@@ -100,13 +99,13 @@ public class KillAuraA extends Check {
 			Count = 0;
 			Time = UtilTime.nowlong();
 		}
-		if ((Count > 0 && this.getDaedalus().getLag().getPing(damager) < 100)
-				|| (Count > 2 && this.getDaedalus().getLag().getPing(damager) < 200)) {
+		if ((Count > 2 && this.getDaedalus().getLag().getPing(damager) < 100)
+				|| (Count > 4 && this.getDaedalus().getLag().getPing(damager) <= 400)) {
 			this.dumplog(damager, "Logged. Count: " + Count);
 			Count = 0;
 			this.getDaedalus().logCheat(this, damager, null, Chance.HIGH, new String[0]);
 			ClickTicks.remove(damager.getUniqueId());
-		} else if (this.getDaedalus().getLag().getPing(damager) > 250) {
+		} else if (this.getDaedalus().getLag().getPing(damager) > 400) {
 			this.dumplog(damager, "Would set off Killaura (Click Pattern) but latency is too high!");
 		}
 		LastMS.put(damager.getUniqueId(), UtilTime.nowlong());

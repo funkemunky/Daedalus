@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -24,20 +25,26 @@ import funkemunky.Daedalus.utils.UtilPlayer;
 import funkemunky.Daedalus.utils.UtilTime;
 
 public class SpeedA extends Check {
+	
+	public static Map<UUID, Map.Entry<Integer, Long>> speedTicks;
+	public static Map<UUID, Map.Entry<Integer, Long>> tooFastTicks;
+	public static Map<UUID, Long> lastHit;
+	public static Map<UUID, Double> velocity;
+	
 	public SpeedA(Daedalus Daedalus) {
 		super("SpeedA", "Speed (Type A)", Daedalus);
 
 		setEnabled(true);
 		setBannable(true);
 		this.setMaxViolations(3);
+		
+		speedTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+		tooFastTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
+		lastHit = new HashMap<UUID, Long>();
+		velocity = new HashMap<UUID, Double>();
 	}
 
-	public static Map<UUID, Map.Entry<Integer, Long>> speedTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
-	public static Map<UUID, Map.Entry<Integer, Long>> tooFastTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
-	public static Map<UUID, Long> lastHit = new HashMap<UUID, Long>();
-	public static Map<UUID, Double> velocity = new HashMap<UUID, Double>();
-
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void onHit(EntityDamageByEntityEvent e) {
 		if (e.getEntity() instanceof Player) {
 			Player player = (Player) e.getEntity();
@@ -47,7 +54,7 @@ public class SpeedA extends Check {
 	}
 
 	public boolean isOnIce(final Player player) {
-		final Location a = player.getLocation();
+		Location a = player.getLocation();
 		a.setY(a.getY() - 1.0);
 		if (a.getBlock().getType().equals((Object) Material.ICE)) {
 			return true;
@@ -56,7 +63,7 @@ public class SpeedA extends Check {
 		return a.getBlock().getType().equals((Object) Material.ICE);
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onLog(PlayerQuitEvent e) {
 		if (speedTicks.containsKey(e.getPlayer().getUniqueId())) {
 			speedTicks.remove(e.getPlayer().getUniqueId());
@@ -76,26 +83,14 @@ public class SpeedA extends Check {
 	public void CheckSpeed(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		if ((event.getFrom().getX() == event.getTo().getX()) && (event.getFrom().getY() == event.getTo().getY())
-				&& (event.getFrom().getZ() == event.getFrom().getZ())) {
-			return;
-		}
-		if (!getDaedalus().isEnabled()) {
-			return;
-		}
-		if (player.getAllowFlight()) {
-			return;
-		}
-		if (player.getVehicle() != null) {
-			return;
-		}
-
-		if (player.getVelocity().length() + 0.1 < velocity.getOrDefault(player.getUniqueId(), -1.0D)) {
-			return;
-		}
-
-		if (getDaedalus().LastVelocity.containsKey(player.getUniqueId())
+				&& (event.getFrom().getZ() == event.getFrom().getZ())
+				|| !getDaedalus().isEnabled()
+				|| player.getAllowFlight()
+				|| player.getVehicle() != null
+				|| player.getVelocity().length() + 0.1 < velocity.getOrDefault(player.getUniqueId(), -1.0D)
+				|| (getDaedalus().LastVelocity.containsKey(player.getUniqueId())
 				&& !player.hasPotionEffect(PotionEffectType.POISON)
-				&& !player.hasPotionEffect(PotionEffectType.WITHER) && player.getFireTicks() == 0) {
+				&& !player.hasPotionEffect(PotionEffectType.WITHER) && player.getFireTicks() == 0)) {
 			return;
 		}
 

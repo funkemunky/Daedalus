@@ -20,7 +20,7 @@ public class KillAuraE extends Check {
 	public KillAuraE(Daedalus Daedalus) {
 		super("KillAuraE", "Kill Aura (MultiAura)", Daedalus);
 		
-		lastAttack = new HashMap<Player, Map.Entry<Integer, Long>>();
+		lastAttack = new HashMap<>();
 
 		setEnabled(true);
 		setBannable(false);
@@ -39,18 +39,13 @@ public class KillAuraE extends Check {
 
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
 	public void Damage(EntityDamageByEntityEvent e) {
-		if (e.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+		if (e.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK
+				|| !((e.getEntity()) instanceof Player)
+				|| !(e.getDamager() instanceof Player)
+				|| getDaedalus().isSotwMode()) {
 			return;
 		}
-		if (!((e.getEntity()) instanceof Player)) {
-			return;
-		}
-		if (!(e.getDamager() instanceof Player)) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
+
 		Player player = (Player) e.getDamager();
 		if (lastAttack.containsKey(player)) {
 			Integer entityid = lastAttack.get(player).getKey();

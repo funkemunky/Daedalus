@@ -42,42 +42,26 @@ public class Glide extends Check {
 			return;
 		}
 		Player player = event.getPlayer();
-		if (player.hasPermission("daedalus.bypass")) {
-			return;
-		}
-		if (player.getAllowFlight()) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-		if (UtilCheat.isInWeb(player)) {
-			return;
-		}
-
-		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
+		
+		/** False positive/optimization check **/
+		if (event.isCancelled()
+				|| !(event.getTo().getX() == event.getFrom().getX() && event.getTo().getZ() == event.getFrom().getZ())
+				|| getDaedalus().isSotwMode()
+				|| player.getVehicle() != null
+				|| player.hasPermission("daedalus.bypass")
+				|| player.getAllowFlight()
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()
+				|| UtilCheat.isInWeb(player)) {
 			return;
 		}
 
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-
-		if (event.isCancelled()) {
-			return;
-		}
-		if (player.getVehicle() != null) {
-			return;
-		}
 		if (UtilCheat.blocksNear(player)) {
 			if (flyTicks.containsKey(player.getUniqueId())) {
 				flyTicks.remove(player.getUniqueId());
 			}
 			return;
 		}
-		if (event.getTo().getX() == event.getFrom().getX() && event.getTo().getZ() == event.getFrom().getZ()) {
-			return;
-		}
+
 		double OffsetY = event.getFrom().getY() - event.getTo().getY();
 		if (OffsetY <= 0.0 || OffsetY > 0.16) {
 			if (flyTicks.containsKey(player.getUniqueId())) {

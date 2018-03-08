@@ -44,26 +44,21 @@ public class KillAuraB extends Check {
 
 	@EventHandler
 	public void UseEntity(PacketUseEntityEvent e) {
-		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
+		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK
+				|| !((e.getAttacked()) instanceof Player)
+				|| getDaedalus().isSotwMode()) {
 			return;
 		}
-		if (!((e.getAttacked()) instanceof Player)) {
+
+		Player damager = e.getAttacker();
+		Player player = (Player) e.getAttacked();
+		
+		if (damager.hasPermission("daedalus.bypass")
+				|| damager.getAllowFlight()
+				|| player.getAllowFlight()) {
 			return;
 		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-		final Player damager = e.getAttacker();
-		if (damager.hasPermission("daedalus.bypass")) {
-			return;
-		}
-		final Player player = (Player) e.getAttacked();
-		if (damager.getAllowFlight()) {
-			return;
-		}
-		if (player.getAllowFlight()) {
-			return;
-		}
+		
 		int Count = 0;
 		long Time = System.currentTimeMillis();
 		if (AuraTicks.containsKey(damager.getUniqueId())) {

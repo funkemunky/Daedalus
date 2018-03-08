@@ -89,6 +89,7 @@ public class NoSlowdown extends Check {
 				return;
 			}
 			Player player = event.getPlayer();
+			
 			if (player.hasPermission("daedalus.bypass")) {
 				return;
 			}

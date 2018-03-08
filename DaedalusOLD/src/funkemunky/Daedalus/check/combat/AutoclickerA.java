@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import funkemunky.Daedalus.Daedalus;
 import funkemunky.Daedalus.check.Check;
+import funkemunky.Daedalus.check.other.Latency;
 import funkemunky.Daedalus.packets.events.PacketSwingArmEvent;
 import funkemunky.Daedalus.utils.Chance;
 import funkemunky.Daedalus.utils.UtilTime;
@@ -47,13 +48,12 @@ public class AutoclickerA extends Check {
 
 	@EventHandler
 	public void onSwing(PacketSwingArmEvent e) {
-
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-
 		Player player = e.getPlayer();
-		if (player.hasPermission("daedalus.bypass")) {
+
+		if (getDaedalus().isSotwMode()
+				|| getDaedalus().getLag().getTPS() < 17
+				|| player.hasPermission("daedalus.bypass")
+				|| Latency.getLag(player) > 100) {
 			return;
 		}
 		

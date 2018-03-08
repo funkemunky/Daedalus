@@ -70,29 +70,15 @@ public class Step extends Check {
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 
-		if (!this.isOnGround(player)) {
-			return;
-		}
-		if (player.getAllowFlight()) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-		if (UtilPlayer.isOnClimbable(player, 0)) {
-			return;
-		}
-		if (UtilCheat.slabsNear(player.getLocation())) {
-			return;
-		}
-		if (player.hasPotionEffect(PotionEffectType.JUMP)) {
-			return;
-		}
-		if (this.getDaedalus().LastVelocity.containsKey(player.getUniqueId())) {
-			return;
-		}
-
-		if (player.getLocation().getBlock().getType().equals(Material.WATER)
+		if (!getDaedalus().isEnabled() 
+				|| !isOnGround(player)
+				|| player.getAllowFlight()
+				|| getDaedalus().isSotwMode()
+				|| player.hasPotionEffect(PotionEffectType.JUMP)
+				|| getDaedalus().LastVelocity.containsKey(player.getUniqueId())
+				|| UtilPlayer.isOnClimbable(player, 0)
+				|| UtilCheat.slabsNear(player.getLocation())
+				|| player.getLocation().getBlock().getType().equals(Material.WATER)
 				|| player.getLocation().getBlock().getType().equals(Material.STATIONARY_WATER)) {
 			return;
 		}

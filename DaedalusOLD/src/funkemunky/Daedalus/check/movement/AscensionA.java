@@ -39,20 +39,11 @@ public class AscensionA extends Check {
 	@EventHandler
 	public void CheckAscension(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
-		if (event.getFrom().getY() >= event.getTo().getY()) {
-			return;
-		}
-		if (!getDaedalus().isEnabled()) {
-			return;
-		}
-		if (player.getAllowFlight()) {
-			return;
-		}
-		if (player.getVehicle() != null) {
-			return;
-		}
-
-		if(!UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(player.getUniqueId(), 0L), 4200L)) {
+		if (event.getFrom().getY() >= event.getTo().getY()
+				|| !getDaedalus().isEnabled()
+				|| player.getAllowFlight()
+				|| player.getVehicle() != null
+				|| !UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(player.getUniqueId(), 0L), 4200L)) {
 			return;
 		}
 		

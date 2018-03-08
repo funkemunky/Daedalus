@@ -62,37 +62,16 @@ public class VClip extends Check {
 		Location to = e.getTo().clone();
 		Location from = e.getFrom().clone();
 
-		if (from.getY() == to.getY()) {
-			return;
-		}
-
-		if (teleported.contains(e.getPlayer())) {
-			teleported.remove(e.getPlayer());
-			return;
-		}
-
-		if (!getDaedalus().isEnabled()) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-		if (p.getAllowFlight()) {
-			return;
-		}
-		if (p.getVehicle() != null) {
-			return;
-		}
-
-		if (e.getTo().getY() <= 0 || e.getTo().getY() >= p.getWorld().getMaxHeight()) {
-			return;
-		}
-
-		if (!UtilCheat.blocksNear(p)) {
-			return;
-		}
-
-		if ((p.getLocation().getY() < 0.0D) || (p.getLocation().getY() > p.getWorld().getMaxHeight())) {
+		if (!getDaedalus().isEnabled()
+				|| from.getY() == to.getY()
+				|| getDaedalus().isSotwMode()
+				|| p.getAllowFlight()
+				|| p.getVehicle() != null
+				|| teleported.remove(e.getPlayer())
+				|| e.getTo().getY() <= 0 || e.getTo().getY() >= p.getWorld().getMaxHeight()
+				|| !UtilCheat.blocksNear(p)
+				|| (p.getLocation().getY() < 0.0D) 
+				|| (p.getLocation().getY() > p.getWorld().getMaxHeight())) {
 			return;
 		}
 

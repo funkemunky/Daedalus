@@ -57,12 +57,11 @@ public class HitBoxes extends Check {
 		if (e.getCause() != DamageCause.ENTITY_ATTACK) {
 			return;
 		}
-		if (!(e.getEntity() instanceof Player) || !(e.getDamager() instanceof Player)) {
+		if (!(e.getEntity() instanceof Player) || !(e.getDamager() instanceof Player)
+				|| getDaedalus().isSotwMode()) {
 			return;
 		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
+
 		Player player = (Player) e.getDamager();
 		Player attacked = (Player) e.getEntity();
 		if (player.hasPermission("daedalus.bypass")) {

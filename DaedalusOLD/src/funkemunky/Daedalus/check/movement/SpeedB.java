@@ -27,7 +27,6 @@ import funkemunky.Daedalus.utils.UtilMath;
 
 public class SpeedB extends Check {
 
-	public Location location;
 	public Map<UUID, Map.Entry<Integer, Long>> speedTicks;
 	public Map<UUID, Map.Entry<Integer, Long>> tooFastTicks;
 	public Map<UUID, Long> lastHit;
@@ -64,27 +63,15 @@ public class SpeedB extends Check {
 		Location above3 = new Location(p.getWorld(), x - 1, y + 2, z - 1);
 		long lastHitDiff = Math.abs(System.currentTimeMillis() - SpeedA.lastHit.getOrDefault(p.getUniqueId(), 0L));
 		
-		if (lastHitDiff < 1500L || p.getNoDamageTicks() != 0) {
-			return;
-		}
-
-		if (p.getVehicle() != null) {
-			return;
-		}
-
-		if (p.getGameMode().equals(GameMode.CREATIVE)) {
-			return;
-		}
-
-		if (p.getAllowFlight()) {
-			return;
-		}
-
 		if ((e.getTo().getX() == e.getFrom().getX()) && (e.getTo().getZ() == e.getFrom().getZ())
-				&& (e.getTo().getY() == e.getFrom().getY())) {
+				&& (e.getTo().getY() == e.getFrom().getY())
+				|| lastHitDiff < 1500L 
+				|| p.getNoDamageTicks() != 0
+				|| p.getVehicle() != null
+				|| p.getGameMode().equals(GameMode.CREATIVE)
+				|| p.getAllowFlight()) {
 			return;
 		}
-
 
 		double Airmaxspeed = 0.4;
 		double maxSpeed = 0.42;

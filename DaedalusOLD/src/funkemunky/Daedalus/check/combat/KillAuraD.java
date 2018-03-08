@@ -27,17 +27,16 @@ public class KillAuraD extends Check {
 		setMaxViolations(5);
 		setViolationResetTime(60000);
 
-		packetTicks = new HashMap<UUID, Map.Entry<Double, Double>>();
+		packetTicks = new HashMap<>();
 	}
 
 	@EventHandler
 	public void packet(PacketKillauraEvent e) {
-		if (!getDaedalus().isEnabled()) {
+		if (!getDaedalus().isEnabled()
+				|| e.getPlayer().hasPermission("daedalus.bypass")) {
 			return;
 		}
-		if (e.getPlayer().hasPermission("daedalus.bypass")) {
-			return;
-		}
+
 		double Count = 0;
 		double Other = 0;
 		if (packetTicks.containsKey(e.getPlayer().getUniqueId())) {

@@ -229,7 +229,7 @@ public class Daedalus extends JavaPlugin implements Listener {
 				getLogger().log(Level.INFO, "Reset Violations!");
 				if (getConfig().getBoolean("resetViolationsAutomatically")) {
 					if (getConfig().getBoolean("settings.broadcastResetViolationsMsg")) {
-						for (Player online : Bukkit.getOnlinePlayers()) {
+						for (Player online : Bukkit.getServer().getOnlinePlayers()) {
 							if (online.hasPermission("daedalus.admin") && hasAlertsOn(online)) {
 								online.sendMessage(PREFIX + ChatColor.translateAlternateColorCodes('&',
 										"&7Reset violations for all players!"));
@@ -294,8 +294,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 				AscensionA.AscensionTicks.clear();
 			if (!AscensionB.flyTicks.isEmpty())
 				AscensionB.flyTicks.clear();
-			if (!FastLadder.count.isEmpty())
-				FastLadder.count.clear();
 			if (!Fly.flyTicksA.isEmpty())
 				Fly.flyTicksA.clear();
 			if (!Glide.flyTicks.isEmpty())

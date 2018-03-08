@@ -84,15 +84,12 @@ public class PacketCore {
 					return;
 				}
 
-				final int entityId = (int) packet.getIntegers().read(0);
-				Entity entity = null;
-				Iterator<Entity> iterator = player.getWorld().getEntities().iterator();
-				while(iterator.hasNext()) {
-					Entity entityentity = iterator.next();
-					if (entityentity.getEntityId() == entityId) {
-						entity = entityentity;
-					}
+				Entity entity = event.getPacket().getEntityModifier(player.getWorld()).read(0);
+
+				if(entity == null) {
+					return;
 				}
+
 				Bukkit.getServer().getPluginManager().callEvent((Event) new PacketUseEntityEvent(type, player, entity));
 				if (type == EntityUseAction.ATTACK) {
 					Bukkit.getServer().getPluginManager()
@@ -129,7 +126,7 @@ public class PacketCore {
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Client.POSITION_LOOK }) {
 			public void onPacketReceiving(final PacketEvent event) {
-				final Player player = event.getPlayer();
+				Player player = event.getPlayer();
 				if (player == null) {
 					return;
 				}
@@ -159,7 +156,7 @@ public class PacketCore {
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Client.POSITION }) {
 			public void onPacketReceiving(final PacketEvent event) {
-				final Player player = event.getPlayer();
+				Player player = event.getPlayer();
 				if (player == null) {
 					return;
 				}
@@ -173,7 +170,7 @@ public class PacketCore {
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Server.POSITION}) {
 			public void onPacketSending(final PacketEvent event) {
-				final Player player = event.getPlayer();
+				Player player = event.getPlayer();
 				if (player == null) {
 					return;
 				}
@@ -186,8 +183,8 @@ public class PacketCore {
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Client.ENTITY_ACTION }) {
 			public void onPacketReceiving(final PacketEvent event) {
-				final PacketContainer packet = event.getPacket();
-				final Player player = event.getPlayer();
+				PacketContainer packet = event.getPacket();
+				Player player = event.getPlayer();
 				if (player == null) {
 					return;
 				}
@@ -198,7 +195,7 @@ public class PacketCore {
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Client.KEEP_ALIVE }) {
 			public void onPacketReceiving(final PacketEvent event) {
-				final Player player = event.getPlayer();
+				Player player = event.getPlayer();
 				if (player == null) {
 					return;
 				}
@@ -220,7 +217,7 @@ public class PacketCore {
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Client.HELD_ITEM_SLOT }) {
 			public void onPacketReceiving(final PacketEvent event) {
-				final Player player = event.getPlayer();
+				Player player = event.getPlayer();
 				if (player == null) {
 					return;
 				}
@@ -230,7 +227,7 @@ public class PacketCore {
 		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) new PacketAdapter(this.Daedalus,
 				new PacketType[] { PacketType.Play.Client.BLOCK_PLACE }) {
 			public void onPacketReceiving(final PacketEvent event) {
-				final Player player = event.getPlayer();
+				Player player = event.getPlayer();
 				if (player == null) {
 					return;
 				}

@@ -59,13 +59,9 @@ public class ReachC extends Check {
 
 	@EventHandler
 	public void onDmg(EntityDamageByEntityEvent e) {
-		if (!(e.getDamager() instanceof Player)) {
-			return;
-		}
-		if (e.getCause() != DamageCause.PROJECTILE) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
+		if (!(e.getDamager() instanceof Player)
+				|| e.getCause() != DamageCause.PROJECTILE
+				|| getDaedalus().isSotwMode()) {
 			return;
 		}
 
@@ -89,21 +85,14 @@ public class ReachC extends Check {
 
 	@EventHandler
 	public void onDamage(PacketUseEntityEvent e) {
-		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
+		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK
+				|| !(e.getAttacked() instanceof Player)
+				|| getDaedalus().isSotwMode()
+				|| e.getAttacker().getAllowFlight()
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
 			return;
 		}
-		if (!(e.getAttacked() instanceof Player)) {
-			return;
-		}
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-		if (e.getAttacker().getAllowFlight()) {
-			return;
-		}
-		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-			return;
-		}
+
 		Player damager = e.getAttacker();
 		Player player = (Player) e.getAttacked();
 		double ydist = Math.abs(damager.getEyeLocation().getY() - player.getEyeLocation().getY());

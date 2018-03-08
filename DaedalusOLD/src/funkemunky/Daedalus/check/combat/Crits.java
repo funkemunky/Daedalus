@@ -46,25 +46,19 @@ public class Crits extends Check {
 
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if (!(e.getDamager() instanceof Player)) {
+		if (!(e.getDamager() instanceof Player)
+				|| !e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
 			return;
 		}
-		if (!e.getCause().equals((Object) EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
-			return;
-		}
+
 		Player player = (Player) e.getDamager();
-		if (player.getAllowFlight()) {
+		if (player.getAllowFlight()
+				|| getDaedalus().LastVelocity.containsKey(player.getUniqueId())
+				|| UtilCheat.slabsNear(player.getLocation())
+				|| player.hasPermission("daedalus.bypass")) {
 			return;
 		}
-		if (getDaedalus().LastVelocity.containsKey(player.getUniqueId())) {
-			return;
-		}
-		if (UtilCheat.slabsNear(player.getLocation())) {
-			return;
-		}
-		if (player.hasPermission("daedalus.bypass")) {
-			return;
-		}
+
 		Location pL = player.getLocation().clone();
 		pL.add(0.0, player.getEyeHeight() + 1.0, 0.0);
 		if (UtilCheat.blocksNear(pL)) {

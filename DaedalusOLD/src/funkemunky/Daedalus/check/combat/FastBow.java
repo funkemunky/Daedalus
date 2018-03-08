@@ -19,7 +19,7 @@ public class FastBow extends Check {
 	public static Map<Player, Long> bowPull;
 	public static Map<Player, Integer> count;
 
-	public FastBow(final Daedalus Daedalus) {
+	public FastBow(Daedalus Daedalus) {
 		super("FastBow", "FastBow", Daedalus);
 		
 		bowPull = new HashMap<Player, Long>();
@@ -34,7 +34,7 @@ public class FastBow extends Check {
 
 	@EventHandler
 	public void Interact(final PlayerInteractEvent e) {
-		final Player Player = e.getPlayer();
+		Player Player = e.getPlayer();
 		if (Player.getItemInHand() != null && Player.getItemInHand().getType().equals(Material.BOW)) {
 			bowPull.put(Player, System.currentTimeMillis());
 		}
@@ -60,6 +60,9 @@ public class FastBow extends Check {
 			Arrow arrow = (Arrow) e.getEntity();
 			if (arrow.getShooter() != null && arrow.getShooter() instanceof Player) {
 				Player player = (Player) arrow.getShooter();
+				if (player.hasPermission("daedalus.bypass")) {
+					return;
+				}
 				if (bowPull.containsKey(player)) {
 					Long time = System.currentTimeMillis() - this.bowPull.get(player);
 					double power = arrow.getVelocity().length();
@@ -72,9 +75,6 @@ public class FastBow extends Check {
 						count.put(player, Count + 1);
 					} else {
 						count.put(player, Count > 0 ? Count - 1 : Count);
-					}
-					if (player.hasPermission("daedalus.bypass")) {
-						return;
 					}
 					if (Count > 8) {
 						getDaedalus().logCheat(this, player, time + " ms", Chance.HIGH, new String[0]);

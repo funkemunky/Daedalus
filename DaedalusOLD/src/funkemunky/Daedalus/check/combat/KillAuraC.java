@@ -25,16 +25,16 @@ public class KillAuraC extends Check {
 
 	public KillAuraC(final Daedalus Daedalus) {
 		super("KillAuraC", "Kill Aura (Aimbot)", Daedalus);
-		AimbotTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
-		Differences = new HashMap<UUID, Double>();
-		LastLocation = new HashMap<UUID, Location>();
+		AimbotTicks = new HashMap<>();
+		Differences = new HashMap<>();
+		LastLocation = new HashMap<>();
 
 		this.setEnabled(true);
 		this.setBannable(true);
 
-		this.setMaxViolations(11);
+		this.setMaxViolations(14);
 		this.setViolationResetTime(120000);
-		this.setViolationsToNotify(2);
+		this.setViolationsToNotify(4);
 	}
 
 	@EventHandler
@@ -52,19 +52,16 @@ public class KillAuraC extends Check {
 
 	@EventHandler
 	public void UseEntity(PacketUseEntityEvent e) {
-		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK) {
+		if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK
+				|| !((e.getAttacked()) instanceof Player)) {
 			return;
 		}
 		Player damager = e.getAttacker();
-		if (damager.hasPermission("daedalus.bypass")) {
+		if (damager.getAllowFlight()
+				|| damager.hasPermission("daedalus.bypass")) {
 			return;
 		}
-		if (damager.getAllowFlight()) {
-			return;
-		}
-		if (!((e.getAttacked()) instanceof Player)) {
-			return;
-		}
+
 		Location from = null;
 		Location to = damager.getLocation();
 		if (LastLocation.containsKey(damager.getUniqueId())) {
@@ -112,7 +109,7 @@ public class KillAuraC extends Check {
 			Count = 0;
 			Time = UtilTime.nowlong();
 		}
-		if (Count >= 4) {
+		if (Count > 5) {
 			Count = 0;
 			dumplog(damager,
 					"Logged. Last Difference: " + Math.abs(to.getYaw() - from.getYaw()) + ", Count: " + Count);

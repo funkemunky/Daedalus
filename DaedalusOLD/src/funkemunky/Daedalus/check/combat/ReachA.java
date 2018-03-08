@@ -18,6 +18,8 @@ import funkemunky.Daedalus.utils.UtilPlayer;
 
 public class ReachA extends Check {
 
+	public static HashMap<UUID, Integer> toBan;
+	
 	public ReachA(Daedalus Daedalus) {
 		super("ReachA", "Reach (Type A)", Daedalus);
 
@@ -26,48 +28,36 @@ public class ReachA extends Check {
 
 		this.setViolationsToNotify(1);
 		this.setMaxViolations(9);
+		
+		toBan = new HashMap<UUID, Integer>();
 	}
-
-	public static HashMap<UUID, Integer> toBan = new HashMap<UUID, Integer>();
 
 	@EventHandler
 	public void onATTACK(EntityDamageByEntityEvent e) {
-		if (!e.getCause().equals((Object) EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
-			return;
-		}
-
-		if (!(e.getEntity() instanceof Player) || !(e.getDamager() instanceof Player)) {
-			return;
-		}
-
-		if (getDaedalus().isSotwMode()) {
-			return;
-		}
-
-		if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
+		if (!e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)
+				|| !(e.getEntity() instanceof Player) || !(e.getDamager() instanceof Player)
+				|| getDaedalus().isSotwMode()
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
 			return;
 		}
 
 		Player player = (Player) e.getDamager();
 		Player damaged = (Player) e.getEntity();
 
-		if (player.hasPermission("daedalus.bypass")) {
+		if (player.hasPermission("daedalus.bypass")
+				|| player.getAllowFlight()) {
 			return;
 		}
 
-		double YawDifference = Math.abs(damaged.getLocation().getYaw() - player.getLocation().getYaw());
-
-		if (player.getAllowFlight()) {
-			return;
-		}
+		double YawDifference = Math.abs(180 - Math.abs(damaged.getLocation().getYaw() - player.getLocation().getYaw()));
 		double Difference = UtilPlayer.getEyeLocation(player).distance(damaged.getEyeLocation()) - 0.35;
 
 		int Ping = getDaedalus().getLag().getPing(player);
 		double TPS = getDaedalus().getLag().getTPS();
-		double MaxReach = 3.8 + damaged.getVelocity().length();
+		double MaxReach = 4.0 + damaged.getVelocity().length();
 
 		if (player.isSprinting()) {
-			MaxReach += 0.1;
+			MaxReach += 0.2;
 		}
 
 		if (player.getLocation().getY() > damaged.getLocation().getY()) {
@@ -82,9 +72,13 @@ public class ReachA extends Check {
 				MaxReach += 0.2D * (effect.getAmplifier() + 1);
 			}
 		}
-
-		MaxReach += Ping < 150 ? Ping * 0.00212 : Ping * 0.0031;
-		MaxReach += YawDifference / 1000;
+		
+		double velocity = player.getVelocity().length() + damaged.getVelocity().length();
+		
+		MaxReach += velocity * 1.5;
+		MaxReach += Ping < 250 ? Ping * 0.00212 : Ping * 0.031;
+		MaxReach += YawDifference * 0.008;
+		
 		double ChanceVal = Math.round(Math.abs((Difference - MaxReach) * 100));
 
 		if (ChanceVal > 100) {
