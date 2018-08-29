@@ -4,7 +4,9 @@ import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.WeakHashMap;
 
+import funkemunky.Daedalus.Daedalus;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,86 +31,25 @@ public class AscensionB extends Check {
 		setMaxViolations(5);
 	}
 
-	public static Map<UUID, Map.Entry<Integer, Long>> flyTicks = new HashMap<UUID, Map.Entry<Integer, Long>>();
-	public static Map<UUID, Double> velocity = new HashMap<UUID, Double>();
+	private Map<Player, Integer> verbose = new WeakHashMap<>();
+	private Map<Player, Float> lastYMovement = new WeakHashMap<>();
 
 	@EventHandler
-	public void onLog(PlayerQuitEvent e) {
-		Player p = e.getPlayer();
-		UUID uuid = p.getUniqueId();
+	public void onMove(PlayerMoveEvent e) {
+		Player player = e.getPlayer();
 
-		if (flyTicks.containsKey(uuid)) {
-			flyTicks.remove(uuid);
-		}
-	}
+		int verbose = this.verbose.getOrDefault(player, 0);
+		float yDelta = (float) (e.getTo().getY() - e.getFrom().getY());
 
-	@EventHandler
-	public void CheckAscension(PlayerMoveEvent e) {
-		Player p = e.getPlayer();
-
-		/** Shit I spent 20 minutes fixing this. Remember me **/
-		if (e.isCancelled()
-				|| !getDaedalus().isEnabled()
-				|| p.getVehicle() != null
-				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()
-				|| e.getFrom().getY() >= e.getTo().getY()
-				|| p.getAllowFlight()
-				|| !UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(p.getUniqueId(), 0L), 4200L)
-				|| p.hasPermission("daedalus.bypass")
-				|| getDaedalus().isSotwMode()
-				|| Latency.getLag(p) > 75
-				|| this.getDaedalus().getLastVelocity().containsKey(p.getUniqueId())) {
-			return;
-		}
-		
-		Location to = e.getTo();
-		Location from = e.getFrom();
-		int Count = 0;
-		long Time = UtilTime.nowlong();
-		if (flyTicks.containsKey(p.getUniqueId())) {
-			Count = flyTicks.get(p.getUniqueId()).getKey().intValue();
-			Time = flyTicks.get(p.getUniqueId()).getValue().longValue();
-		}
-		if (flyTicks.containsKey(p.getUniqueId())) {
-			double Offset = to.getY() - from.getY();
-			double Limit = 0.5D;
-			double TotalBlocks = Offset;
-
-			if (UtilCheat.blocksNear(p)) {
-				TotalBlocks = 0.0D;
-			}
-			Location a = p.getLocation().subtract(0.0D, 1.0D, 0.0D);
-			if (UtilCheat.blocksNear(a)) {
-				TotalBlocks = 0.0D;
-			}
-			if (p.hasPotionEffect(PotionEffectType.JUMP)) {
-				for (PotionEffect effect : p.getActivePotionEffects()) {
-					if (effect.getType().equals(PotionEffectType.JUMP)) {
-						int level = effect.getAmplifier() + 1;
-						Limit += Math.pow(level + 4.1D, 2.0D) / 16.0D;
-						break;
-					}
-				}
-			}
-
-			if (TotalBlocks >= Limit) {
-				Count += 2;
-			} else {
-				if (Count > 0) {
-					Count--;
-				}
+		if(lastYMovement.containsKey(player)
+				&& Math.abs(yDelta - lastYMovement.get(player)) < 0.002) {
+			if(verbose++ > 5) {
+				Daedalus.Instance.logCheat(this, player, Math.abs(yDelta - lastYMovement.get(player)) + "<-" + 0.002, Chance.HIGH);
 			}
 		}
-		if ((flyTicks.containsKey(p.getUniqueId())) && (UtilTime.elapsed(Time, 30000L))) {
-			Count = 0;
-			Time = UtilTime.nowlong();
-		}
-		if (Count >= 4) {
-			Count = 0;
-			dumplog(p, "Logged for Ascension Type B");
-			this.getDaedalus().logCheat(this, p, null, Chance.HIGH, new String[0]);
-		}
-		flyTicks.put(p.getUniqueId(), new AbstractMap.SimpleEntry<Integer, Long>(Count, Time));
+
+		lastYMovement.put(player, yDelta);
+		this.verbose.put(player, verbose);
 	}
 
 }

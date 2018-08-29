@@ -41,7 +41,6 @@ import funkemunky.Daedalus.check.combat.KillAuraC;
 import funkemunky.Daedalus.check.combat.KillAuraD;
 import funkemunky.Daedalus.check.combat.KillAuraE;
 import funkemunky.Daedalus.check.combat.KillauraF;
-import funkemunky.Daedalus.check.combat.KillauraG;
 import funkemunky.Daedalus.check.combat.ReachA;
 import funkemunky.Daedalus.check.combat.ReachB;
 import funkemunky.Daedalus.check.combat.ReachC;
@@ -137,7 +136,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 		this.Checks.add(new KillAuraD(this));
 		this.Checks.add(new KillAuraE(this));
 		this.Checks.add(new KillauraF(this));
-		this.Checks.add(new KillauraG(this));
 		this.Checks.add(new HitBoxes(this));
 		this.Checks.add(new AutoclickerA(this));
 		this.Checks.add(new AutoclickerB(this));
@@ -292,8 +290,6 @@ public class Daedalus extends JavaPlugin implements Listener {
 				Regen.LastHeal.clear();
 			if (!AscensionA.AscensionTicks.isEmpty())
 				AscensionA.AscensionTicks.clear();
-			if (!AscensionB.flyTicks.isEmpty())
-				AscensionB.flyTicks.clear();
 			if (!Fly.flyTicksA.isEmpty())
 				Fly.flyTicksA.clear();
 			if (!Glide.flyTicks.isEmpty())

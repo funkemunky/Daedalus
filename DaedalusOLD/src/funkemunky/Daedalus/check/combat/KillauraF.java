@@ -79,7 +79,7 @@ public class KillauraF extends Check {
 		double xdif = Math.abs(dloc.getX() - aloc.getX());
 
 		if (xdif == 0 || zdif == 0
-				|| UtilCheat.getOffsetOffCursor(p, attacked) > 30) {
+				|| UtilCheat.getOffsetOffCursor(p, attacked) > 20) {
 			return;
 		}
 

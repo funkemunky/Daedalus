@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import funkemunky.Daedalus.utils.UtilMath;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -26,10 +27,10 @@ public class Timer extends Check {
 	public Timer(Daedalus Daedalus) {
 		super("TimerA", "Timer (Type A)", Daedalus);
 		
-		packets = new HashMap<UUID, Map.Entry<Integer, Long>>();
-		verbose = new HashMap<UUID, Integer>();
-		toCancel = new ArrayList<Player>();
-		lastPacket = new HashMap<UUID, Long>();
+		packets = new HashMap<>();
+		verbose = new HashMap<>();
+		toCancel = new ArrayList<>();
+		lastPacket = new HashMap<>();
 
 		setEnabled(true);
 		setBannable(false);
@@ -67,20 +68,21 @@ public class Timer extends Check {
 			return;
 		}
 		
-		long lastPacket = this.lastPacket.getOrDefault(player.getUniqueId(), System.currentTimeMillis());
+		long lastPacket = this.lastPacket.getOrDefault(player.getUniqueId(), 0L);
 		int packets = 0;
 		long Time = System.currentTimeMillis();
 		int verbose = this.verbose.getOrDefault(player.getUniqueId(), 0);
 		
 		if (this.packets.containsKey(player.getUniqueId())) {
-			packets = this.packets.get(player.getUniqueId()).getKey().intValue();
-			Time = this.packets.get(player.getUniqueId()).getValue().longValue();
+			packets = this.packets.get(player.getUniqueId()).getKey();
+			Time = this.packets.get(player.getUniqueId()).getValue();
 		}
-		
-		if((System.currentTimeMillis() - lastPacket) > 100L) {
-			toCancel.add(player);
+
+		if(System.currentTimeMillis() - lastPacket < 5) {
+			this.lastPacket.put(player.getUniqueId(), System.currentTimeMillis());
+			return;
 		}
-		double threshold = 23;
+		double threshold = 21;
 		if(UtilTime.elapsed(Time, 1000L)) {
 			if(toCancel.remove(player) && packets <= 13) {
 				return;
@@ -99,8 +101,8 @@ public class Timer extends Check {
 			getDaedalus().packet.movePackets.remove(player.getUniqueId());
 		}
 		packets++;
-		
-        this.lastPacket.put(player.getUniqueId(), System.currentTimeMillis());
+
+		this.lastPacket.put(player.getUniqueId(), System.currentTimeMillis());
 		this.packets.put(player.getUniqueId(), new SimpleEntry<Integer, Long>(packets, Time));
 		this.verbose.put(player.getUniqueId(), verbose);
 	}
