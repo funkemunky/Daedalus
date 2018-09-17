@@ -1,1 +1,0 @@
-Thanks to all of you for a great time! Unfortunately, I have to end this one. One good thing though, everyone gets source for free. Also, everyone has permission to make forks since the source is released (duh!).
