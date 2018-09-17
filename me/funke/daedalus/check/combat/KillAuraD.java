@@ -31,9 +31,7 @@ public class KillAuraD extends Check {
     @EventHandler
     public void packet(PacketKillauraEvent e) {
         if (!getDaedalus().isEnabled()
-                || e.getPlayer().hasPermission("daedalus.bypass")) {
-            return;
-        }
+                || e.getPlayer().hasPermission("daedalus.bypass")) return;
 
         double Count = 0;
         double Other = 0;

@@ -74,9 +74,7 @@ public class Jesus extends Check {
                 || p.hasPermission("daedalus.bypass")
                 || UtilCheat.isOnLilyPad(p)
                 || p.getLocation().clone().add(0.0D, 0.4D, 0.0D).getBlock().getType().isSolid()
-                || placedBlockOnWater.remove(p)) {
-            return;
-        }
+                || placedBlockOnWater.remove(p)) return;
 
         int Count = count.getOrDefault(p, 0);
 

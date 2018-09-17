@@ -19,13 +19,10 @@ public class FastBow extends Check {
 
     public FastBow(me.funke.daedalus.Daedalus Daedalus) {
         super("FastBow", "FastBow", Daedalus);
-
         bowPull = new HashMap<>();
         count = new HashMap<>();
-
         setViolationsToNotify(2);
         setMaxViolations(7);
-
         setEnabled(true);
         setBannable(true);
     }
@@ -47,9 +44,7 @@ public class FastBow extends Check {
 
     @EventHandler
     public void onShoot(final ProjectileLaunchEvent e) {
-        if (!this.isEnabled()) {
-            return;
-        }
+        if (!this.isEnabled()) return;
         if (e.getEntity() instanceof Arrow) {
             Arrow arrow = (Arrow) e.getEntity();
             if (arrow.getShooter() != null && arrow.getShooter() instanceof Player) {

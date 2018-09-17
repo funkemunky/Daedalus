@@ -4,7 +4,7 @@ import me.funke.daedalus.check.Check;
 import me.funke.daedalus.check.combat.*;
 import me.funke.daedalus.check.movement.*;
 import me.funke.daedalus.check.other.*;
-import me.funke.daedalus.check.other.Timer;
+import me.funke.daedalus.check.other.TimerA;
 import me.funke.daedalus.commands.AlertsCommand;
 import me.funke.daedalus.commands.AutobanCommand;
 import me.funke.daedalus.commands.DaedalusCommand;
@@ -79,7 +79,7 @@ public class Daedalus extends JavaPlugin implements Listener {
         this.Checks.add(new Step(this));
         this.Checks.add(new Regen(this));
         this.Checks.add(new NoFall(this));
-        this.Checks.add(new PhaseA(this));
+        this.Checks.add(new Phase(this));
         this.Checks.add(new VClip(this));
         this.Checks.add(new KillAuraA(this));
         this.Checks.add(new KillAuraB(this));
@@ -98,7 +98,7 @@ public class Daedalus extends JavaPlugin implements Listener {
         this.Checks.add(new ReachB(this));
         this.Checks.add(new ReachC(this));
         this.Checks.add(new MorePackets(this));
-        this.Checks.add(new Timer(this));
+        this.Checks.add(new TimerA(this));
         this.Checks.add(new TimerB(this));
         this.Checks.add(new Sneak(this));
         this.Checks.add(new Crash(this));
@@ -379,17 +379,13 @@ public class Daedalus extends JavaPlugin implements Listener {
 
     @EventHandler
     public void Join(PlayerJoinEvent e) {
-        if (!e.getPlayer().hasPermission("daedalus.staff")) {
-            return;
-        }
+        if (!e.getPlayer().hasPermission("daedalus.staff")) return;
         this.AlertsOn.add(e.getPlayer());
     }
 
     @EventHandler
     public void autoBanUpdate(UpdateEvent event) {
-        if (!event.getType().equals(UpdateType.SEC)) {
-            return;
-        }
+        if (!event.getType().equals(UpdateType.SEC)) return;
         Map<Player, Map.Entry<Check, Long>> AutoBan = new HashMap<>(this.AutoBan);
         for (Player player : AutoBan.keySet()) {
             if (player == null || !player.isOnline()) {
@@ -469,9 +465,7 @@ public class Daedalus extends JavaPlugin implements Listener {
     }
 
     public void autoBan(Check check, Player player) {
-        if (this.lag.getTPS() < 17.0) {
-            return;
-        }
+        if (this.lag.getTPS() < 17.0) return;
         if (check.hasBanTimer()) {
             if (this.AutoBan.containsKey(player)) {
                 return;
@@ -507,9 +501,7 @@ public class Daedalus extends JavaPlugin implements Listener {
         if (!getConfig().getBoolean("testmode")) {
             this.createLog(player, check);
         }
-        if (NamesBanned.containsKey(player.getName()) && !getConfig().getBoolean("testmode")) {
-            return;
-        }
+        if (NamesBanned.containsKey(player.getName()) && !getConfig().getBoolean("testmode")) return;
         this.NamesBanned.put(player.getName(), check);
         this.removeViolations(player, check);
         new BukkitRunnable() {

@@ -76,9 +76,7 @@ public class SpeedA extends Check {
                 || player.getVelocity().length() + 0.1 < velocity.getOrDefault(player.getUniqueId(), -1.0D)
                 || (getDaedalus().LastVelocity.containsKey(player.getUniqueId())
                 && !player.hasPotionEffect(PotionEffectType.POISON)
-                && !player.hasPotionEffect(PotionEffectType.WITHER) && player.getFireTicks() == 0)) {
-            return;
-        }
+                && !player.hasPotionEffect(PotionEffectType.WITHER) && player.getFireTicks() == 0)) return;
 
         long lastHitDiff = lastHit.containsKey(player.getUniqueId())
                 ? lastHit.get(player.getUniqueId()) - System.currentTimeMillis()

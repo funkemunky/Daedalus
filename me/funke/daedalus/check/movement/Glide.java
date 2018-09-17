@@ -35,9 +35,7 @@ public class Glide extends Check {
 
     @EventHandler
     public void CheckGlide(PlayerMoveEvent event) {
-        if (!this.getDaedalus().isEnabled()) {
-            return;
-        }
+        if (!this.getDaedalus().isEnabled()) return;
         Player player = event.getPlayer();
 
         /** False positive/optimization check **/
@@ -48,9 +46,7 @@ public class Glide extends Check {
                 || player.hasPermission("daedalus.bypass")
                 || player.getAllowFlight()
                 || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()
-                || UtilCheat.isInWeb(player)) {
-            return;
-        }
+                || UtilCheat.isInWeb(player)) return;
 
         if (UtilCheat.blocksNear(player)) {
             flyTicks.remove(player.getUniqueId());

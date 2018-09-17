@@ -65,14 +65,10 @@ public class NoFall extends Check {
                 || player.getVehicle() != null
                 || cancel.remove(player)
                 || UtilPlayer.isOnClimbable(player, 0)
-                || UtilPlayer.isInWater(player)) {
-            return;
-        }
+                || UtilPlayer.isInWater(player)) return;
         Damageable dplayer = e.getPlayer();
 
-        if (dplayer.getHealth() <= 0.0D) {
-            return;
-        }
+        if (dplayer.getHealth() <= 0.0D) return;
 
         double Falling = 0.0D;
         if ((!UtilPlayer.isOnGround(player)) && (e.getFrom().getY() > e.getTo().getY())) {
@@ -82,9 +78,7 @@ public class NoFall extends Check {
             Falling += e.getFrom().getY() - e.getTo().getY();
         }
         FallDistance.put(player.getUniqueId(), Falling);
-        if (Falling < 3.0D) {
-            return;
-        }
+        if (Falling < 3.0D) return;
         long Time = System.currentTimeMillis();
         int Count = 0;
         if (NoFallTicks.containsKey(player.getUniqueId())) {

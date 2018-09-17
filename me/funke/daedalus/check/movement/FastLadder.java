@@ -38,9 +38,7 @@ public class FastLadder extends Check {
                 || getDaedalus().getLastVelocity().containsKey(player.getUniqueId())
                 || player.hasPermission("daedalus.bypass")
                 || !UtilPlayer.isOnClimbable(player, 1) ||
-                !UtilPlayer.isOnClimbable(player, 0)) {
-            return;
-        }
+                !UtilPlayer.isOnClimbable(player, 0)) return;
 
         int Count = count.getOrDefault(player, 0);
         double OffsetY = UtilMath.offset(UtilMath.getVerticalVector(e.getFrom().toVector()),
@@ -48,9 +46,7 @@ public class FastLadder extends Check {
         double Limit = 0.13;
 
         double updown = e.getTo().getY() - e.getFrom().getY();
-        if (updown <= 0) {
-            return;
-        }
+        if (updown <= 0) return;
 
 
         /** Checks if Y Delta is greater than Limit **/

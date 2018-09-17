@@ -8,6 +8,7 @@ import org.bukkit.util.Vector;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.Base64;
 import java.util.List;
@@ -90,7 +91,7 @@ public class UtilMath {
 
         try {
             byte[] decoded = Base64.getDecoder().decode(strEncrypted);
-            strData = (new String(decoded, "UTF-8") + "\n");
+            strData = (new String(decoded, StandardCharsets.UTF_8) + "\n");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -32,7 +32,7 @@ import org.bukkit.material.TrapDoor;
 
 import java.util.*;
 
-public class PhaseA extends Check {
+public class Phase extends Check {
     public static final Map<UUID, Location> lastLocation = new HashMap<>();
     public static List<Material> allowed = new ArrayList<>();
     public static List<Material> semi = new ArrayList<>();
@@ -133,9 +133,8 @@ public class PhaseA extends Check {
             Material.JUNGLE_WOOD_STAIRS, Material.NETHER_BRICK_STAIRS, Material.QUARTZ_STAIRS,
             Material.SANDSTONE_STAIRS, Material.SMOOTH_STAIRS, Material.SPRUCE_WOOD_STAIRS, Material.WOOD_STAIRS);
 
-    public PhaseA(me.funke.daedalus.Daedalus Daedalus) {
+    public Phase(me.funke.daedalus.Daedalus Daedalus) {
         super("Phase", "Phase", Daedalus);
-
         setEnabled(true);
         setBannable(false);
         setMaxViolations(40);
@@ -162,9 +161,7 @@ public class PhaseA extends Check {
     @EventHandler
     public void update(PlayerMoveEvent e) {
         Player player = e.getPlayer();
-        if (player.isDead()) {
-            return;
-        }
+        if (player.isDead()) return;
 
         UUID playerId = player.getUniqueId();
         Location loc1 = lastLocation.containsKey(playerId) ? lastLocation.get(playerId)
@@ -202,9 +199,7 @@ public class PhaseA extends Check {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.NORMAL)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (!getDaedalus().getConfig().getBoolean("checks.Phase.pearlFix")) {
-            return;
-        }
+        if (!getDaedalus().getConfig().getBoolean("checks.Phase.pearlFix")) return;
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && event.hasItem()
                 && event.getItem().getType() == Material.ENDER_PEARL) {
             Block block = event.getClickedBlock();
@@ -225,9 +220,7 @@ public class PhaseA extends Check {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.NORMAL)
     public void onPearlClip(PlayerTeleportEvent event) {
-        if (!getDaedalus().getConfig().getBoolean("checks.Phase.pearlFix")) {
-            return;
-        }
+        if (!getDaedalus().getConfig().getBoolean("checks.Phase.pearlFix")) return;
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.ENDER_PEARL) {
             Location to = event.getTo();
             if (blockedPearlTypes.contains(to.getBlock().getType()) && to.getBlock().getType() != Material.FENCE_GATE

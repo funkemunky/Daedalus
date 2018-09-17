@@ -40,12 +40,8 @@ public class ReachC extends Check {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        if (event.getFrom().getX() == event.getTo().getX() && event.getFrom().getZ() == event.getTo().getZ()) {
-            return;
-        }
-        if (getDaedalus().isSotwMode()) {
-            return;
-        }
+        if (event.getFrom().getX() == event.getTo().getX() && event.getFrom().getZ() == event.getTo().getZ()) return;
+        if (getDaedalus().isSotwMode()) return;
         double OffsetXZ = UtilMath.offset(UtilMath.getHorizontalVector(event.getFrom().toVector()),
                 UtilMath.getHorizontalVector(event.getTo().toVector()));
         double horizontal = Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2.0)
@@ -58,9 +54,7 @@ public class ReachC extends Check {
     public void onDmg(EntityDamageByEntityEvent e) {
         if (!(e.getDamager() instanceof Player)
                 || e.getCause() != DamageCause.PROJECTILE
-                || getDaedalus().isSotwMode()) {
-            return;
-        }
+                || getDaedalus().isSotwMode()) return;
 
         Player player = (Player) e.getDamager();
 
@@ -80,9 +74,7 @@ public class ReachC extends Check {
                 || !(e.getAttacked() instanceof Player)
                 || getDaedalus().isSotwMode()
                 || e.getAttacker().getAllowFlight()
-                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-            return;
-        }
+                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) return;
 
         Player damager = e.getAttacker();
         Player player = (Player) e.getAttacked();
@@ -97,9 +89,7 @@ public class ReachC extends Check {
             attackTime = reachTicks.get(damager);
         }
         double yawdif = Math.abs(180 - Math.abs(damager.getLocation().getYaw() - player.getLocation().getYaw()));
-        if (Latency.getLag(damager) > 92 || Latency.getLag(player) > 92) {
-            return;
-        }
+        if (Latency.getLag(damager) > 92 || Latency.getLag(player) > 92) return;
         double offsetsp = 0.0D;
         double lastHorizontal = 0.0D;
         double offsetsd = 0.0D;

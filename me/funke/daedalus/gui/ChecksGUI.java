@@ -35,7 +35,7 @@ public class ChecksGUI implements Listener {
         ChecksGUI.Daedalus = Daedalus;
         ItemStack checks = createItem(Material.COMPASS, 1, "&cChecks");
         ItemStack bannable = createItem(Material.REDSTONE, 1, "&cAuto Bans");
-        ItemStack timers = createItem(Material.WATCH, 1, "&cTimers", new String[0]);
+        ItemStack timers = createItem(Material.WATCH, 1, "&cTimers");
         ItemStack resetVio = createItem(Material.PAPER, 1, "&cReset Violations");
         ItemStack reload = createItem(Material.LAVA_BUCKET, 1, "&cReload");
         ItemStack info = createItem(Material.BOOK, 1, "&aInfo");
@@ -209,10 +209,10 @@ public class ChecksGUI implements Listener {
         int slot = 0;
         for (Check check : Daedalus.getChecks()) {
             if (Daedalus.getConfig().getBoolean("checks." + check.getIdentifier() + ".enabled")) {
-                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 5, 1, C.Green + check.getName(), new String[0]);
+                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 5, 1, C.Green + check.getName());
                 Daedaluschecks.setItem(slot, c);
             } else {
-                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 14, 1, C.Red + check.getName(), new String[0]);
+                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 14, 1, C.Red + check.getName());
                 Daedaluschecks.setItem(slot, c);
             }
             slot++;
@@ -229,10 +229,10 @@ public class ChecksGUI implements Listener {
         int slot = 0;
         for (Check check : Daedalus.getChecks()) {
             if (Daedalus.getConfig().getBoolean("checks." + check.getIdentifier() + ".bannable")) {
-                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 5, 1, C.Green + check.getName(), new String[0]);
+                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 5, 1, C.Green + check.getName());
                 Daedalusbannable.setItem(slot, c);
             } else {
-                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 14, 1, C.Red + check.getName(), new String[0]);
+                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 14, 1, C.Red + check.getName());
                 Daedalusbannable.setItem(slot, c);
             }
             slot++;
@@ -249,10 +249,10 @@ public class ChecksGUI implements Listener {
         int slot = 0;
         for (Check check : Daedalus.getChecks()) {
             if (Daedalus.getConfig().getBoolean("checks." + check.getIdentifier() + ".banTimer")) {
-                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 5, 1, C.Green + check.getName(), new String[0]);
+                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 5, 1, C.Green + check.getName());
                 DaedalusTimer.setItem(slot, c);
             } else {
-                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 14, 1, C.Red + check.getName(), new String[0]);
+                ItemStack c = createGlass(Material.STAINED_GLASS_PANE, 14, 1, C.Red + check.getName());
                 DaedalusTimer.setItem(slot, c);
             }
             slot++;
@@ -443,7 +443,6 @@ public class ChecksGUI implements Listener {
                             Daedalus.saveConfig();
                             Daedalus.reloadConfig();
                             check.setBannable(false);
-                            player.closeInventory();
                             openAutoBans(player);
                             return;
                         }
@@ -451,7 +450,6 @@ public class ChecksGUI implements Listener {
                         Daedalus.saveConfig();
                         Daedalus.reloadConfig();
                         check.setBannable(true);
-                        player.closeInventory();
                         openAutoBans(player);
                         return;
                     }

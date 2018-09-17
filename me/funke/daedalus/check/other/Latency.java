@@ -66,18 +66,10 @@ public class Latency implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void PacketPlayer(PacketPlayerEvent event) {
         Player player = event.getPlayer();
-        if (!Daedalus.isEnabled()) {
-            return;
-        }
-        if (player.getGameMode().equals(GameMode.CREATIVE)) {
-            return;
-        }
-        if (Daedalus.lag.getTPS() > 21.0D || Daedalus.lag.getTPS() < Daedalus.getTPSCancel()) {
-            return;
-        }
-        if (event.getType() != PacketPlayerType.FLYING) {
-            return;
-        }
+        if (!Daedalus.isEnabled()) return;
+        if (player.getGameMode().equals(GameMode.CREATIVE)) return;
+        if (Daedalus.lag.getTPS() > 21.0D || Daedalus.lag.getTPS() < Daedalus.getTPSCancel()) return;
+        if (event.getType() != PacketPlayerType.FLYING) return;
         int Count = 0;
         long Time = System.currentTimeMillis();
         if (Latency.packetTicks.containsKey(player.getUniqueId())) {

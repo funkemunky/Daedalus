@@ -11,13 +11,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.*;
 
-public class Timer extends Check {
+public class TimerA extends Check {
     private Map<UUID, Map.Entry<Integer, Long>> packets;
     private Map<UUID, Integer> verbose;
     private Map<UUID, Long> lastPacket;
     private List<Player> toCancel;
 
-    public Timer(me.funke.daedalus.Daedalus Daedalus) {
+    public TimerA(me.funke.daedalus.Daedalus Daedalus) {
         super("TimerA", "Timer (Type A)", Daedalus);
 
         packets = new HashMap<>();
@@ -41,17 +41,11 @@ public class Timer extends Check {
     @EventHandler
     public void PacketPlayer(PacketPlayerEvent event) {
         Player player = event.getPlayer();
-        if (!this.getDaedalus().isEnabled()) {
-            return;
-        }
+        if (!this.getDaedalus().isEnabled()) return;
 
-        if (player.hasPermission("daedalus.bypass")) {
-            return;
-        }
+        if (player.hasPermission("daedalus.bypass")) return;
 
-        if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-            return;
-        }
+        if (getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) return;
 
         long lastPacket = this.lastPacket.getOrDefault(player.getUniqueId(), 0L);
         int packets = 0;

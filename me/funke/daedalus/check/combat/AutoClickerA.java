@@ -39,10 +39,9 @@ public class AutoClickerA extends Check {
     @EventHandler
     public void onSwing(PacketSwingArmEvent e) {
         Player player = e.getPlayer();
-        if (getDaedalus().isSotwMode() || getDaedalus().getLag().getTPS() < 17 || player.hasPermission("daedalus.bypass") || Latency.getLag(player) > 100) {
+        if (getDaedalus().isSotwMode() || getDaedalus().getLag().getTPS() < 17 || player.hasPermission("daedalus.bypass") || Latency.getLag(player) > 100)
             return;
-        }
-        int clicks = this.clicks.getOrDefault(this, 0);
+        int clicks = this.clicks.getOrDefault(player.getUniqueId(), 0);
         long time = recording.getOrDefault(player.getUniqueId(), System.currentTimeMillis());
         if (UtilTime.elapsed(time, 1000L)) {
             if (clicks > 30) {

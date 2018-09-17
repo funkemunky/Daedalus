@@ -52,16 +52,12 @@ public class Regen extends Check {
     public void onHeal(EntityRegainHealthEvent event) {
         if (!event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.SATIATED)
                 || !(event.getEntity() instanceof Player)
-                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-            return;
-        }
+                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) return;
 
         Player player = (Player) event.getEntity();
 
         if (player.hasPermission("daedalus.bypass")
-                || player.getWorld().getDifficulty().equals(Difficulty.PEACEFUL)) {
-            return;
-        }
+                || player.getWorld().getDifficulty().equals(Difficulty.PEACEFUL)) return;
         int Count = 0;
         long Time = System.currentTimeMillis();
         if (FastHealTicks.containsKey(player.getUniqueId())) {

@@ -40,27 +40,21 @@ public class Criticals extends Check {
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Player) || !e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
+        if (!(e.getDamager() instanceof Player) || !e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK))
             return;
-        }
         Player player = (Player) e.getDamager();
-        if (player.getAllowFlight() || getDaedalus().LastVelocity.containsKey(player.getUniqueId()) || UtilCheat.slabsNear(player.getLocation()) || player.hasPermission("daedalus.bypass")) {
+        if (player.getAllowFlight() || getDaedalus().LastVelocity.containsKey(player.getUniqueId()) || UtilCheat.slabsNear(player.getLocation()) || player.hasPermission("daedalus.bypass"))
             return;
-        }
         Location pL = player.getLocation().clone();
         pL.add(0.0, player.getEyeHeight() + 1.0, 0.0);
-        if (UtilCheat.blocksNear(pL)) {
-            return;
-        }
+        if (UtilCheat.blocksNear(pL)) return;
         int Count = 0;
         long Time = System.currentTimeMillis();
         if (CritTicks.containsKey(player.getUniqueId())) {
             Count = CritTicks.get(player.getUniqueId()).getKey();
             Time = CritTicks.get(player.getUniqueId()).getValue();
         }
-        if (!FallDistance.containsKey(player.getUniqueId())) {
-            return;
-        }
+        if (!FallDistance.containsKey(player.getUniqueId())) return;
         double realFallDistance = FallDistance.get(player.getUniqueId());
         Count = player.getFallDistance() > 0.0 && !player.isOnGround() && realFallDistance == 0.0 ? ++Count : 0;
         if (CritTicks.containsKey(player.getUniqueId()) && UtilTime.elapsed(Time, 10000)) {

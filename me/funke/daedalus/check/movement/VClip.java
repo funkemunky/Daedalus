@@ -44,18 +44,14 @@ public class VClip extends Check {
 
     @EventHandler
     public void onTeleport(PlayerTeleportEvent e) {
-        if (e.getCause() != TeleportCause.UNKNOWN) {
-            return;
-        }
+        if (e.getCause() != TeleportCause.UNKNOWN) return;
     }
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
 
-        if (p.hasPermission("daedalus.bypass")) {
-            return;
-        }
+        if (p.hasPermission("daedalus.bypass")) return;
 
         Location to = e.getTo().clone();
         Location from = e.getFrom().clone();
@@ -69,9 +65,7 @@ public class VClip extends Check {
                 || e.getTo().getY() <= 0 || e.getTo().getY() >= p.getWorld().getMaxHeight()
                 || !UtilCheat.blocksNear(p)
                 || (p.getLocation().getY() < 0.0D)
-                || (p.getLocation().getY() > p.getWorld().getMaxHeight())) {
-            return;
-        }
+                || (p.getLocation().getY() > p.getWorld().getMaxHeight())) return;
 
         double yDist = from.getBlockY() - to.getBlockY();
         for (double y = 0; y < Math.abs(yDist); y++) {

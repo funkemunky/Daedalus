@@ -35,17 +35,13 @@ public class ReachA extends Check {
         if (!e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)
                 || !(e.getEntity() instanceof Player) || !(e.getDamager() instanceof Player)
                 || getDaedalus().isSotwMode()
-                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-            return;
-        }
+                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) return;
 
         Player player = (Player) e.getDamager();
         Player damaged = (Player) e.getEntity();
 
         if (player.hasPermission("daedalus.bypass")
-                || player.getAllowFlight()) {
-            return;
-        }
+                || player.getAllowFlight()) return;
 
         double YawDifference = Math.abs(180 - Math.abs(damaged.getLocation().getYaw() - player.getLocation().getYaw()));
         double Difference = UtilPlayer.getEyeLocation(player).distance(damaged.getEyeLocation()) - 0.35;

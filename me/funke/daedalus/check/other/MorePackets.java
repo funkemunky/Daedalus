@@ -58,25 +58,13 @@ public class MorePackets extends Check {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void PacketPlayer(PacketPlayerEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("daedalus.bypass")) {
-            return;
-        }
-        if (!getDaedalus().isEnabled()) {
-            return;
-        }
-        if (getDaedalus().isSotwMode()) {
-            return;
-        }
-        if (player.getGameMode().equals(GameMode.CREATIVE)) {
-            return;
-        }
-        if (getDaedalus().lag.getTPS() > 21.0D || getDaedalus().lag.getTPS() < getDaedalus().getTPSCancel()) {
-            return;
-        }
+        if (player.hasPermission("daedalus.bypass")) return;
+        if (!getDaedalus().isEnabled()) return;
+        if (getDaedalus().isSotwMode()) return;
+        if (player.getGameMode().equals(GameMode.CREATIVE)) return;
+        if (getDaedalus().lag.getTPS() > 21.0D || getDaedalus().lag.getTPS() < getDaedalus().getTPSCancel()) return;
 
-        if (getDaedalus().lag.getPing(player) > 200) {
-            return;
-        }
+        if (getDaedalus().lag.getPing(player) > 200) return;
         int Count = 0;
         long Time = System.currentTimeMillis();
         if (packetTicks.containsKey(player.getUniqueId())) {

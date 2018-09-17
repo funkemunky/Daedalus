@@ -39,13 +39,9 @@ public class AutoClickerB extends Check {
 
     @EventHandler
     public void UseEntity(PacketUseEntityEvent e) {
-        if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK || !((e.getAttacked()) instanceof Player)) {
-            return;
-        }
+        if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK || !((e.getAttacked()) instanceof Player)) return;
         Player damager = e.getAttacker();
-        if (damager.hasPermission("daedalus.bypass")) {
-            return;
-        }
+        if (damager.hasPermission("daedalus.bypass")) return;
         int Count = 0;
         long Time = System.currentTimeMillis();
         if (ClickTicks.containsKey(damager.getUniqueId())) {

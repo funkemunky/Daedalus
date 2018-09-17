@@ -18,9 +18,7 @@ public class Twitch extends Check {
 
     @EventHandler
     public void Player(PacketPlayerEvent e) {
-        if (e.getType() != PacketPlayerType.LOOK) {
-            return;
-        }
+        if (e.getType() != PacketPlayerType.LOOK) return;
         if ((e.getPitch() > 90.1F) || (e.getPitch() < -90.1F)) {
             getDaedalus().logCheat(this, e.getPlayer(), null, Chance.HIGH);
         }

@@ -25,13 +25,13 @@ public class AscensionB extends Check {
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         Player player = e.getPlayer();
-        if (player.getAllowFlight()) return;
         int verbose = this.verbose.getOrDefault(player, 0);
         float yDelta = (float) (e.getTo().getY() - e.getFrom().getY());
-        if (lastYMovement.containsKey(player) && Math.abs(yDelta - lastYMovement.get(player)) < 0.002) {
-            if (verbose++ > 5) {
-                Daedalus.Instance.logCheat(this, player, Math.abs(yDelta - lastYMovement.get(player)) + "<-" + 0.002, Chance.HIGH);
-            }
+        if (player.getAllowFlight()
+                || !lastYMovement.containsKey(player)
+                || Math.abs(yDelta - lastYMovement.get(player)) > 0.002) return;
+        if (verbose++ > 5) {
+            Daedalus.Instance.logCheat(this, player, Math.abs(yDelta - lastYMovement.get(player)) + "<-" + 0.002, Chance.HIGH);
         }
         lastYMovement.put(player, yDelta);
         this.verbose.put(player, verbose);

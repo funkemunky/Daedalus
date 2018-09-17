@@ -19,7 +19,7 @@ public class KillAuraB extends Check {
     public static Map<UUID, Map.Entry<Integer, Long>> AuraTicks;
 
     public KillAuraB(me.funke.daedalus.Daedalus Daedalus) {
-        super("KillAuraB", "Kill Aura (Hit Miss Ratio)", Daedalus);
+        super("KillAuraB", "KillAura (Hit Miss Ratio)", Daedalus);
 
         AuraTicks = new HashMap<>();
 
@@ -41,18 +41,14 @@ public class KillAuraB extends Check {
     public void UseEntity(PacketUseEntityEvent e) {
         if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK
                 || !((e.getAttacked()) instanceof Player)
-                || getDaedalus().isSotwMode()) {
-            return;
-        }
+                || getDaedalus().isSotwMode()) return;
 
         Player damager = e.getAttacker();
         Player player = (Player) e.getAttacked();
 
         if (damager.hasPermission("daedalus.bypass")
                 || damager.getAllowFlight()
-                || player.getAllowFlight()) {
-            return;
-        }
+                || player.getAllowFlight()) return;
 
         int Count = 0;
         long Time = System.currentTimeMillis();
@@ -78,9 +74,7 @@ public class KillAuraB extends Check {
             LimitOffset += 300.0;
         } else if (Ping >= 350 && Ping < 400) {
             LimitOffset += 400.0;
-        } else if (Ping > 400) {
-            return;
-        }
+        } else if (Ping > 400) return;
         if (OffsetXZ > LimitOffset * 4.0) {
             Count += 12;
         } else if (OffsetXZ > LimitOffset * 3.0) {

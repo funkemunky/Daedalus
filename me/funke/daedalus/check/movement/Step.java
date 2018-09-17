@@ -70,14 +70,10 @@ public class Step extends Check {
                 || UtilPlayer.isOnClimbable(player, 0)
                 || UtilCheat.slabsNear(player.getLocation())
                 || player.getLocation().getBlock().getType().equals(Material.WATER)
-                || player.getLocation().getBlock().getType().equals(Material.STATIONARY_WATER)) {
-            return;
-        }
+                || player.getLocation().getBlock().getType().equals(Material.STATIONARY_WATER)) return;
 
         double yDist = event.getTo().getY() - event.getFrom().getY();
-        if (yDist < 0) {
-            return;
-        }
+        if (yDist < 0) return;
         double YSpeed = UtilMath.offset(UtilMath.getVerticalVector(event.getFrom().toVector()),
                 UtilMath.getVerticalVector(event.getTo().toVector()));
         if (yDist > 0.95) {

@@ -21,7 +21,7 @@ public class KillAuraC extends Check {
     public static Map<UUID, Location> LastLocation;
 
     public KillAuraC(final me.funke.daedalus.Daedalus Daedalus) {
-        super("KillAuraC", "Kill Aura (Aimbot)", Daedalus);
+        super("KillAuraC", "KillAura (Aimbot)", Daedalus);
         AimbotTicks = new HashMap<>();
         Differences = new HashMap<>();
         LastLocation = new HashMap<>();
@@ -44,14 +44,10 @@ public class KillAuraC extends Check {
     @EventHandler
     public void UseEntity(PacketUseEntityEvent e) {
         if (e.getAction() != EnumWrappers.EntityUseAction.ATTACK
-                || !((e.getAttacked()) instanceof Player)) {
-            return;
-        }
+                || !((e.getAttacked()) instanceof Player)) return;
         Player damager = e.getAttacker();
         if (damager.getAllowFlight()
-                || damager.hasPermission("daedalus.bypass")) {
-            return;
-        }
+                || damager.hasPermission("daedalus.bypass")) return;
 
         Location from = null;
         Location to = damager.getLocation();
@@ -69,13 +65,9 @@ public class KillAuraC extends Check {
             Count = AimbotTicks.get(damager.getUniqueId()).getKey();
             Time = AimbotTicks.get(damager.getUniqueId()).getValue();
         }
-        if (from == null || (to.getX() == from.getX() && to.getZ() == from.getZ())) {
-            return;
-        }
+        if (from == null || (to.getX() == from.getX() && to.getZ() == from.getZ())) return;
         double Difference = Math.abs(to.getYaw() - from.getYaw());
-        if (Difference == 0.0) {
-            return;
-        }
+        if (Difference == 0.0) return;
 
         if (Difference > 2.4) {
             this.dumplog(damager, "Difference: " + Difference);

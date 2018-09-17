@@ -1,6 +1,7 @@
 name: Daedalus
 version: 54
 author: funkemunky
+authors: [XTasyCode, Artel]
 main: me.funke.daedalus.Daedalus
 load: STARTUP
 depend: [ProtocolLib]

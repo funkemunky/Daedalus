@@ -30,19 +30,13 @@ public class TimerB extends Check {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onMove(PlayerMoveEvent e) {
-        if (!getDaedalus().isEnabled()) {
-            return;
-        }
+        if (!getDaedalus().isEnabled()) return;
         Player player = e.getPlayer();
 
         if (e.getFrom().getX() == e.getTo().getX() && e.getFrom().getZ() == e.getTo().getZ()
-                && e.getFrom().getY() == e.getTo().getY()) {
-            return;
-        }
+                && e.getFrom().getY() == e.getTo().getY()) return;
         if (getDaedalus().isSotwMode() || player.hasPermission("daedalus.bypass")
-                || Latency.getLag(player) > 500) {
-            return;
-        }
+                || Latency.getLag(player) > 500) return;
         int Count = 0;
         long Time = System.currentTimeMillis();
         if (timerTicks.containsKey(player.getUniqueId())) {

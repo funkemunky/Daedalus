@@ -94,9 +94,7 @@ public class Test extends Check {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
-        if (e.getTo().getX() == e.getFrom().getX() && e.getTo().getZ() == e.getFrom().getZ()) {
-            return;
-        }
+        if (e.getTo().getX() == e.getFrom().getX() && e.getTo().getZ() == e.getFrom().getZ()) return;
         Player player = e.getPlayer();
         double YSpeed = UtilMath.offset(UtilMath.getHorizontalVector(e.getFrom().toVector()),
                 UtilMath.getHorizontalVector(e.getTo().toVector()));

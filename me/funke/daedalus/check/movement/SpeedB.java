@@ -125,9 +125,7 @@ public class SpeedB extends Check {
                 || p.getNoDamageTicks() != 0
                 || p.getVehicle() != null
                 || p.getGameMode().equals(GameMode.CREATIVE)
-                || p.getAllowFlight()) {
-            return;
-        }
+                || p.getAllowFlight()) return;
 
         double Airmaxspeed = 0.4;
         double maxSpeed = 0.42;

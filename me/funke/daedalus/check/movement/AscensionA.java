@@ -38,9 +38,7 @@ public class AscensionA extends Check {
                 || !getDaedalus().isEnabled()
                 || player.getAllowFlight()
                 || player.getVehicle() != null
-                || !UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(player.getUniqueId(), 0L), 4200L)) {
-            return;
-        }
+                || !UtilTime.elapsed(getDaedalus().LastVelocity.getOrDefault(player.getUniqueId(), 0L), 4200L)) return;
         long Time = System.currentTimeMillis();
         double TotalBlocks = 0.0D;
         if (AscensionTicks.containsKey(player.getUniqueId())) {

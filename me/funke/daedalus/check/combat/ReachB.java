@@ -35,9 +35,7 @@ public class ReachB extends Check {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        if (event.getFrom().getX() == event.getTo().getX() && event.getFrom().getZ() == event.getTo().getZ()) {
-            return;
-        }
+        if (event.getFrom().getX() == event.getTo().getX() && event.getFrom().getZ() == event.getTo().getZ()) return;
         double OffsetXZ = UtilMath.offset(UtilMath.getHorizontalVector(event.getFrom().toVector()),
                 UtilMath.getHorizontalVector(event.getTo().toVector()));
         double horizontal = Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2.0)
@@ -50,9 +48,7 @@ public class ReachB extends Check {
     public void onDamage(EntityDamageByEntityEvent e) {
         if (!(e.getDamager() instanceof Player)
                 || !(e.getEntity() instanceof Player)
-                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) {
-            return;
-        }
+                || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()) return;
         Player damager = (Player) e.getDamager();
         Player player = (Player) e.getEntity();
         double Reach = UtilMath.trim(2, UtilPlayer.getEyeLocation(damager).distance(player.getEyeLocation()) - 0.32);
@@ -61,9 +57,7 @@ public class ReachB extends Check {
         double Difference;
 
         if (damager.getAllowFlight()
-                || player.getAllowFlight()) {
-            return;
-        }
+                || player.getAllowFlight()) return;
 
         if (!count.containsKey(damager)) {
             count.put(damager, 0);
@@ -81,9 +75,7 @@ public class ReachB extends Check {
             offsets = (this.offsets.get(damager)).getKey();
             lastHorizontal = (this.offsets.get(damager)).getValue();
         }
-        if (Latency.getLag(damager) > 92 || Latency.getLag(player) > 92) {
-            return;
-        }
+        if (Latency.getLag(damager) > 92 || Latency.getLag(player) > 92) return;
         speedToVelocityDif = Math.abs(offsets - player.getVelocity().length());
         MaxReach += (YawDifference * 0.001);
         MaxReach += lastHorizontal * 1.5;

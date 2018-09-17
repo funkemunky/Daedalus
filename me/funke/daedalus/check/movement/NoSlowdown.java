@@ -37,9 +37,9 @@ public class NoSlowdown extends Check {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void BowShoot(final EntityShootBowEvent event) {
+        if (!(event.getEntity() instanceof Player)) return;
         final Player player = (Player) event.getEntity();
         if (!this.isEnabled()
-                || !(event.getEntity() instanceof Player)
                 || player.isInsideVehicle()
                 || !player.isSprinting()) return;
         getDaedalus().logCheat(this, player, "Sprinting while bowing.", Chance.LIKELY);

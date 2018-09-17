@@ -39,9 +39,7 @@ public class Fly extends Check {
 
     @EventHandler
     public void CheckFlyA(PlayerMoveEvent event) {
-        if (!getDaedalus().isEnabled()) {
-            return;
-        }
+        if (!getDaedalus().isEnabled()) return;
         Player player = event.getPlayer();
 
         /** False positive/optimization check **/
@@ -54,9 +52,7 @@ public class Fly extends Check {
                 || getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()
                 || UtilPlayer.isInWater(player)
                 || UtilCheat.isInWeb(player)
-                || Latency.getLag(player) > 92) {
-            return;
-        }
+                || Latency.getLag(player) > 92) return;
 
         if (UtilCheat.blocksNear(player.getLocation())) {
             flyTicksA.remove(player.getUniqueId());

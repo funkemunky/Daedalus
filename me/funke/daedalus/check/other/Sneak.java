@@ -33,17 +33,11 @@ public class Sneak extends Check {
 
     @EventHandler
     public void EntityAction(PacketEntityActionEvent event) {
-        if (event.getAction() != 1) {
-            return;
-        }
+        if (event.getAction() != 1) return;
         Player player = event.getPlayer();
 
-        if (player.hasPermission("daedalus.bypass")) {
-            return;
-        }
-        if (getDaedalus().isSotwMode()) {
-            return;
-        }
+        if (player.hasPermission("daedalus.bypass")) return;
+        if (getDaedalus().isSotwMode()) return;
 
         int Count = 0;
         long Time = -1L;

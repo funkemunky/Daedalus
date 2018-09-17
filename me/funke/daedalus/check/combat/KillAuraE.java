@@ -17,7 +17,7 @@ public class KillAuraE extends Check {
     public static Map<Player, Map.Entry<Integer, Long>> lastAttack;
 
     public KillAuraE(me.funke.daedalus.Daedalus Daedalus) {
-        super("KillAuraE", "Kill Aura (MultiAura)", Daedalus);
+        super("KillAuraE", "KillAura (MultiAura)", Daedalus);
 
         lastAttack = new HashMap<>();
 
@@ -39,9 +39,7 @@ public class KillAuraE extends Check {
         if (e.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK
                 || !((e.getEntity()) instanceof Player)
                 || !(e.getDamager() instanceof Player)
-                || getDaedalus().isSotwMode()) {
-            return;
-        }
+                || getDaedalus().isSotwMode()) return;
 
         Player player = (Player) e.getDamager();
         if (lastAttack.containsKey(player)) {

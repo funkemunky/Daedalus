@@ -25,9 +25,7 @@ public class FreeCam extends Check {
 
     @EventHandler(ignoreCancelled = true)
     public void checkFreecam(PlayerInteractEvent e) {
-        if (e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getAction() != Action.LEFT_CLICK_BLOCK) {
-            return;
-        }
+        if (e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getAction() != Action.LEFT_CLICK_BLOCK) return;
         boolean isValid = false;
         Player player = e.getPlayer();
         Location scanLocation = e.getClickedBlock().getRelative(e.getBlockFace()).getLocation();

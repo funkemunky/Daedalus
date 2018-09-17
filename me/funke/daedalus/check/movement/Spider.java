@@ -13,15 +13,13 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.*;
 
 public class Spider extends Check {
-
     private Map<UUID, Map.Entry<Long, Double>> AscensionTicks = new HashMap<>();
 
+    // TODO: SEVERE: Fix false positives with jumping next to blocks, disabled until then.
     public Spider(me.funke.daedalus.Daedalus Daedalus) {
-        super("WallClimb", "WallClimb", Daedalus);
-
+        super("Spider", "Spider", Daedalus);
+        this.setEnabled(false);
         this.setBannable(false);
-        this.setEnabled(true);
-
         setMaxViolations(5);
     }
 
@@ -34,10 +32,7 @@ public class Spider extends Check {
                 || player.getAllowFlight()
                 || player.getVehicle() != null
                 || !UtilBlock.isInAir(player)
-                || getDaedalus().LastVelocity.containsKey(player.getUniqueId())) {
-            return;
-        }
-
+                || getDaedalus().LastVelocity.containsKey(player.getUniqueId())) return;
         long Time = System.currentTimeMillis();
         double TotalBlocks = 0.0D;
         if (this.AscensionTicks.containsKey(player.getUniqueId())) {
@@ -45,9 +40,7 @@ public class Spider extends Check {
             TotalBlocks = AscensionTicks.get(player.getUniqueId()).getValue();
         }
         long MS = System.currentTimeMillis() - Time;
-        double OffsetY = UtilMath.offset(UtilMath.getVerticalVector(event.getFrom().toVector()),
-                UtilMath.getVerticalVector(event.getTo().toVector()));
-
+        double OffsetY = UtilMath.offset(UtilMath.getVerticalVector(event.getFrom().toVector()), UtilMath.getVerticalVector(event.getTo().toVector()));
         boolean ya = false;
         List<Material> Types = new ArrayList<>();
         Types.add(player.getLocation().getBlock().getRelative(BlockFace.SOUTH).getType());
@@ -55,7 +48,7 @@ public class Spider extends Check {
         Types.add(player.getLocation().getBlock().getRelative(BlockFace.WEST).getType());
         Types.add(player.getLocation().getBlock().getRelative(BlockFace.EAST).getType());
         for (Material Type : Types) {
-            if ((Type.isSolid()) && (Type != Material.LADDER) && (Type != Material.VINE)) {
+            if ((Type.isSolid()) && (Type != Material.LADDER) && (Type != Material.VINE) && (Type != Material.AIR)) {
                 ya = true;
                 break;
             }
@@ -64,7 +57,7 @@ public class Spider extends Check {
             TotalBlocks += OffsetY;
         } else if ((!ya) || (!UtilCheat.blocksNear(player))) {
             TotalBlocks = 0.0D;
-        } else if ((ya) && ((event.getFrom().getY() > event.getTo().getY()) || (UtilPlayer.isOnGround(player)))) {
+        } else if (((event.getFrom().getY() > event.getTo().getY()) || (UtilPlayer.isOnGround(player)))) {
             TotalBlocks = 0.0D;
         }
         double Limit = 0.5D;
@@ -79,14 +72,12 @@ public class Spider extends Check {
         }
         if ((ya) && (TotalBlocks > Limit)) {
             if (MS > 500L) {
-                getDaedalus().logCheat(this, player, null, Chance.LIKELY);
+                getDaedalus().logCheat(this, player, TotalBlocks + " > " + Limit, Chance.LIKELY);
                 Time = System.currentTimeMillis();
             }
         } else {
             Time = System.currentTimeMillis();
         }
-        this.AscensionTicks.put(player.getUniqueId(),
-                new AbstractMap.SimpleEntry<>(Time, TotalBlocks));
+        this.AscensionTicks.put(player.getUniqueId(), new AbstractMap.SimpleEntry<>(Time, TotalBlocks));
     }
-
 }
