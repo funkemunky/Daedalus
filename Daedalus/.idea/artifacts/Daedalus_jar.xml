@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Daedalus:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Daedalus_jar</output-path>
+    <root id="archive" name="Daedalus.jar">
+      <element id="module-output" name="Daedalus" />
+    </root>
+  </artifact>
+</component>
