@@ -6,6 +6,7 @@ import cc.funkemunky.daedalus.Daedalus;
 import cc.funkemunky.daedalus.api.checks.CancelType;
 import cc.funkemunky.daedalus.api.checks.Check;
 import cc.funkemunky.daedalus.api.utils.TickTimer;
+import cc.funkemunky.daedalus.impl.checks.combat.Killaura;
 import cc.funkemunky.daedalus.impl.checks.movement.Fly;
 import cc.funkemunky.daedalus.impl.checks.movement.Speed;
 import com.google.common.collect.Lists;
@@ -49,6 +50,7 @@ public class PlayerData {
     }
 
     private void loadChecks() {
+        registerCheck(new Killaura("Killaura", CancelType.COMBAT, this));
         registerCheck(new Fly("Fly", CancelType.MOTION, this));
         registerCheck(new Speed("Speed", CancelType.MOTION, this));
     }

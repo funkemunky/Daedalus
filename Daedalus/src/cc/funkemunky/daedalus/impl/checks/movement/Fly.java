@@ -16,7 +16,7 @@ public class Fly extends Check {
         super(name, cancelType, data);
     }
 
-    private float lastMotion;
+    private float lastMotion, lastAcceleration;
     @Override
     public void onPacket(Object packet, String packetType) {
 
@@ -32,7 +32,7 @@ public class Fly extends Check {
 
 
         if(getData().isFullyInAir()
-                && getData().isGeneralCancel()
+                && !getData().isGeneralCancel()
                 && !getData().isOnClimbable()
                 && !getData().isInLiquid()
                 && !getData().isInWeb()
@@ -41,8 +41,16 @@ public class Fly extends Check {
             flag(motionY + ">-" + predictedY, true);
         }
 
+        if(String.valueOf(acceleration).contains("E")
+                && String.valueOf(lastAcceleration).contains("E")
+                && getData().isFullyInAir()
+                && !getData().isGeneralCancel()) {
+            flag(acceleration + "-<1E-3", true);
+        }
+
         //Bukkit.broadcastMessage(motionY + ", " + predictedY + ", " + acceleration);
 
+        lastAcceleration = acceleration;
         lastMotion = (float) (e.getTo().getY() - e.getFrom().getY());
     }
 }
