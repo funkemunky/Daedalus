@@ -15,15 +15,7 @@ public class DataManager {
     }
 
     public PlayerData getPlayerData(UUID uuid) {
-        Optional<PlayerData> opData = dataObjects.stream().filter(data -> data.getUuid().equals(uuid)).findFirst();
-
-        if(opData.isPresent()) {
-            return opData.get();
-        } else {
-            PlayerData data = new PlayerData(uuid);
-            dataObjects.add(data);
-            return data;
-        }
+        return dataObjects.stream().filter(data -> data.getUuid().equals(uuid)).findFirst().orElse(null);
     }
 
     public void addData(UUID uuid) {

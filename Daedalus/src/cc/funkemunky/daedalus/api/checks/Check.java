@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 
 @Getter
 @Setter
@@ -20,8 +21,15 @@ public abstract class Check implements Listener, org.bukkit.event.Listener {
     @Setter
     private static int vl;
 
-    public void flag(String information, boolean cancel) {
+    protected void flag(String information, boolean cancel) {
         vl++;
+
+        if(cancel) data.setCancelType(cancelType);
+
         Bukkit.getOnlinePlayers().stream().filter(player -> player.hasPermission("daedalus.alerts")).forEach(player -> player.sendMessage(Color.translate("&8[&4&lDaedalus&8] &c" + data.getPlayer().getName() + " &7has failed &c" + getName() + " &8(&c" + vl + "&8) &8[&7&o" + information + "&8]")));
     }
+
+    public abstract void onPacket(Object packet, String packetType);
+
+    public abstract void onBukkitEvent(Event event);
 }
