@@ -6,10 +6,12 @@ import cc.funkemunky.api.event.custom.PacketSendEvent;
 import cc.funkemunky.api.event.system.EventMethod;
 import cc.funkemunky.api.event.system.Listener;
 import cc.funkemunky.api.tinyprotocol.api.Packet;
+import cc.funkemunky.api.tinyprotocol.api.ProtocolVersion;
 import cc.funkemunky.api.tinyprotocol.api.TinyProtocolHandler;
 import cc.funkemunky.api.tinyprotocol.packet.in.WrappedInAbilitiesPacket;
 import cc.funkemunky.api.tinyprotocol.packet.in.WrappedInFlyingPacket;
 import cc.funkemunky.api.tinyprotocol.packet.in.WrappedInTransactionPacket;
+import cc.funkemunky.api.tinyprotocol.packet.out.WrappedOutEntityMetadata;
 import cc.funkemunky.api.tinyprotocol.packet.out.WrappedOutTransaction;
 import cc.funkemunky.api.tinyprotocol.packet.out.WrappedOutVelocityPacket;
 import cc.funkemunky.api.utils.BoundingBox;
@@ -51,6 +53,15 @@ public class PacketListeners implements Listener {
                             data.getLastVelocity().reset();
                             data.setLastVelocityVector(vector);
                         }
+                    }
+                    break;
+                }
+                case Packet.Server.ENTITY_METADATA: {
+                    WrappedOutEntityMetadata packet = new WrappedOutEntityMetadata(event.getPacket(), event.getPlayer());
+
+                    if(ProtocolVersion.getGameVersion().isOrAbove(ProtocolVersion.V1_13) && packet.getObjects().size() > 6) {
+                        int rt = ((Byte)packet.getObjects().get(6).getObject() & 0x04);
+                        data.setRiptiding(rt == 1);
                     }
                     break;
                 }
@@ -96,7 +107,7 @@ public class PacketListeners implements Listener {
                         data.setTo(new Location(event.getPlayer().getWorld(), 0,0,0));
                     }
 
-                    data.setFrom(data.getTo());
+                    data.setFrom(data.getTo().clone());
                     if(packet.isPos()) {
                         data.getTo().setX(packet.getX());
                         data.getTo().setY(packet.getY());
@@ -138,6 +149,8 @@ public class PacketListeners implements Listener {
                         data.getTo().setYaw(packet.getYaw());
                         data.getTo().setPitch(packet.getPitch());
                     }
+
+                    data.setGeneralCancel(data.isAbleToFly() || data.isRiptiding() || data.getLastVelocity().hasNotPassed(40));
                     break;
                 }
             }

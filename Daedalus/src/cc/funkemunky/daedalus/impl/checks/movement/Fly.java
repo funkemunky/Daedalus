@@ -32,13 +32,16 @@ public class Fly extends Check {
 
 
         if(getData().isFullyInAir()
-                && getData().getLastVelocity().hasPassed(40)
+                && getData().isGeneralCancel()
+                && !getData().isOnClimbable()
+                && !getData().isInLiquid()
+                && !getData().isInWeb()
                 && MathUtils.getDelta(motionY, predictedY) > 0.1
                 && (acceleration < -0.07 || acceleration > -0.084)) {
             flag(motionY + ">-" + predictedY, true);
         }
 
-        Bukkit.broadcastMessage(motionY + ", " + predictedY + ", " + acceleration);
+        //Bukkit.broadcastMessage(motionY + ", " + predictedY + ", " + acceleration);
 
         lastMotion = (float) (e.getTo().getY() - e.getFrom().getY());
     }

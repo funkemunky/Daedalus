@@ -7,6 +7,7 @@ import cc.funkemunky.daedalus.api.checks.CancelType;
 import cc.funkemunky.daedalus.api.checks.Check;
 import cc.funkemunky.daedalus.api.utils.TickTimer;
 import cc.funkemunky.daedalus.impl.checks.movement.Fly;
+import cc.funkemunky.daedalus.impl.checks.movement.Speed;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,9 +25,9 @@ public class PlayerData {
     private UUID uuid;
     private List<Check> checks = Lists.newArrayList();
     private CancelType cancelType = CancelType.NONE;
-    private Location setbackLocation, to, from;
+    public Location setbackLocation, to, from;
     private boolean onGround, fullyInAir, inLiquid, blocksOnTop, pistonsNear, onHalfBlock, onClimbable, onIce, collidesHorizontally,
-            inWeb, ableToFly, creativeMode, invulnerable, flying, onSlimeBefore;
+            inWeb, ableToFly, creativeMode, invulnerable, flying, onSlimeBefore, isRiptiding = false, generalCancel;
     private Vector lastVelocityVector;
     private BoundingBox boundingBox;
     private TickTimer lastMovementCancel = new TickTimer(), lastVelocity = new TickTimer(), lastServerPos = new TickTimer();
@@ -49,6 +50,7 @@ public class PlayerData {
 
     private void loadChecks() {
         registerCheck(new Fly("Fly", CancelType.MOTION, this));
+        registerCheck(new Speed("Speed", CancelType.MOTION, this));
     }
 
     public Player getPlayer() {
