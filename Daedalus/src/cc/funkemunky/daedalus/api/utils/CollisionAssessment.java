@@ -36,7 +36,7 @@ public class CollisionAssessment {
 
         if (BlockUtils.isSolid(block)) {
             if (bb.getMinimum().getY() < (playerBox.getMinimum().getY() + 0.1)) {
-                if(bb.collidesVertically(playerBox.subtract(0, 0.1f,0,0,0,0))) {
+                if(bb.collidesVertically(playerBox.subtract(0, 0.001f,0,0,0,0))) {
                     onGround = true;
                     fullyInAir = false;
 
@@ -48,7 +48,7 @@ public class CollisionAssessment {
                 }
             }
 
-            if ((bb.getMaximum().getY() + 0.1) > playerBox.getMaximum().getY() && bb.collidesVertically(playerBox.add(0, 0, 0, 0, 0.35f, 0))) {
+            if ((bb.getMaximum().getY() + 0.1) > playerBox.getMaximum().getY() && bb.collidesVertically(playerBox.add(0, 0, 0, 0, 0.5f, 0))) {
                 blocksOnTop = true;
             }
 
