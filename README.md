@@ -1,1 +1,3 @@
-Thanks to all of you for a great time! Unfortunately, I have to end this one. One good thing though, everyone gets source for free. Also, everyone has permission to make forks since the source is released (duh!).
+Project is coming back and is being recoded.
+
+See on spigot: https://www.spigotmc.org/resources/daedalus-advanced-anticheat-a-better-idea-than-the-spork.49215/
