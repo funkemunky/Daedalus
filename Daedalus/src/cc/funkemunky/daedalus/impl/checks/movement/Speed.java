@@ -7,7 +7,6 @@ import cc.funkemunky.daedalus.api.checks.CancelType;
 import cc.funkemunky.daedalus.api.checks.Check;
 import cc.funkemunky.daedalus.api.data.PlayerData;
 import cc.funkemunky.daedalus.api.utils.Packets;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -47,8 +46,6 @@ public class Speed extends Check {
         } else {
             verbose = Math.max(0, verbose - 1);
         }
-
-        //Bukkit.broadcastMessage(verbose + ": " + motionXZ + ">-" + baseSpeed + ", " + getData().getTo().getX() + ", " + getData().getFrom().getX()) ;
     }
 
     @Override
