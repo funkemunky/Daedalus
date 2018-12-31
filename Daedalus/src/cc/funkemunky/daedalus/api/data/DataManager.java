@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class DataManager {
