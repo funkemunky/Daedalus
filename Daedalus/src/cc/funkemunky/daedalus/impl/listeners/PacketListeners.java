@@ -121,13 +121,13 @@ public class PacketListeners implements Listener {
 
                         data.setOnGround(assessment.isOnGround());
                         data.setBlocksOnTop(assessment.isBlocksOnTop());
-                        data.setCollidesHorizontally(data.isCollidesHorizontally());
+                        data.setCollidesHorizontally(assessment.isCollidesHorizontally());
                         data.setInLiquid(assessment.isInLiquid());
-                        data.setOnHalfBlock(data.isOnHalfBlock());
-                        data.setOnIce(data.isOnIce());
-                        data.setPistonsNear(data.isPistonsNear());
-                        data.setInWeb(data.isInWeb());
-                        data.setOnClimbable(data.isOnClimbable());
+                        data.setOnHalfBlock(assessment.isOnHalfBlock());
+                        data.setOnIce(assessment.isOnIce());
+                        data.setPistonsNear(assessment.isPistonsNear());
+                        data.setInWeb(assessment.isInWeb());
+                        data.setOnClimbable(assessment.isOnClimbable());
                         data.setFullyInAir(assessment.isFullyInAir());
 
                         event.setCancelled(true);

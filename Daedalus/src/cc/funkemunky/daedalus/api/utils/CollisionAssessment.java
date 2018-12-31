@@ -66,7 +66,6 @@ public class CollisionAssessment {
 
             if (bb.collidesHorizontally(playerBox.grow(0.05f + (ProtocolVersion.getGameVersion().isOrAbove(ProtocolVersion.V1_13) ? 0.05f : 0),0.04f,0.05f + (ProtocolVersion.getGameVersion().isOrAbove(ProtocolVersion.V1_13) ? 0.05f : 0)))) {
                 collidesHorizontally = true;
-
             }
 
             if (BlockUtils.isClimbableBlock(block) && playerBox.grow(0.3f, 0, 0.3f).collidesHorizontally(bb)) {
