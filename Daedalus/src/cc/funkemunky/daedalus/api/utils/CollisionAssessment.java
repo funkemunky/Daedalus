@@ -16,6 +16,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+/* We use this to process the bounding boxes collided around the player for our checks to use as utils */
 public class CollisionAssessment {
     private PlayerData data;
     private boolean onGround, fullyInAir, inLiquid, blocksOnTop, pistonsNear, onHalfBlock, onClimbable, onIce, collidesHorizontally, inWeb, onSlime;
@@ -68,7 +69,7 @@ public class CollisionAssessment {
                 collidesHorizontally = true;
             }
 
-            if (BlockUtils.isClimbableBlock(block) && playerBox.grow(0.3f, 0, 0.3f).collidesHorizontally(bb)) {
+            if (BlockUtils.isClimbableBlock(block) && playerBox.grow(0.45f, 0, 0.45f).collidesHorizontally(bb)) {
                 onClimbable = true;
             }
         } else {

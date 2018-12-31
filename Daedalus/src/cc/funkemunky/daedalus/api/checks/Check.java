@@ -12,14 +12,18 @@ import org.bukkit.event.Event;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public abstract class Check implements Listener, org.bukkit.event.Listener {
     private String name;
     private CancelType cancelType;
     private PlayerData data;
-    @Getter
-    @Setter
-    private static int vl;
+    private int vl;
+
+    public Check(String name, CancelType cancelType, PlayerData data) {
+        this.name = name;
+        this.cancelType = cancelType;
+        this.data = data;
+        vl = 0;
+    }
 
     protected void flag(String information, boolean cancel) {
         vl++;
