@@ -1,11 +1,13 @@
 package cc.funkemunky.daedalus.api.data;
 
 import com.google.common.collect.Lists;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 
 import java.util.List;
 import java.util.UUID;
 
+@Getter
 public class DataManager {
     private List<PlayerData> dataObjects = Lists.newArrayList();
 

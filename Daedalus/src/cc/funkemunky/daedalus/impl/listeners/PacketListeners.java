@@ -20,6 +20,7 @@ import cc.funkemunky.daedalus.Daedalus;
 import cc.funkemunky.daedalus.api.data.PlayerData;
 import cc.funkemunky.daedalus.api.utils.CollisionAssessment;
 import cc.funkemunky.daedalus.api.utils.Packets;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
@@ -30,6 +31,7 @@ public class PacketListeners implements Listener {
 
     @EventMethod
     public void onEvent(PacketSendEvent event) {
+        if(event.getPlayer() == null) return;
         PlayerData data = Daedalus.getInstance().getDataManager().getPlayerData(event.getPlayer().getUniqueId());
 
         if(data != null) {
@@ -71,6 +73,7 @@ public class PacketListeners implements Listener {
     }
     @EventMethod
     public void onEvent(PacketRecieveEvent event) {
+        if(event.getPlayer() == null) return;
         PlayerData data = Daedalus.getInstance().getDataManager().getPlayerData(event.getPlayer().getUniqueId());
 
         if(data != null) {

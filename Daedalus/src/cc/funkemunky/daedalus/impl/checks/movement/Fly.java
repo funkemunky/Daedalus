@@ -30,7 +30,7 @@ public class Fly extends Check {
                 && !getData().isOnClimbable()
                 && !getData().isInLiquid()
                 && !getData().isInWeb()) {
-            flag("t: low; " + acceleration + "-<1E-4", true);
+            flag("t: low; " + motionY + "≈" + lastMotionY, true);
         }
 
         /* This is to check for large amounts of instant acceleration to counter any fly which tries bypass in this manner  */
@@ -42,23 +42,11 @@ public class Fly extends Check {
             //We have to add a verbose since this check isn't 100% accurate and therefore can have issues.
             //However, we can instantly flag if they are already in the air since a large delta between velocities is impossible.
             if(verbose++ > 2 || (acceleration > 0.5 && getData().getAirTicks() > 1)) {
-                flag("t: high: " + acceleration + ">-0.1", true);
+                flag("t: high; " + motionY + ">-" + lastMotionY, true);
             }
         } else {
             verbose = 0;
         }
-
-        /* Here we check if there is any acceleration opposed to deceleration in the air, which is impossible with a vanilla client
-         * This is different than the last check since it checks if the next velocity is higher than the last, while the last one just checks
-         * for a large difference, whether its faster or slower. */
-        if(getData().isFullyInAir() //we check if the player doesn't have blocks 1 full block below as an added protection against airTicks messing up.
-                && getData().airTicks > 2 // We check if the ticks are greater than 2 to prevent issues when jumping off the ground.
-                && !getData().isInLiquid() // A player in water can register as in the air.
-                && motionY > lastMotionY) {
-            flag(motionY + ">-" + lastMotionY, true);
-        }
-
-        //Bukkit.broadcastMessage(motionY + ", " + predictedY + ", " + acceleration);
 
         lastAccelerationPacket = acceleration;
         lastMotionY = motionY;

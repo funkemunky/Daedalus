@@ -18,16 +18,18 @@ public class Speed extends Check {
         super(name, cancelType, data);
     }
 
-    private int verbose;
+    private int verbose, verboseB;
     private float lastMotionXZ;
 
     @Override
     public void onPacket(Object packet, String packetType) {
+        //The client will always send a position packet when teleported or dictated to move by the server, so we need to account for that to prevent false-positives.
+        if(getData().getLastServerPos().hasNotPassed(4)) return;
         Location to = getData().getTo();
         Location from = getData().getFrom();
 
         /* We we do just a basic calculation of the maximum allowed movement of a player */
-        float motionXZ = (float) Math.hypot(to.getX() - from.getX(), to.getZ() - from.getZ());
+        float motionXZ = (float) Math.hypot(to.getX() - from.getX(), to.getZ() - from.getZ()), acceleration = motionXZ - lastMotionXZ;
 
         float baseSpeed = getData().isOnGround() ? 0.3f : 0.34f;
 
@@ -42,7 +44,7 @@ public class Speed extends Check {
 
         if (motionXZ > baseSpeed && !getData().isGeneralCancel()) {
             if ((verbose+= 2) > 40) { //The reason we do a verbose like this is to have a lighter check while preventing false positives.
-                flag(MathUtils.round(motionXZ, 4) + ">-" + MathUtils.round(baseSpeed, 4),  true);
+                flag("t: max;" + MathUtils.round(motionXZ, 4) + ">-" + MathUtils.round(baseSpeed, 4),  true);
                 verbose = 20;
             }
         } else {
@@ -52,10 +54,22 @@ public class Speed extends Check {
         /* This checks if the horizontal velocity of the player increases while in the air, which is impossible with a vanilla client
          * We use this as a counter to a potential verbose bypass (similar to one for Janitor) for the check above. */
 
-        if(motionXZ > lastMotionXZ
-                && getData().airTicks > 1 //We want to make sure the player is in the air and not jumping.
+        if(acceleration > 0.16
+                && getData().airTicks > 3 //We want to make sure the player is in the air and not jumping.
                 && !getData().isInLiquid()) { //A player in liquid can register as though he/she is in the air.
-            flag(motionXZ + ">-" + lastMotionXZ, true);
+            flag("t: high;" + motionXZ + ">-" + lastMotionXZ, true);
+        }
+
+        /* This checks if the speed has consistent deceleration or acceleration. Whenever a player moves in the air, the player must
+           always decelerate at a constant rate.
+         */
+        if(Math.abs(acceleration) < 1E-4
+                && getData().airTicks > 3) { //We check 3 instead of 2 for airTicks as an added measure. This is for the same reason as the previous detection.
+            if(verboseB++ > 3) { //We have to add a slight verbose due to the occasional hiccup in the flow of packets.
+                flag("t: low; " + motionXZ + "≈" + lastMotionXZ, true);
+            }
+        } else {
+            verboseB = 0;
         }
 
         lastMotionXZ = motionXZ;

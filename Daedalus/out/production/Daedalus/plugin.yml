@@ -2,4 +2,4 @@ name: Daedalus
 main: cc.funkemunky.daedalus.Daedalus
 author: funkemnuky
 depends: {Atlas}
-version: 0.3-b1
+version: 0.3-b2
