@@ -6,10 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="bd234ba1-835d-49ce-83ce-15b98631c588" name="Default Changelist" comment="">
+    <list default="true" id="bd234ba1-835d-49ce-83ce-15b98631c588" name="Default Changelist" comment=""/>
       <change beforePath="$PROJECT_DIR$/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/plugin.yml" afterDir="false" />
-=======
     <list default="true" id="c1d8fbd5-721e-4781-8239-53e293691254" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Atlas.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -24,7 +22,6 @@
       <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/CollisionAssessment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/CollisionAssessment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/movement/Speed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/movement/Speed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/PacketListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/PacketListeners.java" afterDir="false" />
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,11 +65,8 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/movement/Fly.java">
-=======
+        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/movement/Fly.java"/>
         <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/combat/Reach.java">
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
@@ -101,19 +95,16 @@
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-=======
+      <file pinned="false" current-in-tab="true"/>
+        <entry file="file://$PROJECT_DIR$/resources/plugin.yml"/>
+          <provider selected="true" editor-type-id="text-editor"/>
+            <state relative-caret-position="60"/>
+              <caret line="4" column="12" lean-foward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/PacketListeners.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1734">
               <caret line="126" column="60" selection-start-line="126" selection-start-column="60" selection-end-line="126" selection-end-column="60" />
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
             </state>
           </provider>
         </entry>
@@ -175,7 +166,6 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
   <component name="FindInProjectRecents">
     <findStrings>
       <find>lastMo</find>
@@ -193,8 +183,6 @@
       <replace>getData().get</replace>
     </replaceStrings>
   </component>
-=======
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -205,14 +193,11 @@
         <option value="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/BukkitListeners.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/data/PlayerData.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/combat/Reach.java" />
-<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/CollisionAssessment.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/movement/Fly.java" />
         <option value="$PROJECT_DIR$/resources/plugin.yml" />
-=======
         <option value="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/PacketListeners.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/CollisionAssessment.java" />
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
       </list>
     </option>
   </component>
@@ -319,16 +304,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546212826498" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15917969" />
-=======
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/suckm/Documents/GitHub/Daedalus/Daedalus/src/cc/funkemunky/daedalus/impl/checks/movement/Speed.java" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546134172354" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17285156" />
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
@@ -358,12 +340,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
-=======
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -428,7 +407,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/combat/Reach.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -436,21 +414,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/combat/Killaura.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/combat/Killaura.java"/>
+      <provider selected="true" editor-type-id="text-editor"/>
+        <state relative-caret-position="495"/>
           <caret line="33" column="47" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#348#349#0" expanded="true" />
             <element signature="e#393#394#0" expanded="true" />
           </folding>
-=======
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/BukkitListeners.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="21" column="71" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
->>>>>>> fce796597a5f28f71d48534b115eac4aa941c3c5
         </state>
       </provider>
     </entry>
