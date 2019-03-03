@@ -1,0 +1,4 @@
+#Daedalus 1.6.2 Configuration File
+dependencies:
+  Atlas:
+    autoDownload: false

@@ -2,8 +2,8 @@
   <library name="depends">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/depends/lombok.jar!/" />
-      <root url="jar://$PROJECT_DIR$/depends/Atlas.jar!/" />
       <root url="jar://$PROJECT_DIR$/depends/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/depends/Atlas.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,5 +1,8 @@
 name: Daedalus
-main: cc.funkemunky.daedalus.Daedalus
-author: funkemnuky
-depends: {Atlas}
-version: 0.3-b2
+main: cc.funkemunky.anticheat.Daedalus
+desciption: Think outside the box.
+version: 1.0
+depend: [Atlas]
+authors: [funkemunky]
+commands:
+  daedalus:
