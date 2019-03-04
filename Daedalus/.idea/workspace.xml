@@ -7,49 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e79e81f8-ff5a-49f5-8371-da3438e92f05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/depends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/depends.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/Atlas.jar" beforeDir="false" afterPath="$PROJECT_DIR$/depends/Atlas.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Daedalus_jar/Daedalus.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Daedalus_jar/Daedalus.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/Daedalus$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/Daedalus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/checks/CancelType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/checks/Check.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/data/DataManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/data/PlayerData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/utils/BukkitEvents.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/utils/CollisionAssessment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/utils/Packets.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/api/utils/TickTimer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/checks/combat/Killaura.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/checks/combat/Reach.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/checks/movement/Fly.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/checks/movement/Speed.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/listeners/BukkitListeners.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/listeners/CancelEvents.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/listeners/PacketListeners.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/daedalus/impl/listeners/PlayerConnectionListeners.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/Daedalus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/checks/CancelType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/checks/Check.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/data/DataManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/data/PlayerData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/BukkitEvents.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/CollisionAssessment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/Packets.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/api/utils/TickTimer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/combat/Killaura.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/combat/Reach.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/movement/Fly.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/checks/movement/Speed.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/BukkitListeners.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/CancelEvents.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/PacketListeners.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/daedalus/impl/listeners/PlayerConnectionListeners.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,11 +32,20 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -115,15 +82,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="434">
               <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/Check.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="75" column="16" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -184,6 +142,7 @@
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckSettings.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/SpeedA.java" />
         <option value="$PROJECT_DIR$/resources/plugin.yml" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.java" />
       </list>
     </option>
   </component>
@@ -398,7 +357,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551635703113" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551635714990" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -428,15 +387,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1551634075124</updated>
-      <workItem from="1551634077794" duration="1432000" />
+      <workItem from="1551634077794" duration="1929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1432000" />
+    <option name="totallyTimeSpent" value="1929000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="790" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -803,8 +763,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
         </state>
       </provider>
     </entry>
