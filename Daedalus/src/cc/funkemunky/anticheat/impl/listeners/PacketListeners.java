@@ -4,10 +4,10 @@ import cc.funkemunky.anticheat.Daedalus;
 import cc.funkemunky.anticheat.api.checks.Check;
 import cc.funkemunky.anticheat.api.data.PlayerData;
 import cc.funkemunky.api.Atlas;
-import cc.funkemunky.api.event.custom.PacketRecieveEvent;
-import cc.funkemunky.api.event.custom.PacketSendEvent;
-import cc.funkemunky.api.event.system.EventMethod;
-import cc.funkemunky.api.event.system.Listener;
+import cc.funkemunky.api.events.AtlasListener;
+import cc.funkemunky.api.events.Listen;
+import cc.funkemunky.api.events.impl.PacketReceiveEvent;
+import cc.funkemunky.api.events.impl.PacketSendEvent;
 import cc.funkemunky.api.tinyprotocol.api.Packet;
 import cc.funkemunky.api.tinyprotocol.api.TinyProtocolHandler;
 import cc.funkemunky.api.tinyprotocol.packet.in.*;
@@ -23,9 +23,9 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 
 @Init
-public class PacketListeners implements Listener {
+public class PacketListeners implements AtlasListener {
 
-    @EventMethod
+    @Listen
     public void onEvent(PacketSendEvent event) {
         if (event.getPlayer() == null || !event.getPlayer().isOnline()) return;
 
@@ -65,8 +65,8 @@ public class PacketListeners implements Listener {
         Daedalus.getInstance().getProfiler().stop("event:PacketSendEvent");
     }
 
-    @EventMethod
-    public void onEvent(PacketRecieveEvent event) {
+    @Listen
+    public void onEvent(PacketReceiveEvent event) {
         if (event.getPlayer() == null) return;
 
         Daedalus.getInstance().getProfiler().start("event:PacketReceiveEvent");

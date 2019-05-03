@@ -10,6 +10,7 @@ import cc.funkemunky.anticheat.impl.listeners.FunkeListeners;
 import cc.funkemunky.anticheat.impl.listeners.PacketListeners;
 import cc.funkemunky.api.Atlas;
 import cc.funkemunky.api.event.system.EventManager;
+import cc.funkemunky.api.events.AtlasListener;
 import cc.funkemunky.api.profiling.BaseProfiler;
 import cc.funkemunky.api.utils.*;
 import lombok.Getter;
@@ -96,8 +97,7 @@ public class Daedalus extends JavaPlugin {
     }
 
     public void onDisable() {
-        EventManager.unregister(new FunkeListeners());
-        EventManager.unregister(new PacketListeners());
+        Atlas.getInstance().getEventManager().unregisterAll(this);
         org.bukkit.event.HandlerList.unregisterAll(this);
         dataManager.getDataObjects().clear();
         checkManager.getChecks().clear();
@@ -112,7 +112,7 @@ public class Daedalus extends JavaPlugin {
             public void run() {
                 TickEvent tickEvent = new TickEvent(currentTicks++);
 
-                EventManager.callEvent(tickEvent);
+                Atlas.getInstance().getEventManager().callEvent(tickEvent);
             }
         }.runTaskTimerAsynchronously(this, 1L, 1L);
 
@@ -131,7 +131,7 @@ public class Daedalus extends JavaPlugin {
     }
 
     private void registerCommands() {
-        Atlas.getInstance().getFunkeCommandManager().addCommand(new DaedalusCommand());
+        Atlas.getInstance().getFunkeCommandManager().addCommand(this, new DaedalusCommand());
     }
 
     public double getTPS() {
@@ -238,14 +238,17 @@ public class Daedalus extends JavaPlugin {
                     Init init = (Init) clazz.getAnnotation(Init.class);
                     if (obj instanceof Listener) {
                         MiscUtils.printToConsole("&eFound " + clazz.getSimpleName() + " Bukkit listener. Registering...");
-                        Bukkit.getPluginManager().registerEvents((Listener) obj, plugin);
-                    } else if(obj instanceof cc.funkemunky.api.event.system.Listener) {
-                        MiscUtils.printToConsole("&eFound " + clazz.getSimpleName() + " Atlas listener. Registering...");
-                        EventManager.register(plugin, (cc.funkemunky.api.event.system.Listener) obj);
+                        plugin.getServer().getPluginManager().registerEvents((Listener) obj, plugin);
+                    } else if (obj instanceof cc.funkemunky.api.event.system.Listener) {
+                        MiscUtils.printToConsole("&eFound " + clazz.getSimpleName() + "(deprecated) Atlas listener. Registering...");
+                        cc.funkemunky.api.event.system.EventManager.register(plugin, (cc.funkemunky.api.event.system.Listener) obj);
+                    } else if (obj instanceof AtlasListener) {
+                        MiscUtils.printToConsole("&eFound " + clazz.getSimpleName() + "Atlas listener. Registering...");
+                        Atlas.getInstance().getEventManager().registerListeners((AtlasListener) obj, plugin);
                     }
 
                     if(init.commands()) {
-                        Atlas.getInstance().getCommandManager().registerCommands(obj);
+                        Atlas.getInstance().getCommandManager().registerCommands(this, obj);
                     }
 
                     for (Field field : clazz.getDeclaredFields()) {

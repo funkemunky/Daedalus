@@ -27,8 +27,6 @@ import java.util.List;
 @Init
 public class BukkitListeners implements Listener {
 
-    public static boolean working = true;
-
     @EventHandler
     public void onEvent(PlayerMoveEvent event) {
         PlayerData data = Daedalus.getInstance().getDataManager().getPlayerData(event.getPlayer().getUniqueId());
