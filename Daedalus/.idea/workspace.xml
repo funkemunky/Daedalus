@@ -7,156 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e79e81f8-ff5a-49f5-8371-da3438e92f05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/EvictingList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/META-INF/Anticheat.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/Iris$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/Iris$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/Iris$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/Iris.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/checks/CancelType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/checks/Check$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/checks/Check.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/checks/CheckManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/checks/CheckSettings.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/DataManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/PlayerData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/logging/LoggerManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/processors/ActionProcessor$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/processors/ActionProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/data/stats/StatsManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/event/IrisCheatEvent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/event/IrisPunishEvent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/event/TickEvent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$AdvancedBarChart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$AdvancedPie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$CustomChart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$DrilldownPie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$MultiLineChart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$SimpleBarChart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$SimplePie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics$SingleLineChart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/metrics/Metrics.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/updater/Updater.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/updater/UpdaterListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/updater/UpdaterUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/BukkitEvents.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/CollisionAssessment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/CustomLocation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/DynamicRollingAverage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/MCSmooth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/Message.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/Messages.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/MiscUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/Packets.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/PastLocation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/Pastebin$Privacy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/Pastebin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/Setting.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/StatisticalAnalysis.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/TickTimer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/Verbose.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/Menu$CloseHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/Menu$MenuDimension.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/MenuListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/button/Button.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/button/ClickAction$InformationPair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/button/ClickAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/mask/Mask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/mask/Mask2D.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/type/BukkitInventoryHolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/type/impl/ChestMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/menu/util/ArrayIterator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/updater/Updater.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/api/utils/updater/UpdaterUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/aim/AimA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/criticals/CriticalsA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/fastbow/Fastbow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/hitboxes/HitBox.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraE.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraF.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraG.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraH.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/reach/ReachA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/reach/ReachB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/combat/reach/ReachC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/FastLadder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/FlyA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/FlyB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/FlyC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/FlyD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/FlyE.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/FlyF.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/SpeedA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/SpeedB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/SpeedC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/VelocityA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/VelocityB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/movement/VelocityC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/BadPacketsA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/BadPacketsB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/BadPacketsC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/BadPacketsD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/BadPacketsE.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/BadPacketsF.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/FastPlaceA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/Regen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/TimerA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/checks/player/TimerB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/CommandClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/IrisCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/AlertsArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/AlertsCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/BoxWandArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/BroadcastArg.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/BugReportArg.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/DebugArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/LagArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/LogArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/MenuArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/ReloadArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/commands/iris/arguments/SaveArgument.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/listeners/BukkitListeners.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/listeners/FunkeListeners.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/listeners/PacketListeners$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/listeners/PacketListeners.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/menu/MenuUtils$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/menu/MenuUtils$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/cc/funkemunky/anticheat/impl/menu/MenuUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/messages.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Anticheat/plugin.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/cc/funkemunky/anticheat/api/checks/CheckManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/cc/funkemunky/anticheat/api/utils/CollisionAssessment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/cc/funkemunky/anticheat/api/utils/MiscUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/cc/funkemunky/anticheat/impl/checks/movement/FlyB.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/messages.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Iris/plugin.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/Check.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/Check.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/plugin.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -185,20 +36,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="49" column="120" selection-start-line="49" selection-start-column="120" selection-end-line="49" selection-end-column="120" />
+            <state relative-caret-position="45">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="52" column="178" selection-start-line="52" selection-start-column="178" selection-end-line="52" selection-end-column="178" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="19" column="10" selection-start-line="18" selection-start-column="99" selection-end-line="19" selection-end-column="10" />
+            <state relative-caret-position="165">
+              <caret line="18" column="112" selection-start-line="18" selection-start-column="112" selection-end-line="18" selection-end-column="112" />
             </state>
           </provider>
         </entry>
@@ -237,14 +97,14 @@
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Messages.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckSettings.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/SpeedA.java" />
-        <option value="$PROJECT_DIR$/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckManager.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/Check.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java" />
-        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" />
+        <option value="$PROJECT_DIR$/resources/plugin.yml" />
       </list>
     </option>
   </component>
@@ -482,7 +342,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556897111989" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556897366028" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -518,12 +378,12 @@
       <option name="presentableId" value="Default" />
       <updated>1551634075124</updated>
       <workItem from="1551634077794" duration="1929000" />
-      <workItem from="1556896353190" duration="500000" />
+      <workItem from="1556896353190" duration="742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2429000" />
+    <option name="totallyTimeSpent" value="2671000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="783" extended-state="6" />
@@ -548,7 +408,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" visible="true" weight="0.32850942" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32850942" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -712,13 +572,6 @@
     <entry file="file://$PROJECT_DIR$/resources/config.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Messages.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -820,17 +673,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="49" column="120" selection-start-line="49" selection-start-column="120" selection-end-line="49" selection-end-column="120" />
+        <state relative-caret-position="165">
+          <caret line="18" column="112" selection-start-line="18" selection-start-column="112" selection-end-line="18" selection-end-column="112" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java">
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="19" column="10" selection-start-line="18" selection-start-column="99" selection-end-line="19" selection-end-column="10" />
+        <state relative-caret-position="189">
+          <caret line="52" column="178" selection-start-line="52" selection-start-column="178" selection-end-line="52" selection-end-column="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
         </state>
       </provider>
     </entry>

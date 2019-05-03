@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Packets(packets = {Packet.Client.POSITION_LOOK, Packet.Client.POSITION, Packet.Client.LOOK, Packet.Client.FLYING, Packet.Client.LEGACY_LOOK, Packet.Client.LEGACY_POSITION, Packet.Client.LEGACY_POSITION_LOOK})
-public class ReachB extends Check {
+public class Reach extends Check {
 
     @Setting(name = "boxExpand")
     private float boxExpand = 3.0f;
@@ -31,7 +31,7 @@ public class ReachB extends Check {
 
     private double vl;
 
-    public ReachB(String name, CancelType cancelType, int maxVL) {
+    public Reach(String name, CancelType cancelType, int maxVL) {
         super(name, cancelType, maxVL);
     }
 
