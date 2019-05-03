@@ -8,8 +8,8 @@ import lombok.val;
 import org.bukkit.event.Event;
 
 @Packets(packets = {Packet.Client.POSITION_LOOK, Packet.Client.POSITION, Packet.Client.LEGACY_POSITION, Packet.Client.LEGACY_POSITION_LOOK})
-public class CriticalsA extends Check {
-    public CriticalsA(String name, CancelType cancelType, int maxVL) {
+public class Criticals extends Check {
+    public Criticals(String name, CancelType cancelType, int maxVL) {
         super(name, cancelType, maxVL);
     }
 

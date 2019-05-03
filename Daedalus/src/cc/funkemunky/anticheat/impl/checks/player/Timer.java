@@ -1,5 +1,6 @@
 package cc.funkemunky.anticheat.impl.checks.player;
 
+import cc.funkemunky.anticheat.Daedalus;
 import cc.funkemunky.anticheat.api.checks.CancelType;
 import cc.funkemunky.anticheat.api.checks.Check;
 import cc.funkemunky.anticheat.api.utils.Packets;
@@ -15,32 +16,33 @@ import org.bukkit.event.Event;
         Packet.Client.LEGACY_POSITION,
         Packet.Client.LEGACY_POSITION_LOOK,
         Packet.Client.LEGACY_LOOK})
-public class TimerB extends Check {
-    public TimerB(String name, CancelType cancelType, int maxVL) {
+public class Timer extends Check {
+
+    @Setting(name = "threshold")
+    private long threshold = 960L;
+
+    private int ticks, vl;
+    private long lastReset;
+    public Timer(String name, CancelType cancelType, int maxVL) {
         super(name, cancelType, maxVL);
     }
 
-    @Setting(name = "threshold")
-    private long threshold = 1980L;
-
-    @Setting(name = "maxVl")
-    private int maxVl = 2;
-
-    private int vl, ticks;
-    private long start;
-
     @Override
     public void onPacket(Object packet, String packetType, long timeStamp) {
-        if(ticks++ >= 40) {
-            val delta = timeStamp - start;
-            if(delta < threshold) {
-                if(vl++ > maxVl) {
-                    flag(delta + "<-" + threshold, true, true);
-                }
-            } else vl-= vl > 0 ? 1 : 0;
-            start = timeStamp;
-            ticks = 0;
-        } else ticks++;
+        if (getData().getLastServerPos().hasPassed(2) && Daedalus.getInstance().getTPS() > 15) {
+           if(ticks++ >= 20) {
+               val elapsed = timeStamp - lastReset;
+               if(elapsed < threshold && elapsed > 20) {
+                   if(vl++ > 2) {
+                       flag(elapsed + "-<" + threshold, true, true);
+                   }
+               } else {
+                   vl -= vl > 0 ? 1 : 0;
+               }
+               ticks = 0;
+               lastReset = timeStamp;
+           }
+        }
     }
 
     @Override
