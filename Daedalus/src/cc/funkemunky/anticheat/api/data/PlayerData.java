@@ -45,6 +45,7 @@ public class PlayerData {
             lastFlag = new TickTimer(40),
             lastAttack = new TickTimer(4);
     private float walkSpeed, flySpeed;
+    private List<Vector> teleportLocations = new EvictingList<>(5);
     private LivingEntity target;
     private long transPing, lastTransaction, lastTransPing, ping, lastPing, lastKeepAlive;
     private MCSmooth yawSmooth = new MCSmooth(), pitchSmooth = new MCSmooth();

@@ -15,15 +15,13 @@ import cc.funkemunky.anticheat.impl.checks.player.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Getter
 @Setter
 public class CheckManager {
     private List<Check> checks = new ArrayList<>();
+    private List<UUID> bannedPlayers = new ArrayList<>();
 
     public CheckManager() {
         checks = loadChecks();

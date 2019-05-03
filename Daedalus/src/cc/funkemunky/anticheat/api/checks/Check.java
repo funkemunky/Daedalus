@@ -3,6 +3,7 @@ package cc.funkemunky.anticheat.api.checks;
 import cc.funkemunky.anticheat.Daedalus;
 import cc.funkemunky.anticheat.api.data.PlayerData;
 import cc.funkemunky.anticheat.api.utils.Verbose;
+import cc.funkemunky.api.Atlas;
 import cc.funkemunky.api.event.system.Listener;
 import cc.funkemunky.api.utils.Color;
 import cc.funkemunky.api.utils.JsonMessage;
@@ -73,39 +74,42 @@ public abstract class Check implements Listener, org.bukkit.event.Listener {
     }
 
     protected void flag(String information, boolean cancel, boolean ban) {
-        if (data.getLastLag().hasPassed() || lagVerbose.flag(4, 500L)) {
-            vl++;
-            if (vl > maxVL && executable && ban) {
-                new BukkitRunnable() {
-                    public void run() {
-                        execCommand.forEach(cmd -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd.replaceAll("%player%", getData().getPlayer().getName()).replaceAll("%check%", getName())));
-                    }
-                }.runTaskLater(Daedalus.getInstance(), 30);
+        Atlas.getInstance().getThreadPool().execute(() -> {
+            if (data.getLastLag().hasPassed() || lagVerbose.flag(4, 500L)) {
+                vl++;
+                if (vl > maxVL && executable && ban && !Daedalus.getInstance().getCheckManager().getBannedPlayers().contains(data.getUuid())) {
+                    Daedalus.getInstance().getCheckManager().getBannedPlayers().add(data.getUuid());
+                    new BukkitRunnable() {
+                        public void run() {
+                            execCommand.forEach(cmd -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd.replaceAll("%player%", getData().getPlayer().getName()).replaceAll("%check%", getName())));
+                        }
+                    }.runTaskLater(Daedalus.getInstance(), 30);
+                }
+
+                data.getLastFlag().reset();
+
+                if (cancel && cancellable) data.setCancelType(cancelType);
+
+                if (System.currentTimeMillis() - lastAlert > CheckSettings.alertsDelay) {
+                    JsonMessage message = new JsonMessage();
+
+                    message.addText(Color.translate(alertMessage.replaceAll("%player%", data.getPlayer().getName()).replaceAll("%vl%", String.valueOf(vl)).replaceAll("%info%", information))).addHoverText(Color.Gray + information);
+                    Daedalus.getInstance().getDataManager().getDataObjects().values().stream().filter(PlayerData::isAlertsEnabled).forEach(data -> message.sendToPlayer(data.getPlayer()));
+                    lastAlert = System.currentTimeMillis();
+                }
+
+                if(CheckSettings.testMode && !data.isAlertsEnabled()) {
+                    JsonMessage message = new JsonMessage();
+
+                    message.addText(Color.translate(alertMessage.replaceAll("%player%", data.getPlayer().getName()).replaceAll("%vl%", String.valueOf(vl)).replaceAll("%info%", information))).addHoverText(Color.Gray + information);
+                    message.sendToPlayer(data.getPlayer());
+                }
+
+                if(CheckSettings.printToConsole) {
+                    MiscUtils.printToConsole(alertMessage.replaceAll("%player%", data.getPlayer().getName()).replaceAll("%vl%", String.valueOf(vl)));
+                }
             }
-
-            data.getLastFlag().reset();
-
-            if (cancel && cancellable) data.setCancelType(cancelType);
-
-            if (System.currentTimeMillis() - lastAlert > CheckSettings.alertsDelay) {
-                JsonMessage message = new JsonMessage();
-
-                message.addText(Color.translate(alertMessage.replaceAll("%player%", data.getPlayer().getName()).replaceAll("%vl%", String.valueOf(vl)).replaceAll("%info%", information))).addHoverText(Color.Gray + information);
-                Daedalus.getInstance().getDataManager().getDataObjects().values().stream().filter(PlayerData::isAlertsEnabled).forEach(data -> message.sendToPlayer(data.getPlayer()));
-                lastAlert = System.currentTimeMillis();
-            }
-
-            if(CheckSettings.testMode && !data.isAlertsEnabled()) {
-                JsonMessage message = new JsonMessage();
-
-                message.addText(Color.translate(alertMessage.replaceAll("%player%", data.getPlayer().getName()).replaceAll("%vl%", String.valueOf(vl)).replaceAll("%info%", information))).addHoverText(Color.Gray + information);
-                message.sendToPlayer(data.getPlayer());
-            }
-
-            if(CheckSettings.printToConsole) {
-                MiscUtils.printToConsole(alertMessage.replaceAll("%player%", data.getPlayer().getName()).replaceAll("%vl%", String.valueOf(vl)));
-            }
-        }
+        });
     }
 
     private void loadFromConfig() {

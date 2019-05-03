@@ -16,6 +16,7 @@ public class PlayerConnectionListeners implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Atlas.getInstance().getThreadPool().execute(() -> {
             Daedalus.getInstance().getDataManager().addData(event.getPlayer().getUniqueId());
+            Daedalus.getInstance().getCheckManager().getBannedPlayers().remove(event.getPlayer().getUniqueId());
         });
     }
 

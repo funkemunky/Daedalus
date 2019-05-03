@@ -47,10 +47,10 @@ public class MovementProcessor {
             to.setX(packet.getX());
             to.setY(packet.getY());
             to.setZ(packet.getZ());
-            data.setBoundingBox(ReflectionsUtil.toBoundingBox(ReflectionsUtil.getBoundingBox(packet.getPlayer())));
+            data.setBoundingBox(new BoundingBox(to.toVector(), to.toVector()).grow(0.3f, 0, 0.3f).add(0,0,0,0,1.84f,0));
 
             //Here we get the colliding boundingboxes surrounding the player.
-            List<BoundingBox> box = boxes = Atlas.getInstance().getBlockBoxManager().getBlockBox().getCollidingBoxes(player.getWorld(), data.getBoundingBox().grow(2f, 2f, 2f));
+            List<BoundingBox> box = boxes = Atlas.getInstance().getBlockBoxManager().getBlockBox().getCollidingBoxes(player.getWorld(), data.getBoundingBox().grow(1.5f, 1.5f, 1.5f));
 
             CollisionAssessment assessment = new CollisionAssessment(data.getBoundingBox(), data);
 
@@ -100,6 +100,12 @@ public class MovementProcessor {
             jumpVelocity = 0.42f + (PlayerUtils.getPotionEffectLevel(packet.getPlayer(), PotionEffectType.JUMP) * 0.1f);
 
             isLagging = timeStamp < lastTimeStamp + 5;
+
+            if(data.getTeleportLocations().stream().anyMatch(vec -> vec.distance(to.toVector()) == 0)) {
+                data.getLastServerPos().reset();
+                data.getTeleportLocations().clear();
+                from = to;
+            }
 
             if (serverOnGround) {
                 groundTicks++;

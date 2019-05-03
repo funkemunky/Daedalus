@@ -11,12 +11,14 @@ import cc.funkemunky.api.event.system.Listener;
 import cc.funkemunky.api.tinyprotocol.api.Packet;
 import cc.funkemunky.api.tinyprotocol.api.TinyProtocolHandler;
 import cc.funkemunky.api.tinyprotocol.packet.in.*;
+import cc.funkemunky.api.tinyprotocol.packet.out.WrappedOutPositionPacket;
 import cc.funkemunky.api.tinyprotocol.packet.out.WrappedOutTransaction;
 import cc.funkemunky.api.tinyprotocol.packet.out.WrappedOutVelocityPacket;
 import cc.funkemunky.api.utils.Init;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 
@@ -33,7 +35,9 @@ public class PacketListeners implements Listener {
         if (data != null) {
             switch (event.getType()) {
                 case Packet.Server.POSITION: {
-                    data.getLastServerPos().reset();
+                    WrappedOutPositionPacket position = new WrappedOutPositionPacket(event.getPacket(), event.getPlayer());
+
+                    data.getTeleportLocations().add(new Vector(position.getX(), position.getY(), position.getZ()));
                     break;
                 }
                 case Packet.Server.KEEP_ALIVE:
