@@ -7,22 +7,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e79e81f8-ff5a-49f5-8371-da3438e92f05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Iris.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Iris1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/depends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Atlas_1_3_PRE_b6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/Atlas.jar" beforeDir="false" afterPath="$PROJECT_DIR$/depends/Atlas.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Daedalus.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Daedalus.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/Atlas.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Daedalus_jar/Daedalus.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Daedalus_jar/Daedalus.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/checks/CheckManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/checks/CheckManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/criticals/CriticalsA.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/META-INF/Daedalus.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/Daedalus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/Daedalus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/checks/Check.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/checks/Check.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/PlayerData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/processors/ActionProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/processors/ActionProcessor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/DynamicRollingAverage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/MiscUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/MiscUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/Pastebin$Privacy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/Pastebin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/StatisticalAnalysis.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/TickTimer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/Verbose.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/api/utils/Verbose.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/criticals/Criticals.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/criticals/Criticals.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/fastbow/Fastbow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/fastbow/Fastbow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraA.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/reach/Reach.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/combat/reach/Reach.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/FlyA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/FlyA.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/FlyB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/FlyB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/FlyC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/TimerA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/TimerB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/SpeedA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/SpeedA.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/SpeedB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/movement/SpeedB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/BadPacketsA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/BadPacketsA.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/BadPacketsC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/BadPacketsC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/Regen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/Regen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/Timer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/checks/player/Timer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/LagArgument.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/LagArgument.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/listeners/BukkitListeners.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/listeners/BukkitListeners.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/listeners/PacketListeners.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/cc/funkemunky/anticheat/impl/listeners/PacketListeners.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Daedalus/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Daedalus/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/Daedalus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/Daedalus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/TickEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/TickEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/BukkitListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/BukkitListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/FunkeListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/FunkeListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/ActionProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/ActionProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/DynamicRollingAverage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Pastebin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/StatisticalAnalysis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/TickTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Verbose.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Verbose.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/fastbow/Fastbow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/fastbow/Fastbow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/LagArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/LagArgument.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,95 +68,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/Daedalus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3075">
-              <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="21" />
+            <state relative-caret-position="-480">
+              <caret line="51" column="97" selection-start-line="51" selection-start-column="97" selection-end-line="51" selection-end-column="97" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="40" column="63" selection-start-line="40" selection-start-column="63" selection-end-line="40" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1804">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="18" column="112" selection-start-line="18" selection-start-column="112" selection-end-line="18" selection-end-column="112" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/FunkeListeners.java">
+        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/BukkitListeners.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/LagArgument.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/TickEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/DaedalusPunishEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/SpeedB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/Timer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="270">
+              <caret line="99" column="169" selection-start-line="99" selection-start-column="169" selection-end-line="99" selection-end-column="169" />
             </state>
           </provider>
         </entry>
@@ -150,7 +128,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerB.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraB.java" />
-        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/reach/ReachB.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/BadPacketsB.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/iris/arguments/SaveArgument.java" />
@@ -161,16 +138,23 @@
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/SpeedA.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/GroundSpoof.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/Check.java" />
-        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PlayerConnectionListeners.java" />
-        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" />
-        <option value="$PROJECT_DIR$/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckManager.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/BukkitListeners.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/TickEvent.java" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/FunkeListeners.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Pastebin.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/ActionProcessor.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/fastbow/Fastbow.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Verbose.java" />
+        <option value="$PROJECT_DIR$/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/Daedalus.java" />
+        <option value="$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/LagArgument.java" />
       </list>
     </option>
   </component>
@@ -180,10 +164,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="783" />
+    <option name="height" value="787" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -191,8 +175,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -408,13 +392,13 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556897938775" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560513335515" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -444,17 +428,21 @@
       <option name="presentableId" value="Default" />
       <updated>1551634075124</updated>
       <workItem from="1551634077794" duration="1929000" />
-      <workItem from="1556896353190" duration="1376000" />
+      <workItem from="1556896353190" duration="1480000" />
+      <workItem from="1556898084947" duration="149000" />
+      <workItem from="1560512766342" duration="285000" />
+      <workItem from="1560513056226" duration="383000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3305000" />
+    <option name="totallyTimeSpent" value="4226000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="783" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="787" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2639485" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -473,7 +461,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32850942" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.32805756" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -489,42 +477,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraG.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraH.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/FastLadder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/FlyF.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/FlyD.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/VelocityC.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/BadPacketsE.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/BadPacketsD.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/BadPacketsC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/FastPlaceA.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/Regen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/BadPacketsB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/updater/Updater.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -562,29 +514,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/AlertsArgument.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/DaedalusCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="31" column="128" selection-start-line="31" selection-start-column="128" selection-end-line="31" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/config.yml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Messages.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckSettings.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -597,23 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="43">
           <caret line="110" column="13" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/EvictingList.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="47" column="67" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -631,27 +545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="52" column="178" selection-start-line="52" selection-start-column="178" selection-end-line="52" selection-end-column="178" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -659,13 +552,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/reach/ReachA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/reach/ReachA.java" />
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/autoclicker/AutoclickerA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -687,13 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/FlyB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/SpeedA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -701,27 +581,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/Timer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/TimerB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/SpeedB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/TimerB.java" />
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/checks/CheckManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -729,27 +589,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/DaedalusPunishEvent.java">
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/AlertsArgument.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/TickEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1804">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state relative-caret-position="255">
+          <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -774,10 +617,183 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/TickEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/event/DaedalusPunishEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/movement/SpeedB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/player/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/StatisticalAnalysis.java" />
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Pastebin.java" />
+    <entry file="jar://$PROJECT_DIR$/depends/Atlas-1.3-PRE-b6.jar!/cc/funkemunky/api/utils/TickTimer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/DaedalusCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="31" column="128" selection-start-line="31" selection-start-column="128" selection-end-line="31" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/listeners/PacketListeners.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/ActionProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/VelocityProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/PastLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Packets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/DynamicRollingAverage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/fastbow/Fastbow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/processors/MovementProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="105" column="46" selection-start-line="105" selection-start-column="46" selection-end-line="105" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/checks/combat/killaura/KillauraC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Verbose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/MCSmooth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/EvictingList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Setting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/MiscUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/utils/Messages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/Daedalus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3075">
-          <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="21" />
+        <state relative-caret-position="-480">
+          <caret line="51" column="97" selection-start-line="51" selection-start-column="97" selection-end-line="51" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/api/data/PlayerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/funkemunky/anticheat/impl/commands/daedalus/arguments/LagArgument.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="99" column="169" selection-start-line="99" selection-start-column="169" selection-end-line="99" selection-end-column="169" />
         </state>
       </provider>
     </entry>
@@ -861,7 +877,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>depends</last-edited>
+          <last-edited>Atlas-1.3-PRE-b6</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -872,5 +888,8 @@
         </settings>
       </state>
     </states>
+  </component>
+  <component name="mavenExecuteGoalHistory">
+    <option value="" />
   </component>
 </project>

@@ -10,6 +10,7 @@ import cc.funkemunky.anticheat.api.data.processors.VelocityProcessor;
 import cc.funkemunky.anticheat.api.utils.*;
 import cc.funkemunky.api.Atlas;
 import cc.funkemunky.api.utils.BoundingBox;
+import cc.funkemunky.api.utils.TickTimer;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;

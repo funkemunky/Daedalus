@@ -49,7 +49,7 @@ public class Daedalus extends JavaPlugin {
     private File messagesFile;
     private FileConfiguration messages;
 
-    private String[] requiredVersionsOfAtlas = new String[] {"1.1.3.1", "1.1.3.2"};
+    private String[] requiredVersionsOfAtlas = new String[] {"1.2.1", "1.2", "1.2.2", "1.3-PRE-b6"};
 
     @Override
     public void onEnable() {

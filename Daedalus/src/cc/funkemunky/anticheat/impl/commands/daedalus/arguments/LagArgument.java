@@ -3,12 +3,12 @@ package cc.funkemunky.anticheat.impl.commands.daedalus.arguments;
 import cc.funkemunky.anticheat.Daedalus;
 import cc.funkemunky.anticheat.api.data.PlayerData;
 import cc.funkemunky.anticheat.api.utils.Messages;
-import cc.funkemunky.anticheat.api.utils.Pastebin;
 import cc.funkemunky.api.commands.FunkeArgument;
 import cc.funkemunky.api.commands.FunkeCommand;
 import cc.funkemunky.api.utils.Color;
 import cc.funkemunky.api.utils.MathUtils;
 import cc.funkemunky.api.utils.MiscUtils;
+import cc.funkemunky.api.utils.Pastebin;
 import lombok.val;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
@@ -60,43 +60,6 @@ public class LagArgument extends FunkeArgument {
             sender.sendMessage(MiscUtils.line(Color.Dark_Gray));
         } else {
             switch(args[1].toLowerCase()) {
-                case "profile": {
-                    List<String> body = new ArrayList<>();
-                    body.add(MiscUtils.lineNoStrike());
-                    float totalPCT = 0;
-                    long totalTime = MathUtils.elapsed(Daedalus.getInstance().getProfileStart());
-                    for (String string : Daedalus.getInstance().getProfiler().total.keySet()) {
-                        body.add(string);
-                        double stringTotal = TimeUnit.NANOSECONDS.toMillis(Daedalus.getInstance().getProfiler().total.get(string));
-                        int calls = Daedalus.getInstance().getProfiler().calls.get(string);
-                        double pct = stringTotal / totalTime;
-                        body.add("Latency: " + stringTotal / calls + "ms");
-                        body.add("Calls: " + calls);
-                        body.add("STD: " + Daedalus.getInstance().getProfiler().stddev.get(string));
-                        body.add("PCT: " + MathUtils.round(pct, 8));
-                        totalPCT += (pct);
-                    }
-                    body.add("Total PCT: " + MathUtils.round(totalPCT, 4) + "%");
-                    body.add("Total Time: " + totalTime + "ms");
-                    body.add("Total Calls: " + Daedalus.getInstance().getProfiler().totalCalls);
-                    body.add(MiscUtils.lineNoStrike());
-
-                    StringBuilder builder = new StringBuilder();
-                    for (String aBody : body) {
-                        builder.append(aBody).append(";");
-                    }
-
-                    builder.deleteCharAt(body.size() - 1);
-
-                    String bodyString = builder.toString().replaceAll(";", "\n");
-
-                    try {
-                        sender.sendMessage(Color.Green + "Results: " + Pastebin.makePaste(bodyString, "Daedalus Profile: " + DateFormatUtils.format(System.currentTimeMillis(), ", ", TimeZone.getTimeZone("604")), Pastebin.Privacy.UNLISTED));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                }
                 case "server":
                     sender.sendMessage(MiscUtils.line(Color.Dark_Gray));
                     sender.sendMessage(Color.translate("&6&lServer Info"));

@@ -1,10 +1,9 @@
 package cc.funkemunky.anticheat.api.data.processors;
 
-import cc.funkemunky.anticheat.api.utils.TickTimer;
 import cc.funkemunky.api.tinyprotocol.packet.in.WrappedInFlyingPacket;
 import cc.funkemunky.api.tinyprotocol.packet.out.WrappedOutVelocityPacket;
+import cc.funkemunky.api.utils.TickTimer;
 import lombok.Getter;
-import lombok.val;
 import lombok.var;
 
 @Getter
